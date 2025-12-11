@@ -36,7 +36,7 @@ const Footer = () => {
             >
               Gyne<span className="text-[#C5A059]">Clinics</span>
             </Link>
-            <p className="text-gray-300 text-sm leading-relaxed">
+            <p className="text-gray-300 text-sm leading-relaxed mt-4">
               Leading the way in Women's Health, combining expert Gynaecology,
               Urogynaecology, and Aesthetic solutions in a private, trusted
               environment.

@@ -11,6 +11,7 @@ import {
   X,
   Youtube,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -118,7 +119,13 @@ const Navbar = () => {
             href="/"
             className="text-2xl font-serif font-bold text-[#0A2342]"
           >
-            Gyne<span className="text-[#C5A059]">Clinics</span>
+            <Image
+              src="/assets/logo/gyneclinics-logo.svg"
+              alt="GyneClinics Logo"
+              width={500}
+              height={500}
+              className=" h-auto w-24 md:w-32 object-contain"
+            />
           </Link>
 
           {/* DESKTOP NAVIGATION */}
