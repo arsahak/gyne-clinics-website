@@ -1,26 +1,62 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* --- Brand Identity Colors --- */
+  /* Primary: Deep Oxford Blue (Trust, Authority) */
+  --primary: #0a2342;
+  /* Secondary: Muted Gold (Aesthetics, Action Buttons) */
+  --secondary: #c5a059;
+  /* Accent: Dusty Rose (Soft highlights, backgrounds) */
+  --accent: #f2d7d5;
+
+  /* --- Base Colors (Light Mode) --- */
+  --background: #fafafa; /* Warm off-white, better for reading than #ffffff */
+  --foreground: #0a2342; /* Text is dark blue, not harsh black */
+  --muted: #64748b; /* Gray for secondary text */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* --- Dark Mode Overrides --- */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Background becomes a very deep blue, not pitch black */
+    --background: #020b16;
+    --foreground: #fafafa;
+    /* Primary lightens slightly for visibility on dark backgrounds */
+    --primary: #1c3f6e;
+    --muted: #94a3b8;
   }
 }
 
+/* --- Tailwind Theme Configuration --- */
+@theme inline {
+  /* Expose Colors to Tailwind Utilities (e.g., bg-primary, text-secondary) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+
+  /* Expose Fonts (e.g., font-heading, font-sans) */
+  /* These rely on the CSS variables set in layout.tsx via next/font */
+  --font-heading: var(--font-playfair);
+  --font-sans: var(--font-lato);
+}
+
+/* --- Global Resets --- */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans); /* Default to Lato */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Automatically apply Serif font to all headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
 }
