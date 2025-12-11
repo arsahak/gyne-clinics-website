@@ -8,6 +8,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
+import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -18,34 +19,34 @@ const services = [
     title: "Gynaecology Conditions",
     description:
       "Expert diagnosis and treatment for a wide range of women's health issues.",
-    image: "/images/service-room.jpg",
+    image: "/assets/home/clinic.jpg",
     href: "/services/gynaecology",
   },
   {
     title: "Well Women Checks",
     description:
       "Comprehensive health screening and preventative care packages.",
-    image: "/images/service-doctor.jpg",
+    image: "/assets/home/well-women.jpg",
     href: "/services/well-women",
   },
   {
     title: "Gyne Cosmetics",
     description:
       "Aesthetic solutions designed to restore confidence and comfort.",
-    image: "/images/service-face.jpg",
+    image: "/assets/home/cosmetics.jpg",
     href: "/services/cosmetics",
   },
   {
     title: "Gyne Lipo-Sculpture",
     description: "Specialized body contouring and fat transfer procedures.",
-    image: "/images/service-body.jpg",
+    image: "/assets/home/lipo-sculpture.jpg",
     href: "/services/lipo-sculpture",
   },
   {
     title: "Fertility Services",
     description:
       "Advanced fertility investigations to help you start your family.",
-    image: "/images/service-fertility.jpg",
+    image: "/assets/home/clinic.jpg",
     href: "/services/fertility",
   },
 ];
@@ -99,7 +100,6 @@ const ServicesSection = () => {
             // UPDATE 1: Increased bottom padding to !pb-28 to push dots down away from cards
             className="!pb-16"
             style={{
-              // UPDATE 2: Custom CSS variables to perfect the positioning
               // @ts-ignore
               "--swiper-pagination-color": "#C5A059", // Your Brand Gold
               "--swiper-pagination-bullet-inactive-color": "#9ca3af", // Soft Gray
@@ -125,14 +125,16 @@ const ServiceCard = ({ service, index }: any) => {
   return (
     <div className="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 h-full flex flex-col">
       {/* 1. Image Area */}
-      <div className="relative h-64 overflow-hidden shrink-0">
-        <div className="absolute inset-0 bg-gray-200">
-          {/* <img src={service.image} alt={service.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" /> */}
-          <div className="flex items-center justify-center h-full text-gray-400 text-xs uppercase tracking-widest">
-            [Image: {service.title}]
-          </div>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      <div className="relative h-64 overflow-hidden shrink-0 bg-gray-200">
+        <Image
+          src={service.image}
+          alt={service.title}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+        />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
       </div>
 
       {/* 2. Content Area */}

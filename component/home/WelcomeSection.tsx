@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const WelcomeSection = () => {
@@ -60,11 +61,17 @@ const WelcomeSection = () => {
               className="relative z-10"
             >
               {/* Main Image */}
-              <div className="rounded-2xl overflow-hidden shadow-2xl border-8 border-white">
-                {/* Replace with a high-quality team or doctor image */}
-                <div className="bg-gray-200 h-[500px] w-full flex items-center justify-center text-gray-400">
-                  [Image: Dr. & Patient Consultation]
-                </div>
+
+              {/* ADDED: 'relative' and 'h-[400px] lg:h-[550px]' to control height */}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-8 border-white h-[400px] lg:h-[550px] w-full">
+                <Image
+                  src="/assets/home/doctor-consultation.jpg"
+                  alt="Doctor and Patient Consultation"
+                  fill // <--- Replaces width/height numbers
+                  className="object-cover" // Ensures image fills the box without stretching
+                  sizes="(max-width: 768px) 100vw, 50vw" // Optimization for performance
+                  priority // Loads this important image faster
+                />
               </div>
 
               {/* Floating "Experience" Badge */}
