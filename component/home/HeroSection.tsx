@@ -33,7 +33,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-primary flex flex-col justify-between">
+    <section className="relative h-screen w-full overflow-hidden bg-primary flex flex-col justify-between pt-20 md:pt-[100px]">
       {/* --- 1. BACKGROUND LAYERS --- */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 w-[300%] h-[300%] -translate-x-1/2 -translate-y-1/2">

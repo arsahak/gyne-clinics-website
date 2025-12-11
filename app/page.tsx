@@ -1,5 +1,10 @@
+import BookConsultation from "@/component/home/BookConsultation";
+import ConditionsSection from "@/component/home/ConditionsSection";
 import HeroSection from "@/component/home/HeroSection";
+import SearchSection from "@/component/home/SearchSection";
 import ServicesSection from "@/component/home/ServicesSection";
+import StoreSection from "@/component/home/StoreSection";
+import WelcomeSection from "@/component/home/WelcomeSection";
 
 export const metadata = {
   title: "GyneClinics – Expertise Professionalism and Excellence",
@@ -21,6 +26,11 @@ export default function Home() {
     <div className="">
       <HeroSection />
       <ServicesSection />
+      <WelcomeSection />
+      <StoreSection />
+      <ConditionsSection />
+      <SearchSection />
+      <BookConsultation />
     </div>
   );
 }
