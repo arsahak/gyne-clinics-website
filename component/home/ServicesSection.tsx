@@ -53,7 +53,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-12 md:py-16 lg:py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -105,7 +105,7 @@ const ServicesSection = () => {
               "--swiper-pagination-bullet-inactive-color": "#9ca3af", // Soft Gray
               "--swiper-pagination-bullet-inactive-opacity": "0.5",
               "--swiper-pagination-bullet-size": "10px", // Slightly smaller, elegant dots
-              "--swiper-pagination-bottom": "30px", // Pushes dots to the very bottom edge
+              "--swiper-pagination-bottom": "1px", // Pushes dots to the very bottom edge
             }}
           >
             {services.map((service, index) => (

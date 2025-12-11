@@ -6,9 +6,9 @@ import Link from "next/link";
 
 const WelcomeSection = () => {
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section className="py-12 md:py-16 lg:py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center gap-16">
+        <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12 lg:gap-16">
           {/* Text Content */}
           <div className="lg:w-1/2 order-2 lg:order-1">
             <motion.div
@@ -61,16 +61,16 @@ const WelcomeSection = () => {
               className="relative z-10"
             >
               {/* Main Image */}
-
-              {/* ADDED: 'relative' and 'h-[400px] lg:h-[550px]' to control height */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-8 border-white h-[400px] lg:h-[550px] w-full">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-8 border-white w-full aspect-[4/3] lg:aspect-[3/2]">
                 <Image
-                  src="/assets/home/doctor-consultation.jpg"
+                  src="/assets/home/doctor-consultation1.jpg"
                   alt="Doctor and Patient Consultation"
-                  fill // <--- Replaces width/height numbers
-                  className="object-cover" // Ensures image fills the box without stretching
-                  sizes="(max-width: 768px) 100vw, 50vw" // Optimization for performance
-                  priority // Loads this important image faster
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                  priority
+                  quality={90}
+                  loading="eager"
                 />
               </div>
 

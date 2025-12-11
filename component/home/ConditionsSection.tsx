@@ -69,7 +69,7 @@ const ConditionsSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-white relative">
+    <section className="py-12 md:py-16 lg:py-24 bg-white relative">
       <div className="container mx-auto px-4">
         {/* 1. Header Area */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">

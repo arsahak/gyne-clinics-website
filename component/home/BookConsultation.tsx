@@ -19,7 +19,7 @@ const BookConsultation = () => {
 
   return (
     <section
-      className="py-24 bg-white relative overflow-hidden"
+      className="py-12 md:py-16 lg:py-24 bg-white relative overflow-hidden"
       id="book-appointment"
     >
       {/* Background Subtle Pattern */}

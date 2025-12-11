@@ -13,7 +13,7 @@ import Link from "next/link";
 
 const SearchSection = () => {
   return (
-    <section className="py-24 bg-[#F4F6F8] relative">
+    <section className="py-12 md:py-16 lg:py-24 bg-[#F4F6F8] relative">
       <div className="container mx-auto px-4">
         {/* 1. SECTION HEADER & SEARCH (Combined) */}
         <div className="max-w-4xl mx-auto text-center mb-16">
