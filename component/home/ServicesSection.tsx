@@ -101,8 +101,8 @@ const ServicesSection = () => {
             className="!pb-16"
             style={{
               // @ts-ignore
-              "--swiper-pagination-color": "#C5A059", // Your Brand Gold
-              "--swiper-pagination-bullet-inactive-color": "#9ca3af", // Soft Gray
+              "--swiper-pagination-color": "#834d8b", // Your Brand Gold
+              "--swiper-pagination-bullet-inactive-color": "#cc9bdf", // Soft Gray
               "--swiper-pagination-bullet-inactive-opacity": "0.5",
               "--swiper-pagination-bullet-size": "10px", // Slightly smaller, elegant dots
               "--swiper-pagination-bottom": "1px", // Pushes dots to the very bottom edge

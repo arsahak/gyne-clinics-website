@@ -58,7 +58,7 @@ const HeroSection = () => {
         >
           {/* Subtle Tag */}
           <motion.div variants={fadeInUp}>
-            <span className="inline-block py-1 px-4 rounded-full border border-secondary/30 bg-primary/30 backdrop-blur-md text-secondary text-xs font-bold tracking-[0.2em] uppercase mb-8 shadow-sm">
+            <span className="inline-block py-1 px-4 rounded-full border border-secondary/30 bg-primary/30 backdrop-blur-md text-white text-xs font-bold tracking-[0.2em] uppercase mb-8 shadow-sm">
               Excellence in Care
             </span>
           </motion.div>
@@ -138,19 +138,17 @@ const DiscoveryLink = ({ href, title, subtitle, icon }: any) => {
       className="group flex items-center justify-between p-6 hover:bg-white/5 transition-all duration-300 cursor-pointer"
     >
       <div className="flex items-center gap-4">
-        <div className="text-secondary/80 group-hover:text-secondary transition-colors">
-          {icon}
-        </div>
+        <div className="text-white transition-colors">{icon}</div>
         <div className="text-left">
-          <h3 className="text-white font-heading font-semibold text-lg group-hover:text-secondary transition-colors">
+          <h3 className="text-white font-heading font-semibold text-lg  transition-colors">
             {title}
           </h3>
-          <p className="text-gray-400 text-xs uppercase tracking-wider group-hover:text-gray-300">
+          <p className="text-gray-300 text-xs uppercase tracking-wider">
             {subtitle}
           </p>
         </div>
       </div>
-      <div className="text-gray-500 group-hover:translate-x-1 group-hover:text-secondary transition-all">
+      <div className="text-gray-500 group-hover:translate-x-1  transition-all">
         <ArrowRight size={20} />
       </div>
     </Link>

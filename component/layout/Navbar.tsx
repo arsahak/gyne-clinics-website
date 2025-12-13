@@ -73,14 +73,14 @@ const Navbar = () => {
       <motion.div
         initial={{ height: 40, opacity: 1 }}
         animate={{ height: scrolled ? 0 : 40, opacity: scrolled ? 0 : 1 }}
-        className="bg-[#0A2342] text-white text-xs overflow-hidden"
+        className="bg-primary-500 text-white text-xs overflow-hidden"
       >
         <div className="container mx-auto px-4 h-full flex justify-between items-center">
           <div className="flex items-center gap-4">
             {/* Replace with real phone number */}
             <a
               href="tel:+123456789"
-              className="flex items-center gap-2 hover:text-[#C5A059] transition-colors"
+              className="flex items-center gap-2 hover:text-secondary transition-colors"
             >
               <Phone size={14} /> <span>+880 1234 567 890</span>
             </a>
@@ -89,21 +89,21 @@ const Navbar = () => {
             <a
               href="#"
               aria-label="YouTube"
-              className="hover:text-[#C5A059] transition-colors"
+              className="hover:text-secondary transition-colors"
             >
               <Youtube size={16} />
             </a>
             <a
               href="#"
               aria-label="Instagram"
-              className="hover:text-[#C5A059] transition-colors"
+              className="hover:text-secondary transition-colors"
             >
               <Instagram size={16} />
             </a>
             <a
               href="#"
               aria-label="LinkedIn"
-              className="hover:text-[#C5A059] transition-colors"
+              className="hover:text-secondary transition-colors"
             >
               <Linkedin size={16} />
             </a>
@@ -117,14 +117,14 @@ const Navbar = () => {
           {/* LOGO */}
           <Link
             href="/"
-            className="text-2xl font-serif font-bold text-[#0A2342]"
+            className="text-2xl font-serif font-bold text-primary-500"
           >
             <Image
               src="/assets/logo/gyneclinics-logo.svg"
               alt="GyneClinics Logo"
               width={500}
               height={500}
-              className=" h-auto w-24 md:w-32 object-contain"
+              className=" h-auto w-24 md:w-40 lg:w-48 object-contain"
             />
           </Link>
 
@@ -139,7 +139,7 @@ const Navbar = () => {
               >
                 <Link
                   href={link.href}
-                  className="flex items-center gap-1 text-[#0A2342] font-medium hover:text-[#C5A059] transition-colors py-2"
+                  className="flex items-center gap-1 text-primary-500 font-medium hover:text-secondary transition-colors py-2"
                 >
                   {link.title}
                   <ChevronDown
@@ -158,14 +158,14 @@ const Navbar = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 15 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute left-0 mt-0 w-64 bg-white shadow-xl rounded-md border-t-4 border-[#C5A059] overflow-hidden"
+                      className="absolute left-0 mt-0 w-64 bg-white shadow-xl rounded-md border-t-4 border-secondary overflow-hidden"
                     >
                       <div className="py-2">
                         {link.subItems.map((sub, i) => (
                           <Link
                             key={i}
                             href={sub.href}
-                            className="block px-4 py-3 text-sm text-gray-700 hover:bg-[#FAF9F6] hover:text-[#C5A059] transition-colors"
+                            className="block px-4 py-3 text-sm text-gray-700 hover:bg-[#FAF9F6] hover:text-secondary transition-colors"
                           >
                             {sub.name}
                           </Link>
@@ -184,7 +184,7 @@ const Navbar = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 bg-[#C5A059] text-white px-6 py-2.5 rounded-full font-semibold shadow-lg hover:bg-[#b08d48] transition-colors"
+                className="flex items-center gap-2 bg-secondary text-white px-6 py-2.5 rounded-full font-semibold shadow-lg hover:bg-secondary-600 transition-colors"
               >
                 <Calendar size={18} />
                 <span>Book Consultation</span>
@@ -214,7 +214,7 @@ const Navbar = () => {
             <div className="flex flex-col p-4 space-y-4">
               {navLinks.map((link, index) => (
                 <div key={index} className="space-y-2">
-                  <span className="block text-[#C5A059] font-bold uppercase text-xs tracking-wider">
+                  <span className="block text-secondary font-bold uppercase text-xs tracking-wider">
                     {link.title}
                   </span>
                   {link.subItems.map((sub, i) => (
@@ -222,7 +222,7 @@ const Navbar = () => {
                       key={i}
                       href={sub.href}
                       onClick={() => setIsOpen(false)}
-                      className="block pl-4 text-[#0A2342] font-medium py-1"
+                      className="block pl-4 text-primary-500 font-medium py-1"
                     >
                       {sub.name}
                     </Link>
@@ -233,7 +233,7 @@ const Navbar = () => {
               <Link
                 href="/book-appointment"
                 onClick={() => setIsOpen(false)}
-                className="block text-center bg-[#0A2342] text-white py-3 rounded-md font-bold"
+                className="block text-center bg-primary-500 text-white py-3 rounded-md font-bold"
               >
                 Book Consultation Now
               </Link>

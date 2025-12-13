@@ -13,9 +13,9 @@ import Link from "next/link";
 import React from "react";
 
 // --- Color Palette Reference ---
-// Bg: #0A2342 (Deep Oxford Blue) - Main Footer Background
-// Text: #FAFAFA (Off White)
-// Accent: #C5A059 (Muted Gold) - Hover states & Highlights
+// Bg: Primary-500 (Teal)
+// Text: White / Primary-50
+// Accent: Secondary (Purple) or Gold (#C5A059)
 
 const Footer = () => {
   // Function to scroll back to top smoothly
@@ -24,7 +24,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#0A2342] text-white pt-16 pb-8 border-t-4 border-[#C5A059]">
+    <footer className="bg-primary-500 text-white pt-16 pb-8 border-t-4 border-secondary">
       <div className="container mx-auto px-4">
         {/* --- MAIN GRID SECTION --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
@@ -34,9 +34,9 @@ const Footer = () => {
               href="/"
               className="text-3xl font-serif font-bold tracking-wide"
             >
-              Gyne<span className="text-[#C5A059]">Clinics</span>
+              Gyne<span className="text-secondary">Clinics</span>
             </Link>
-            <p className="text-gray-300 text-sm leading-relaxed mt-4">
+            <p className="text-primary-50 text-sm leading-relaxed mt-4">
               Leading the way in Women's Health, combining expert Gynaecology,
               Urogynaecology, and Aesthetic solutions in a private, trusted
               environment.
@@ -51,10 +51,10 @@ const Footer = () => {
 
           {/* 2. CLINICAL CONDITIONS (General & Uro) */}
           <div>
-            <h3 className="text-[#C5A059] font-serif font-semibold text-lg mb-4">
+            <h3 className="text-white font-serif font-semibold text-lg mb-4">
               Clinical Services
             </h3>
-            <ul className="space-y-2 text-sm text-gray-300">
+            <ul className="space-y-2 text-sm text-primary-100">
               <FooterLink href="/general/screening">
                 Health Screening
               </FooterLink>
@@ -73,10 +73,10 @@ const Footer = () => {
 
           {/* 3. AESTHETICS & BOOKING */}
           <div>
-            <h3 className="text-[#C5A059] font-serif font-semibold text-lg mb-4">
+            <h3 className="text-white font-serif font-semibold text-lg mb-4">
               Aesthetic & Booking
             </h3>
-            <ul className="space-y-2 text-sm text-gray-300">
+            <ul className="space-y-2 text-sm text-primary-100">
               <FooterLink href="/aesthetic/rejuvenation">
                 Intimate Rejuvenation
               </FooterLink>
@@ -96,14 +96,14 @@ const Footer = () => {
 
           {/* 4. CONTACT & NEWSLETTER */}
           <div className="space-y-6">
-            {/* Contact Info (Taken from your image) */}
+            {/* Contact Info */}
             <div>
-              <h3 className="text-[#C5A059] font-serif font-semibold text-lg mb-4">
+              <h3 className="text-white font-serif font-semibold text-lg mb-4">
                 Get in Touch
               </h3>
-              <div className="space-y-3 text-sm text-gray-300">
+              <div className="space-y-3 text-sm text-primary-100">
                 <div className="flex items-center gap-3">
-                  <Mail size={16} className="text-[#C5A059]" />
+                  <Mail size={16} className="text-white" />
                   <a
                     href="mailto:info@gyneclinics.com"
                     className="hover:text-white transition"
@@ -112,7 +112,7 @@ const Footer = () => {
                   </a>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Phone size={16} className="text-[#C5A059] mt-1" />
+                  <Phone size={16} className="text-white mt-1" />
                   <div className="flex flex-col">
                     <a
                       href="tel:02071176456"
@@ -140,9 +140,9 @@ const Footer = () => {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="bg-[#0f2d52] border border-gray-700 text-white px-4 py-2 rounded text-sm focus:outline-none focus:border-[#C5A059] transition-colors"
+                  className="bg-white/10 border border-primary-400/30 text-white placeholder-primary-200 px-4 py-2 rounded text-sm focus:outline-none focus:border-white transition-colors"
                 />
-                <button className="bg-[#C5A059] text-white text-sm font-semibold py-2 px-4 rounded hover:bg-[#b08d48] transition-colors">
+                <button className="bg-secondary hover:bg-secondary-600 text-white text-sm font-semibold py-2 px-4 rounded transition-colors">
                   Subscribe
                 </button>
               </form>
@@ -151,11 +151,11 @@ const Footer = () => {
         </div>
 
         {/* --- DISCLAIMER SECTION (Medical Compliance) --- */}
-        <div className="border-t border-gray-800 pt-8 pb-8">
-          <h4 className="text-red-300 text-xs font-bold uppercase tracking-wider mb-2">
+        <div className="border-t border-primary-700/50 pt-8 pb-8">
+          <h4 className="text-primary-200 text-xs font-bold uppercase tracking-wider mb-2">
             Medical Disclaimer
           </h4>
-          <p className="text-gray-500 text-xs leading-relaxed text-justify">
+          <p className="text-primary-200/80 text-xs leading-relaxed text-justify">
             Every effort has been made to ensure that the details and factual
             matter on this website are as accurate as possible. However,
             GyneClinics accepts no responsibility for decisions or treatment
@@ -168,29 +168,29 @@ const Footer = () => {
         </div>
 
         {/* --- COPYRIGHT BAR --- */}
-        <div className="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-500 text-xs">
+        <div className="border-t border-primary-700/50 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-primary-200 text-xs">
             © Copyright {new Date().getFullYear()} GyneClinics. All Rights
             Reserved.
           </p>
 
-          <div className="flex gap-6 text-xs text-gray-400">
-            <Link href="/privacy" className="hover:text-[#C5A059] transition">
+          <div className="flex gap-6 text-xs text-primary-200">
+            <Link href="/privacy" className="hover:text-white transition">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-[#C5A059] transition">
+            <Link href="/terms" className="hover:text-white transition">
               Terms & Conditions
             </Link>
-            <Link href="/sitemap" className="hover:text-[#C5A059] transition">
+            <Link href="/sitemap" className="hover:text-white transition">
               Sitemap
             </Link>
           </div>
 
-          <p className="text-gray-500 text-xs">
+          <p className="text-primary-200 text-xs">
             Design & Developed by{" "}
             <Link
               href="https://arsahak.com"
-              className="hover:text-[#C5A059] transition"
+              className="hover:text-white transition"
             >
               arsahak
             </Link>
@@ -216,14 +216,14 @@ const FooterLink = ({
     <Link href={href} className="group flex items-center gap-2 w-fit">
       <motion.span
         className={`block h-1.5 w-1.5 rounded-full ${
-          highlight ? "bg-[#C5A059]" : "bg-gray-600 group-hover:bg-[#C5A059]"
+          highlight ? "bg-white" : "bg-primary-300 group-hover:bg-white"
         }`}
         whileHover={{ scale: 1.5 }}
       />
       <span
         className={`${
-          highlight ? "text-white font-medium" : "text-gray-300"
-        } group-hover:text-[#C5A059] transition-colors`}
+          highlight ? "text-white font-medium" : "text-primary-100"
+        } group-hover:text-white transition-colors`}
       >
         {children}
       </span>
@@ -238,12 +238,12 @@ const SocialIcon = ({
   href: string;
   icon: React.ReactNode;
 }) => (
-  <a
+  <Link
     href={href}
-    className="w-10 h-10 flex items-center justify-center rounded-full bg-[#1a3a5e] text-white hover:bg-[#C5A059] hover:-translate-y-1 transition-all duration-300"
+    className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-secondary hover:-translate-y-1 transition-all duration-300"
   >
     {icon}
-  </a>
+  </Link>
 );
 
 export default Footer;
