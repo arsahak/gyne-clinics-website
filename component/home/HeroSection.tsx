@@ -46,10 +46,10 @@ const HeroSection = () => {
           />
         </div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/50 via-primary/40 to-primary/90 z-10" />
+      <div className="absolute inset-0 bg-linear-to-b from-primary/50 via-primary/40 to-primary/90 z-10" />
 
       {/* --- 2. MAIN CENTER CONTENT --- */}
-      <div className="relative z-20 container mx-auto px-4 flex-grow flex flex-col justify-center items-center text-center mt-10">
+      <div className="relative z-20 container mx-auto px-4 grow flex flex-col justify-center items-center text-center mt-10">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -70,7 +70,7 @@ const HeroSection = () => {
           >
             Reimagining <br className="hidden md:block" />
             <span className="text-secondary italic font-serif">
-              Women's Health
+              Women&apos;s Health
             </span>
           </motion.h1>
 
@@ -87,7 +87,7 @@ const HeroSection = () => {
 
       {/* --- 3. THE "DISCOVERY BAR" (REPLACES BUTTONS) --- */}
       {/* This sits at the bottom, guiding users to specific areas elegantly */}
-      <div className="relative z-30 w-full border-t border-white/10 bg-primary/60 backdrop-blur-xl">
+      <div className="relative z-30 w-full border-t border-white/10 bg-primary/40 backdrop-blur-xl">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
             {/* Item 1 */}

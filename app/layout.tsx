@@ -1,5 +1,5 @@
 import Footer from "@/component/layout/Footer";
-import Navbar from "@/component/layout/Navbar";
+import MainNavbar from "@/component/layout/MainNavbar";
 import ScrollToTop from "@/component/shared/ScrollToTop";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -28,7 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
+        <MainNavbar />
         {children}
         <ScrollToTop />
         <Footer />
