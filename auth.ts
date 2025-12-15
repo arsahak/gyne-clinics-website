@@ -5,6 +5,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 const THIRTY_DAYS_IN_SECONDS = 30 * 24 * 60 * 60;
 
 export const { auth, signIn, signOut, handlers } = NextAuth({
+  secret: process.env.AUTH_SECRET,
+  trustHost: true, // Required for production deployments behind proxies
   session: {
     strategy: "jwt",
     maxAge: THIRTY_DAYS_IN_SECONDS, // 30 days session expiry
