@@ -31,6 +31,10 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
         }
 
         try {
+          // Add timeout for fetch request (15 seconds)
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 15000);
+
           const response = await fetch(`${apiUrl}/api/customers/signin`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -38,7 +42,10 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
               email: credentials.email,
               password: credentials.password,
             }),
+            signal: controller.signal,
           });
+
+          clearTimeout(timeoutId);
 
           // Return null for authentication failures (NextAuth v5 best practice)
           // This prevents CallbackRouteError
@@ -78,8 +85,14 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
     async jwt({ token, user }) {
       try {
         if (user) {
-          return { ...token, ...user };
+          // Preserve accessToken explicitly when user signs in
+          return {
+            ...token,
+            ...user,
+            accessToken: user.accessToken || token.accessToken,
+          };
         }
+        // On subsequent requests, preserve the existing accessToken
         return token;
       } catch (error) {
         console.error("JWT callback error:", error);
