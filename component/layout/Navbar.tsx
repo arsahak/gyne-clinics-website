@@ -1,6 +1,7 @@
 "use client";
 
 import { userSignOut } from "@/app/actions/auth";
+import { useCart } from "@/context/CartContext";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Calendar,
@@ -11,6 +12,7 @@ import {
   LogOut,
   Menu,
   Phone,
+  ShoppingCart,
   User,
   X,
   Youtube,
@@ -59,6 +61,8 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null); // Desktop Nav Dropdown
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false); // User Profile Dropdown
   const [scrolled, setScrolled] = useState(false);
+  const { getTotalItems } = useCart();
+  const cartItemCount = getTotalItems();
 
   // Handle Scroll Effect
   useEffect(() => {
@@ -111,8 +115,20 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               <Linkedin size={16} />
             </Link>
 
+            {/* CART ICON - TOP BAR */}
+            <Link href="/cart" className="relative ml-4">
+              <button className="relative p-1.5 hover:text-secondary transition-colors" aria-label="Shopping cart">
+                <ShoppingCart size={16} />
+                {cartItemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-secondary text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center leading-none">
+                    {cartItemCount > 9 ? "9+" : cartItemCount}
+                  </span>
+                )}
+              </button>
+            </Link>
+
             {/* AUTH SECTION - MOVED TO TOP BAR */}
-            <div className="ml-4 pl-4 border-l border-primary-400 flex items-center">
+            <div className="ml-2 pl-4 border-l border-primary-400 flex items-center gap-4">
               {!isLoggedIn ? (
                 <Link
                   href="/sign-in"
@@ -123,7 +139,7 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               ) : (
                 <Link
                   href="/dashboard"
-                  className="hover:text-secondary  text-xs md:text-sm"
+                  className="hover:text-secondary transition-colors text-xs md:text-sm"
                 >
                   Dashboard
                 </Link>
@@ -134,7 +150,7 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       </motion.div>
 
       {/* 2. MAIN NAVBAR */}
-      <nav className="bg-white/95 backdrop-blur-md border-b border-gray-100 ">
+      <nav className="bg-white/95 backdrop-blur-md border-b border-gray-100 shadow">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           {/* LOGO */}
           <Link
@@ -146,6 +162,7 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               alt="GyneClinics"
               width={180}
               height={180}
+              className="w-full h-[40px] md:h-[60px]"
             />
           </Link>
 
@@ -217,13 +234,28 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
             </Link>
           </div>
 
-          {/* MOBILE MENU TOGGLE */}
-          <button
-            className="lg:hidden text-[#0A2342]"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+          {/* MOBILE ACTIONS (Cart + Menu Toggle) */}
+          <div className="lg:hidden flex items-center gap-4">
+            {/* MOBILE CART ICON */}
+            <Link href="/cart" className="relative">
+              <button className="relative p-2 text-[#0A2342]" aria-label="Shopping cart">
+                <ShoppingCart size={24} />
+                {cartItemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-secondary text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartItemCount > 9 ? "9+" : cartItemCount}
+                  </span>
+                )}
+              </button>
+            </Link>
+
+            {/* MOBILE MENU TOGGLE */}
+            <button
+              className="text-[#0A2342]"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -255,6 +287,23 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
                   ))}
                 </div>
               ))}
+
+              {/* Mobile Cart Link */}
+              <Link
+                href="/cart"
+                onClick={() => setIsOpen(false)}
+                className="w-full flex items-center justify-between gap-2 border border-gray-200 px-4 py-3 rounded-md hover:bg-gray-50 transition-colors"
+              >
+                <div className="flex items-center gap-2">
+                  <ShoppingCart size={20} className="text-primary-500" />
+                  <span className="text-primary-700 font-medium">Shopping Cart</span>
+                </div>
+                {cartItemCount > 0 && (
+                  <span className="bg-secondary text-white text-xs font-bold rounded-full px-2 py-1 min-w-[24px] text-center">
+                    {cartItemCount > 9 ? "9+" : cartItemCount}
+                  </span>
+                )}
+              </Link>
 
               {/* Mobile Auth & CTA Section */}
               <div className="pt-4 border-t border-gray-100 space-y-3">

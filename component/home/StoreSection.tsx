@@ -1,43 +1,43 @@
 "use client";
 
+import { getProducts, Product } from "@/app/actions/product";
+import { useCart } from "@/context/CartContext";
 import { motion } from "framer-motion";
 import { ArrowRight, Eye, ShoppingCart, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const StoreSection = () => {
-  // Data matching your screenshot exactly
-  const products = [
-    {
-      id: 1,
-      name: "100 Strips URS-14 Urine Test Paper Strip",
-      price: "£9.99",
-      category: "Diagnostics",
-      rating: 4.8,
-      image:
-        "/assets/product/CC2A97C5-E82E-4867-8358-DA80DFADA8D1-300x300.jpeg",
-      isBestSeller: true,
-    },
-    {
-      id: 2,
-      name: "Comfigel Lubricating Jelly",
-      price: "£4.99",
-      category: "Comfort",
-      rating: 5.0,
-      image: "/assets/product/C4D8C8ED-FA10-4507-B7E6-31F3D5AD57EB-300x300.jpg",
-      isBestSeller: false,
-    },
-    {
-      id: 3,
-      name: "100 Strips URS-14 Urine Test Paper Strip",
-      price: "£9.99",
-      category: "Support",
-      rating: 4.9,
-      image:
-        "/assets/product/A5E87768-6F39-4F15-8ACF-916067B80962-300x300.jpeg",
-      isBestSeller: false,
-    },
-  ];
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { addToCart } = useCart();
+
+  // Fetch featured products
+  useEffect(() => {
+    const fetchFeaturedProducts = async () => {
+      setIsLoading(true);
+      try {
+        const response = await getProducts({
+          featured: true,
+          status: "active",
+          limit: 3,
+          sortBy: "createdAt",
+          sortOrder: "desc",
+        });
+
+        if (response.success && response.data) {
+          setProducts(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching featured products:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchFeaturedProducts();
+  }, []);
 
   return (
     <section className="py-12 md:py-16 lg:py-24 bg-[#F8F9FA]">
@@ -57,7 +57,7 @@ const StoreSection = () => {
           </div>
 
           <Link
-            href="/store"
+            href="/product"
             className="group flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2.5 md:py-3 bg-white border border-gray-200 rounded-full text-primary text-sm md:text-base font-bold hover:border-secondary hover:text-secondary transition-all shadow-sm w-full md:w-auto justify-center md:justify-end"
           >
             <span className="whitespace-nowrap">View Full Catalogue</span>
@@ -69,18 +69,91 @@ const StoreSection = () => {
         </div>
 
         {/* 2. PRODUCT GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {products.map((product, idx) => (
-            <ProductCard key={product.id} product={product} index={idx} />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {[...Array(3)].map((_, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-xl md:rounded-2xl overflow-hidden border border-gray-200 shadow-lg h-96 animate-pulse"
+              >
+                <div className="h-64 bg-gray-200"></div>
+                <div className="p-6 space-y-4">
+                  <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                  <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : products.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {products.map((product, idx) => (
+              <ProductCard key={product._id} product={product} index={idx} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-gray-500">
+              No featured products available at the moment.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
 };
 
 // --- Helper Component: Product Card ---
-const ProductCard = ({ product, index }: any) => {
+const ProductCard = ({
+  product,
+  index,
+}: {
+  product: Product;
+  index: number;
+}) => {
+  const { addToCart } = useCart();
+  const [isAdding, setIsAdding] = useState(false);
+
+  // Get primary image or first image
+  const primaryImage =
+    product.images?.find((img) => img.isPrimary)?.url ||
+    product.images?.[0]?.url ||
+    "/assets/product/placeholder.jpg";
+
+  // Get category name
+  const categoryName =
+    typeof product.category === "object" && product.category !== null
+      ? product.category.name
+      : "Uncategorized";
+
+  // Get rating (default to 0 if not available)
+  const rating = product.averageRating || 0;
+
+  // Format price
+  const formattedPrice = `£${product.price.toFixed(2)}`;
+
+  // Get product link (use slug if available, otherwise _id)
+  const productLink = `/product/${product.slug || product._id}`;
+
+  const handleAddToCart = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (product.stock <= 0 && product.trackInventory) {
+      alert("This product is out of stock");
+      return;
+    }
+
+    setIsAdding(true);
+    try {
+      addToCart(product, 1);
+      // Success feedback - item added to cart
+    } catch (error) {
+      alert("Failed to add product to cart");
+    } finally {
+      setIsAdding(false);
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -94,27 +167,28 @@ const ProductCard = ({ product, index }: any) => {
         {/* Badges - Floating at top */}
         <div className="absolute top-3 left-3 md:top-4 md:left-4 z-10 flex flex-wrap gap-1.5 md:gap-2">
           <span className="bg-white/80 backdrop-blur-sm text-primary text-[9px] md:text-[10px] font-bold px-2 md:px-3 py-0.5 md:py-1 rounded-full uppercase tracking-wider border border-gray-100 shadow-sm">
-            {product.category}
+            {categoryName}
           </span>
-          {product.isBestSeller && (
+          {product.featured && (
             <span className="bg-secondary text-white text-[9px] md:text-[10px] font-bold px-2 md:px-3 py-0.5 md:py-1 rounded-full uppercase tracking-wider shadow-md">
-              Best Seller
+              Featured
             </span>
           )}
         </div>
 
         {/* Wishlist Button - Top Right (hidden on mobile) */}
-        <button
+        <Link
+          href={productLink}
           aria-label="View product"
           className="absolute top-3 right-3 md:top-4 md:right-4 z-10 w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/80 backdrop-blur-sm text-gray-400 hover:text-red-500 hover:bg-white flex items-center justify-center transition-all shadow-sm md:opacity-0 md:group-hover:opacity-100 md:translate-y-2 md:group-hover:translate-y-0 duration-300"
         >
           <Eye size={14} className="md:w-4 md:h-4" />
-        </button>
+        </Link>
 
         {/* Image */}
         <div className="w-full h-full flex items-center justify-center relative z-0 group-hover:scale-110 transition-transform duration-500 ease-in-out">
           <Image
-            src={product.image}
+            src={primaryImage}
             alt={product.name}
             fill
             className="object-contain"
@@ -126,8 +200,14 @@ const ProductCard = ({ product, index }: any) => {
 
         {/* Quick Add Button - Slides up from bottom (desktop only) */}
         <div className="hidden md:block absolute bottom-0 left-0 w-full p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20">
-          <button className="w-full bg-primary text-white py-3 rounded-xl font-bold text-sm shadow-lg hover:bg-[#1a3a5e] flex items-center justify-center gap-2 transition-colors">
-            <ShoppingCart size={16} /> Add to Cart
+          <button
+            onClick={handleAddToCart}
+            disabled={
+              isAdding || (product.stock <= 0 && product.trackInventory)
+            }
+            className="w-full bg-primary text-white py-3 rounded-xl font-bold text-sm shadow-lg hover:bg-[#1a3a5e] disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors"
+          >
+            <ShoppingCart size={16} /> {isAdding ? "Adding..." : "Add to Cart"}
           </button>
         </div>
 
@@ -145,20 +225,18 @@ const ProductCard = ({ product, index }: any) => {
                 key={i}
                 size={11}
                 className={`md:w-3 md:h-3 ${
-                  i < Math.floor(product.rating)
-                    ? "fill-current"
-                    : "text-gray-300"
+                  i < Math.floor(rating) ? "fill-current" : "text-gray-300"
                 }`}
               />
             ))}
           </div>
           <span className="text-[11px] md:text-xs text-gray-400 font-medium ml-1 md:ml-2">
-            ({product.rating})
+            ({rating.toFixed(1)})
           </span>
         </div>
 
         {/* Title */}
-        <Link href={`/product/${product.id}`} className="block mb-2">
+        <Link href={productLink} className="block mb-2">
           <h3 className="text-base md:text-lg font-heading font-bold text-primary group-hover:text-secondary transition-colors line-clamp-2">
             {product.name}
           </h3>
@@ -167,16 +245,23 @@ const ProductCard = ({ product, index }: any) => {
         {/* Price & View Details */}
         <div className="mt-auto pt-3 md:pt-4 border-t border-gray-100 flex items-center justify-between gap-2">
           <span className="text-lg md:text-xl font-bold text-primary">
-            {product.price}
+            {formattedPrice}
           </span>
-          <span className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider group-hover:text-secondary transition-colors cursor-pointer whitespace-nowrap">
+          <Link
+            href={productLink}
+            className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider group-hover:text-secondary transition-colors cursor-pointer whitespace-nowrap"
+          >
             View Details
-          </span>
+          </Link>
         </div>
 
         {/* Mobile Add to Cart Button */}
-        <button className="md:hidden w-full bg-primary text-white py-2.5 rounded-lg font-bold text-sm shadow-lg hover:bg-[#1a3a5e] flex items-center justify-center gap-2 transition-colors mt-3">
-          <ShoppingCart size={16} /> Add to Cart
+        <button
+          onClick={handleAddToCart}
+          disabled={isAdding || (product.stock <= 0 && product.trackInventory)}
+          className="md:hidden w-full bg-primary text-white py-2.5 rounded-lg font-bold text-sm shadow-lg hover:bg-[#1a3a5e] disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors mt-3"
+        >
+          <ShoppingCart size={16} /> {isAdding ? "Adding..." : "Add to Cart"}
         </button>
       </div>
     </motion.div>

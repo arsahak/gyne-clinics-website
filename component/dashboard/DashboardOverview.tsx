@@ -3,8 +3,10 @@
 import { userSignOut } from "@/app/actions/auth";
 import { getCurrentCustomer } from "@/app/actions/customer";
 import { getMyOrders } from "@/app/actions/order";
+import { getMyReviews } from "@/app/actions/review";
 import { AnimatePresence, motion } from "framer-motion";
 import {
+  CheckCircle2,
   ChevronRight,
   Download,
   LayoutDashboard,
@@ -12,9 +14,11 @@ import {
   LogOut,
   MapPin,
   ShoppingBag,
+  Star,
   User,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 // Types
@@ -46,17 +50,30 @@ interface Customer {
   totalSpent?: number;
 }
 
+interface OrderItem {
+  product?: string; // product ID from backend
+  name: string;
+  quantity: number;
+  price: number;
+}
+
+interface Review {
+  _id: string;
+  product: string | { _id: string; slug?: string; name?: string };
+  rating: number;
+  title?: string;
+  comment: string;
+  status: "pending" | "approved" | "rejected";
+  createdAt: string;
+}
+
 interface Order {
   _id: string;
   orderNumber: string;
   orderDate: string;
   orderStatus: string;
   totalAmount: number;
-  items: Array<{
-    name: string;
-    quantity: number;
-    price: number;
-  }>;
+  items: OrderItem[];
 }
 
 // --- Dashboard Component ---
@@ -67,6 +84,15 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const tabFromUrl = searchParams?.get("tab");
+
+  // Set active tab from URL on mount
+  useEffect(() => {
+    if (tabFromUrl && ["dashboard", "orders", "downloads", "addresses", "account"].includes(tabFromUrl)) {
+      setActiveTab(tabFromUrl);
+    }
+  }, [tabFromUrl]);
 
   // Fetch customer data and orders
   useEffect(() => {
@@ -474,6 +500,49 @@ interface PlaceholderContentProps {
 
 // --- Orders Content Component ---
 const OrdersContent = ({ orders }: { orders: Order[] }) => {
+  const [reviews, setReviews] = useState<Review[]>([]);
+  
+  // Fetch reviews to check which products have been reviewed
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const result = await getMyReviews();
+        if (result.success && result.data) {
+          setReviews(result.data as Review[]);
+        }
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+      }
+    };
+    
+    if (orders && orders.length > 0) {
+      fetchReviews();
+    }
+  }, [orders]);
+  
+  // Helper function to check if a product has been reviewed
+  const isProductReviewed = (productId: string | undefined): boolean => {
+    if (!productId) return false;
+    return reviews.some((review) => {
+      const reviewProductId = typeof review.product === "string" 
+        ? review.product 
+        : review.product._id;
+      return reviewProductId === productId;
+    });
+  };
+  
+  // Helper function to get review status for a product
+  const getReviewStatus = (productId: string | undefined): "pending" | "approved" | "rejected" | null => {
+    if (!productId) return null;
+    const review = reviews.find((review) => {
+      const reviewProductId = typeof review.product === "string" 
+        ? review.product 
+        : review.product._id;
+      return reviewProductId === productId;
+    });
+    return review ? review.status : null;
+  };
+  
   // Check if orders array is empty or undefined
   const hasOrders = orders && Array.isArray(orders) && orders.length > 0;
 
@@ -538,21 +607,67 @@ const OrdersContent = ({ orders }: { orders: Order[] }) => {
             </div>
 
             {order.items && order.items.length > 0 && (
-              <div className="border-t border-gray-100 pt-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">
+              <div className="border-t border-gray-100 pt-4 space-y-3">
+                <p className="text-sm font-medium text-gray-700">
                   Items ({order.items.length})
                 </p>
                 <div className="space-y-2">
-                  {order.items.slice(0, 3).map((item, idx: number) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-3 text-sm text-gray-600"
-                    >
-                      <span className="font-medium">{item.name}</span>
-                      <span className="text-gray-400">×</span>
-                      <span>{item.quantity}</span>
-                    </div>
-                  ))}
+                  {order.items.slice(0, 3).map((item, idx: number) => {
+                    const productId = typeof item.product === "string" 
+                      ? item.product 
+                      : undefined;
+                    const canReview = order.orderStatus === "delivered" && productId;
+                    const hasReviewed = isProductReviewed(productId);
+                    const reviewStatus = getReviewStatus(productId);
+                    const reviewLink = canReview && !hasReviewed
+                      ? `/product/${productId}?order=${order._id}`
+                      : undefined;
+                    const productLink = productId ? `/product/${productId}` : undefined;
+
+                    return (
+                      <div
+                        key={idx}
+                        className="flex flex-wrap items-center justify-between gap-2 text-sm text-gray-600"
+                      >
+                        <div className="flex items-center gap-2">
+                          <span className="font-medium">{item.name}</span>
+                          <span className="text-gray-400">×</span>
+                          <span>{item.quantity}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          {canReview && hasReviewed && (
+                            <div className="flex items-center gap-1 text-xs text-green-600">
+                              <CheckCircle2 size={14} className="text-green-600" />
+                              <span className="font-medium">
+                                {reviewStatus === "pending" 
+                                  ? "Review Pending" 
+                                  : reviewStatus === "approved"
+                                  ? "Reviewed"
+                                  : "Review Rejected"}
+                              </span>
+                            </div>
+                          )}
+                          {canReview && !hasReviewed && reviewLink && (
+                            <Link
+                              href={reviewLink}
+                              className="text-xs font-semibold text-primary-600 hover:text-secondary-500 underline flex items-center gap-1"
+                            >
+                              <Star size={14} />
+                              Write a review
+                            </Link>
+                          )}
+                          {productLink && (
+                            <Link
+                              href={productLink}
+                              className="text-xs text-gray-500 hover:text-primary-600 underline ml-2"
+                            >
+                              View Product
+                            </Link>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
                   {order.items.length > 3 && (
                     <p className="text-xs text-gray-500">
                       +{order.items.length - 3} more items

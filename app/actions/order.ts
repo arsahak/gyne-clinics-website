@@ -90,10 +90,9 @@ export async function getOrder(orderId: string) {
 export async function createOrder(orderData: {
   items: Array<{
     product: string;
-    name: string;
     quantity: number;
-    price: number;
-    image?: string;
+    variant?: string;
+    discount?: number;
   }>;
   shippingAddress: {
     fullName: string;
@@ -119,7 +118,7 @@ export async function createOrder(orderData: {
   };
   paymentMethod: string;
   shippingMethod?: string;
-  notes?: string;
+  customerNote?: string;
 }) {
   try {
     const headers = await getAuthHeaders();

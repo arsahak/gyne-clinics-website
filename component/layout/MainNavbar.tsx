@@ -2,8 +2,15 @@ import { auth } from "@/auth";
 import Navbar from "./Navbar";
 
 const MainNavbar = async () => {
-  const session = await auth();
-  const isLoggedIn = session?.user ? true : false;
+  let isLoggedIn = false;
+
+  try {
+    const session = await auth();
+    isLoggedIn = session?.user ? true : false;
+  } catch (error) {
+    console.error("Auth error in MainNavbar:", error);
+    isLoggedIn = false;
+  }
 
   return (
     <div>
