@@ -1,7 +1,7 @@
 "use client";
 
 import { ScrollMotion } from "@/component/motion";
-import { CheckCircle2, Dumbbell, Heart, Leaf, Utensils } from "lucide-react";
+import { Dumbbell, Heart, Leaf, Utensils } from "lucide-react";
 import Image from "next/image";
 
 const HolisticCare = () => {
@@ -39,7 +39,7 @@ const HolisticCare = () => {
           <div className="lg:w-1/2 relative min-h-[300px] lg:h-full w-full">
             <div className="relative w-full aspect-square rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
               <Image
-                src="/assets/menopause/yoga-nutrition.jpg"
+                src="/assets/beyond-the-prescription.jpg"
                 alt="Nutrition and Yoga"
                 fill
                 className="object-cover"

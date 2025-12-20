@@ -36,7 +36,7 @@ const SymptomMatcher = () => {
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="e.g. I have lower back pain and irregular periods..."
+                  placeholder="type your symptoms here..."
                   className="w-full h-14 md:h-16 pl-6 pr-14 rounded-xl bg-white text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-4 focus:ring-secondary/50 shadow-lg text-base md:text-lg"
                 />
                 <button className="absolute right-2 top-2 h-10 w-10 md:h-12 md:w-12 bg-secondary text-white rounded-lg flex items-center justify-center hover:bg-secondary/80 transition-colors">

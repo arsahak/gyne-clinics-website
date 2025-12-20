@@ -103,13 +103,13 @@ const GeneralIntro = () => {
           <div className="lg:w-1/2 relative">
             <ScrollMotion animation="scaleIn" duration={0.5} delay={0.2}>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] group">
-              {/* Replace with your actual image */}
-              <Image
-                src="/assets/general/doctor-talking.jpg"
-                alt="Doctor explaining results to patient"
-                fill
-                className="object-cover"
-              />
+                {/* Replace with your actual image */}
+                <Image
+                  src="/assets/home/clinic.jpg"
+                  alt="Doctor explaining results to patient"
+                  fill
+                  className="object-cover"
+                />
 
                 {/* Floating Badge */}
                 <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md shadow-xl p-5 rounded-xl max-w-[220px] border border-white/50 group-hover:scale-105 transition-transform duration-300">

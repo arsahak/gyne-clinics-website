@@ -1,11 +1,14 @@
 "use client";
 
 import { ScrollMotion } from "@/component/motion";
-import { ArrowRight, Play, Heart, Shield, Users } from "lucide-react";
+import { ArrowRight, Heart, Play, Shield, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const UroIntro = () => {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
   const keyPoints = [
     {
       icon: Heart,
@@ -20,6 +23,10 @@ const UroIntro = () => {
       text: "Expert multidisciplinary team",
     },
   ];
+
+  const VIDEO_ID = "wAntjj-n834";
+  const embedUrl = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1`;
+  const thumbnailUrl = `https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`;
 
   return (
     <section className="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-white to-secondary/5 relative overflow-hidden">
@@ -99,35 +106,55 @@ const UroIntro = () => {
           {/* Video Side */}
           <div className="lg:w-1/2 w-full">
             <ScrollMotion animation="scaleIn" duration={0.5} delay={0.2}>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-video bg-gray-900 group cursor-pointer border-4 border-white">
-                {/* Thumbnail */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10 group-hover:from-black/50 transition-colors" />
-                <Image
-                  src="/assets/uro/video-thumbnail.jpg"
-                  alt="Dr Explaining Pelvic Health"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-
-                {/* Play Button */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center z-20 shadow-2xl group-hover:scale-110 transition-transform duration-300">
-                  <Play
-                    fill="currentColor"
-                    className="text-primary ml-1"
-                    size={32}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-video bg-gray-900 border-4 border-white">
+                {isVideoPlaying ? (
+                  // YouTube Embed
+                  <iframe
+                    src={embedUrl}
+                    title="Dr Explaining Pelvic Health"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full absolute inset-0"
                   />
-                </div>
+                ) : (
+                  // Thumbnail with Play Button
+                  <>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10 group-hover:from-black/50 transition-colors" />
+                    <Image
+                      src={thumbnailUrl}
+                      alt="Dr Explaining Pelvic Health"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      unoptimized
+                    />
 
-                {/* Video Info */}
-                <div className="absolute bottom-6 left-6 right-6 z-20 text-white">
-                  <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-                    <p className="font-bold text-lg mb-1">Meet The Specialist</p>
-                    <p className="text-sm text-gray-200">
-                      Understanding Pelvic Floor Health (3:45)
-                    </p>
-                  </div>
-                </div>
+                    {/* Play Button */}
+                    <button
+                      onClick={() => setIsVideoPlaying(true)}
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center z-20 shadow-2xl hover:scale-110 transition-transform duration-300 group cursor-pointer"
+                      aria-label="Play video"
+                    >
+                      <Play
+                        fill="currentColor"
+                        className="text-primary ml-1"
+                        size={32}
+                      />
+                    </button>
+
+                    {/* Video Info */}
+                    <div className="absolute bottom-6 left-6 right-6 z-20 text-white">
+                      <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+                        <p className="font-bold text-lg mb-1">
+                          Meet The Specialist
+                        </p>
+                        <p className="text-sm text-gray-200">
+                          Understanding Pelvic Floor Health (3:45)
+                        </p>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </ScrollMotion>
           </div>

@@ -1,11 +1,17 @@
 "use client";
 
+import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
-import { Calendar, Send } from "lucide-react";
+import {
+  AlertCircle,
+  CheckCircle,
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+} from "lucide-react";
 import { useState } from "react";
-
-// --- Mock Data: Locations (kept for the bottom section as per previous pattern) ---
-import { Mail, MapPin, Phone } from "lucide-react";
+import { CommonHero } from "../shared";
 
 // --- Mock Data: Locations ---
 const LOCATIONS = [
@@ -42,37 +48,130 @@ const LOCATIONS = [
 ];
 
 const ContactPage = () => {
-  // State for radio button selection
-  const [contactMethod, setContactMethod] = useState("Phone Call");
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
+
+  // 1. State for Form Data
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    service: "General Gynaecology",
+    message: "",
+  });
+
+  // 2. State for Validation Errors
+  const [errors, setErrors] = useState({
+    name: "",
+    phone: "",
+    email: "",
+  });
+
+  // 3. Handle Input Changes
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    // Clear error when user types
+    if (errors[name as keyof typeof errors]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+  };
+
+  // 4. Validation Logic
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = { name: "", phone: "", email: "" };
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Full Name is required";
+      isValid = false;
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone Number is required";
+      isValid = false;
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email Address is required";
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Invalid email address";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  // 5. Handle Submit
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setStatus("submitting");
+
+    // Replace with your actual EmailJS credentials
+    const SERVICE_ID = "service_9r35cp1";
+    const TEMPLATE_ID = "template_uwl7heu";
+    const PUBLIC_KEY = "Fg6wC9UjjYthOcSSS";
+
+    const templateParams = {
+      user_name: formData.name,
+      user_phone: formData.phone,
+      user_email: formData.email,
+      selected_service: formData.service,
+      message: formData.message,
+    };
+
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY).then(
+      (response) => {
+        console.log("SUCCESS!", response.status, response.text);
+        setStatus("success");
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          service: "General Gynaecology",
+          message: "",
+        });
+      },
+      (err) => {
+        console.log("FAILED...", err);
+        setStatus("error");
+        alert("Failed to send. Please try again.");
+      }
+    );
+  };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA]">
+    <div className="min-h-screen bg-[#F8F9FA] mt-[50px] md:mt-[130px]">
       {/* 1. PAGE HERO */}
-      <section className="bg-white border-b border-gray-100 pt-24 pb-12 md:pt-32 md:pb-16">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h4 className="text-secondary font-bold tracking-widest uppercase text-xs md:text-sm mb-3">
-              Patient Enquiries
-            </h4>
-            <h1 className="text-3xl md:text-5xl font-heading font-bold text-primary mb-4">
-              Contact Us
-            </h1>
-            <p className="text-gray-500 text-sm md:text-lg">
-              We guide women to make informed decisions about their care.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <CommonHero
+        title="Contact Us"
+        subtitle="We guide women to make informed decisions about their care."
+        images={[
+          "/assets/home/banner1.svg",
+          "/assets/home/banner2.svg",
+          "/assets/home/banner3.svg",
+        ]}
+        breadcrumbs={[{ label: "Contact", href: "/contact" }]}
+      />
 
       {/* 2. MAIN CONTENT: TEXT & FORM */}
       <section className="py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
-            {/* LEFT SIDE: Content from Image */}
+            {/* LEFT SIDE: Text Content */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -80,7 +179,7 @@ const ContactPage = () => {
               className="lg:w-5/12 flex flex-col gap-6"
             >
               <h3 className="text-2xl font-heading font-bold text-primary border-l-4 border-secondary pl-4">
-                Contact Us
+                Get in Touch
               </h3>
 
               <div className="prose prose-sm md:prose-base text-gray-600 leading-relaxed space-y-4">
@@ -88,172 +187,228 @@ const ContactPage = () => {
                   To learn more about any of these conditions, to arrange
                   consultation or to make an email or telephone enquiry or an
                   e-consultation, or simply to ask questions, do follow the
-                  links, as shown.
+                  links.
                 </p>
                 <p>
                   To help you have readily available information that you can
                   refer to, time and again, we have also reproduced the clinical
-                  content of this website, in an e-booklet called{" "}
-                  <span className="text-secondary font-bold">
-                    “GyneClinics Patients’ Handbook of Gynaecology”
-                  </span>
-                  .
+                  content of this website in our e-booklet.
                 </p>
-                <div className="bg-white p-4 rounded-xl border border-l-4 border-gray-100 border-l-secondary shadow-sm">
+                <div className="bg-white p-5 rounded-xl border-l-4 border-secondary shadow-sm">
                   <p className="font-medium text-primary m-0">
                     Complete our online enquiry form for an immediate response.
-                    Receive prompt expert answers to your questions.
+                    Our team is dedicated to answering your questions promptly.
                   </p>
                 </div>
                 <p>
-                  We guide women to make informed decisions about their care. We
-                  private care within our established practicing private
-                  clinics, hospital units or medical centres in London,
-                  Manchester, Leeds, Harrogate and other West, North and East
-                  Yorkshire towns.
+                  We guide women to make informed decisions about their care
+                  across our established clinics in London, Manchester, and
+                  beyond.
                 </p>
               </div>
             </motion.div>
 
-            {/* RIGHT SIDE: Specific Form Fields */}
+            {/* RIGHT SIDE: The Form Card (Matching your Image) */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="lg:w-7/12"
             >
-              <div className="bg-white rounded-2xl p-6 md:p-10 shadow-lg border border-gray-100">
-                <div className="mb-8 border-b border-gray-100 pb-4">
-                  <h3 className="text-2xl font-heading font-bold text-primary mb-2">
-                    Your Details
+              <div className="bg-white rounded-2xl p-8 md:p-10 shadow-xl border border-gray-100">
+                {/* Form Header */}
+                <div className="text-center mb-10">
+                  <h3 className="text-2xl font-bold text-[#0E4B65] mb-2">
+                    Request Consultation
                   </h3>
-                  <p className="text-gray-500">
-                    Please let us know how to get back to you
+                  <p className="text-gray-400 text-sm">
+                    Fill out the details below and we will contact you to
+                    arrange a suitable time.
                   </p>
                 </div>
 
-                <form className="space-y-5">
-                  {/* Your Name */}
-                  <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-primary">
-                      Your name
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-primary focus:outline-none focus:border-secondary focus:bg-white transition-all"
-                    />
-                  </div>
-
-                  {/* Telephone */}
-                  <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-primary">
-                      Telephone
-                    </label>
-                    <input
-                      type="tel"
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-primary focus:outline-none focus:border-secondary focus:bg-white transition-all"
-                    />
-                  </div>
-
-                  {/* Your Email */}
-                  <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-primary">
-                      Your email
-                    </label>
-                    <input
-                      type="email"
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-primary focus:outline-none focus:border-secondary focus:bg-white transition-all"
-                    />
-                  </div>
-
-                  {/* County & DOB Row */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div className="space-y-1.5">
-                      <label className="text-sm font-bold text-primary">
-                        County
-                      </label>
-                      <input
-                        type="text"
-                        className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-primary focus:outline-none focus:border-secondary focus:bg-white transition-all"
-                      />
+                {status === "success" ? (
+                  // SUCCESS STATE
+                  <div className="text-center py-10 animate-fade-in bg-green-50 rounded-xl">
+                    <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <CheckCircle size={32} />
                     </div>
-                    <div className="space-y-1.5 relative">
-                      <label className="text-sm font-bold text-primary">
-                        DOB
-                      </label>
-                      <div className="relative">
+                    <h4 className="text-xl font-bold text-primary mb-2">
+                      Enquiry Sent!
+                    </h4>
+                    <p className="text-gray-500 mb-6 px-4">
+                      Thank you. We have received your request and will be in
+                      touch shortly.
+                    </p>
+                    <button
+                      onClick={() => setStatus("idle")}
+                      className="text-secondary font-bold underline hover:text-primary transition-colors"
+                    >
+                      Send another message
+                    </button>
+                  </div>
+                ) : (
+                  // FORM STATE
+                  <form
+                    onSubmit={handleSubmit}
+                    className="space-y-6"
+                    noValidate
+                  >
+                    {/* Row 1: Name & Phone */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {/* Name */}
+                      <div className="space-y-2">
+                        <label className="text-[11px] font-bold text-[#0E4B65] uppercase tracking-widest ml-1">
+                          Full Name <span className="text-red-500">*</span>
+                        </label>
                         <input
-                          type="date"
-                          className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-primary focus:outline-none focus:border-secondary focus:bg-white transition-all appearance-none"
-                          placeholder="mm/dd/yyyy"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          type="text"
+                          placeholder="e.g. Sarah Jones"
+                          className={`w-full bg-[#F8F9FA] border rounded-lg px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-1 transition-all
+                            ${
+                              errors.name
+                                ? "border-red-400 focus:border-red-500 focus:ring-red-200"
+                                : "border-gray-200 focus:border-[#8D4E85] focus:ring-[#8D4E85]"
+                            }`}
                         />
-                        <Calendar
-                          size={18}
-                          className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+                        {errors.name && (
+                          <p className="text-red-500 text-xs flex items-center gap-1 ml-1 mt-1">
+                            <AlertCircle size={12} /> {errors.name}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Phone */}
+                      <div className="space-y-2">
+                        <label className="text-[11px] font-bold text-[#0E4B65] uppercase tracking-widest ml-1">
+                          Phone Number <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          type="tel"
+                          placeholder="e.g. +44 7700 900000"
+                          className={`w-full bg-[#F8F9FA] border rounded-lg px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-1 transition-all
+                            ${
+                              errors.phone
+                                ? "border-red-400 focus:border-red-500 focus:ring-red-200"
+                                : "border-gray-200 focus:border-[#8D4E85] focus:ring-[#8D4E85]"
+                            }`}
                         />
+                        {errors.phone && (
+                          <p className="text-red-500 text-xs flex items-center gap-1 ml-1 mt-1">
+                            <AlertCircle size={12} /> {errors.phone}
+                          </p>
+                        )}
                       </div>
                     </div>
-                  </div>
 
-                  {/* Preferred Method of Contact (Radio) */}
-                  <div className="space-y-2 pt-2">
-                    <label className="text-sm font-bold text-primary">
-                      Preferred method of contact
-                    </label>
-                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                      {["Phone Call", "Email", "Text Message"].map((method) => (
-                        <label
-                          key={method}
-                          className="flex items-center gap-2 cursor-pointer group"
-                        >
-                          <div
-                            className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all ${
-                              contactMethod === method
-                                ? "border-secondary bg-white"
-                                : "border-gray-300 bg-gray-50 group-hover:border-secondary"
-                            }`}
-                          >
-                            {contactMethod === method && (
-                              <div className="w-2.5 h-2.5 rounded-full bg-secondary" />
-                            )}
-                          </div>
-                          <input
-                            type="radio"
-                            name="contactMethod"
-                            value={method}
-                            checked={contactMethod === method}
-                            onChange={() => setContactMethod(method)}
-                            className="hidden"
-                          />
-                          <span
-                            className={`text-sm ${
-                              contactMethod === method
-                                ? "text-secondary font-bold"
-                                : "text-gray-600"
-                            }`}
-                          >
-                            {method}
-                          </span>
-                        </label>
-                      ))}
+                    {/* Row 2: Email */}
+                    <div className="space-y-2">
+                      <label className="text-[11px] font-bold text-[#0E4B65] uppercase tracking-widest ml-1">
+                        Email Address <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        type="email"
+                        placeholder="e.g. sarah@example.com"
+                        className={`w-full bg-[#F8F9FA] border rounded-lg px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-1 transition-all
+                          ${
+                            errors.email
+                              ? "border-red-400 focus:border-red-500 focus:ring-red-200"
+                              : "border-gray-200 focus:border-[#8D4E85] focus:ring-[#8D4E85]"
+                          }`}
+                      />
+                      {errors.email && (
+                        <p className="text-red-500 text-xs flex items-center gap-1 ml-1 mt-1">
+                          <AlertCircle size={12} /> {errors.email}
+                        </p>
+                      )}
                     </div>
-                  </div>
 
-                  {/* Your Message */}
-                  <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-primary">
-                      Your message (optional)
-                    </label>
-                    <textarea
-                      rows={5}
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-primary focus:outline-none focus:border-secondary focus:bg-white transition-all resize-none"
-                    ></textarea>
-                  </div>
+                    {/* Row 3: Service */}
+                    <div className="space-y-2">
+                      <label className="text-[11px] font-bold text-[#0E4B65] uppercase tracking-widest ml-1">
+                        Service of Interest
+                      </label>
+                      <div className="relative">
+                        <select
+                          name="service"
+                          value={formData.service}
+                          onChange={handleChange}
+                          className="w-full bg-[#F8F9FA] border border-gray-200 rounded-lg px-4 py-3 text-gray-600 focus:outline-none focus:border-[#8D4E85] focus:ring-1 focus:ring-[#8D4E85] transition-all appearance-none cursor-pointer"
+                        >
+                          <option>General Gynaecology</option>
+                          <option>Menopause / HRT</option>
+                          <option>Urogynaecology / Bladder</option>
+                          <option>Aesthetic / Cosmetic</option>
+                          <option>Fertility</option>
+                          <option>Other Enquiry</option>
+                        </select>
+                        {/* Custom arrow icon for cleaner look */}
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                          <svg
+                            width="12"
+                            height="8"
+                            viewBox="0 0 12 8"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M1 1.5L6 6.5L11 1.5"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
 
-                  <button className="w-full bg-primary text-white py-4 rounded-xl font-bold shadow-lg hover:bg-[#1a3a5e] flex items-center justify-center gap-2 transition-all hover:-translate-y-0.5 mt-2">
-                    <Send size={18} /> Submit Enquiry
-                  </button>
-                </form>
+                    {/* Row 4: Message */}
+                    <div className="space-y-2">
+                      <label className="text-[11px] font-bold text-[#0E4B65] uppercase tracking-widest ml-1">
+                        Message (Optional)
+                      </label>
+                      <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        rows={4}
+                        placeholder="Please tell us briefly how we can help..."
+                        className="w-full bg-[#F8F9FA] border border-gray-200 rounded-lg px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-[#8D4E85] focus:ring-1 focus:ring-[#8D4E85] transition-all resize-none"
+                      ></textarea>
+                    </div>
+
+                    {/* Submit Button */}
+                    <button
+                      type="submit"
+                      disabled={status === "submitting"}
+                      className="w-full bg-[#8D4E85] text-white font-bold text-lg py-3 rounded-lg hover:bg-[#723d6d] transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 flex justify-center items-center gap-2 disabled:opacity-70 disabled:hover:translate-y-0 mt-4"
+                    >
+                      {status === "submitting" ? (
+                        "Sending..."
+                      ) : (
+                        <>
+                          <span>Book Consultation</span>
+                          <Send size={18} className="ml-1" />
+                        </>
+                      )}
+                    </button>
+
+                    <p className="text-xs text-center text-gray-400 mt-4">
+                      By submitting this form, you agree to our privacy policy.
+                      Your data is secure.
+                    </p>
+                  </form>
+                )}
               </div>
             </motion.div>
           </div>
