@@ -1,6 +1,6 @@
 import Footer from "@/component/layout/Footer";
 import MainNavbar from "@/component/layout/MainNavbar";
-import ScrollToTop from "@/component/shared/ScrollToTop";
+import { ScrollToTop } from "@/component/shared";
 import { CartProvider } from "@/context/CartContext";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "react-hot-toast";

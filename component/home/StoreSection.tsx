@@ -2,7 +2,7 @@
 
 import { getProducts, Product } from "@/app/actions/product";
 import { useCart } from "@/context/CartContext";
-import { motion } from "framer-motion";
+import { ScrollMotion } from "@/component/motion";
 import { ArrowRight, Eye, ShoppingCart, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -155,11 +155,10 @@ const ProductCard = ({
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      viewport={{ once: true }}
+    <ScrollMotion
+      animation="slideUp"
+      delay={index * 0.1}
+      duration={0.4}
       className="group relative bg-white rounded-xl md:rounded-2xl overflow-hidden border border-transparent hover:border-secondary/20 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-full"
     >
       {/* IMAGE AREA */}
@@ -261,10 +260,10 @@ const ProductCard = ({
           disabled={isAdding || (product.stock <= 0 && product.trackInventory)}
           className="md:hidden w-full bg-primary text-white py-2.5 rounded-lg font-bold text-sm shadow-lg hover:bg-[#1a3a5e] disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors mt-3"
         >
-          <ShoppingCart size={16} /> {isAdding ? "Adding..." : "Add to Cart"}
+          <ShoppingCart size={16} />           {isAdding ? "Adding..." : "Add to Cart"}
         </button>
       </div>
-    </motion.div>
+    </ScrollMotion>
   );
 };
 

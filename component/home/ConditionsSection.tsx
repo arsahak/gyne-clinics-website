@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { ScrollMotion } from "@/component/motion";
 import {
   Activity,
   ArrowRight,
@@ -99,12 +99,11 @@ const ConditionsSection = () => {
         {/* 2. The Bento Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {categories.map((category, idx) => (
-            <motion.div
+            <ScrollMotion
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
+              animation="slideUp"
+              delay={idx * 0.1}
+              duration={0.4}
               className="group bg-[#F8F9FA] rounded-3xl p-8 hover:bg-white hover:shadow-2xl border border-transparent hover:border-gray-100 transition-all duration-300"
             >
               {/* Card Header */}
@@ -136,7 +135,7 @@ const ConditionsSection = () => {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </ScrollMotion>
           ))}
         </div>
 

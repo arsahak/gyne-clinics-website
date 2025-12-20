@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 // --- Mock User State (Replace this with your actual Auth Logic/Context later) ---
@@ -29,40 +30,57 @@ const MOCK_USER_NAME = "Jane Doe"; // Replace with real user name
 const navLinks = [
   {
     title: "General Gynaecology",
-    href: "/general",
-    subItems: [
-      { name: "Health Checks & Screening", href: "/general/screening" },
-      { name: "Menopause Management", href: "/general/menopause" },
-      { name: "Fertility Services", href: "/general/fertility" },
-    ],
+    href: "/general-gynaecology",
+    // subItems: [
+    //   { name: "Health Checks & Screening", href: "/general/screening" },
+    //   { name: "Menopause Management", href: "/general/menopause" },
+    //   { name: "Fertility Services", href: "/general/fertility" },
+    // ],
   },
   {
     title: "Urogynaecology",
     href: "/urogynaecology",
-    subItems: [
-      { name: "Bladder Health", href: "/uro/bladder" },
-      { name: "Incontinence Solutions", href: "/uro/incontinence" },
-      { name: "Pelvic Floor Therapy", href: "/uro/pelvic-floor" },
-    ],
+    // subItems: [
+    //   { name: "Bladder Health", href: "/uro/bladder" },
+    //   { name: "Incontinence Solutions", href: "/uro/incontinence" },
+    //   { name: "Pelvic Floor Therapy", href: "/uro/pelvic-floor" },
+    // ],
+  },
+  {
+    title: "Menopause",
+    href: "/menopause",
+    // subItems: [
+    //   { name: "Intimate Rejuvenation", href: "/aesthetic/rejuvenation" },
+    //   { name: "Labiaplasty", href: "/aesthetic/labiaplasty" },
+    //   { name: "Non-Surgical Lifts", href: "/aesthetic/non-surgical" },
+    // ],
   },
   {
     title: "Aesthetic Gynaecology",
-    href: "/aesthetic",
+    href: "/aesthetic-gynaecology",
     subItems: [
-      { name: "Intimate Rejuvenation", href: "/aesthetic/rejuvenation" },
-      { name: "Labiaplasty", href: "/aesthetic/labiaplasty" },
-      { name: "Non-Surgical Lifts", href: "/aesthetic/non-surgical" },
+      { name: "Surgical", href: "/aesthetic-gynaecology/surgical" },
+      { name: "Non-Surgical", href: "/aesthetic-gynaecology/non-surgical" },
     ],
   },
 ];
 
 const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false); // Mobile Menu State
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null); // Desktop Nav Dropdown
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false); // User Profile Dropdown
   const [scrolled, setScrolled] = useState(false);
   const { getTotalItems } = useCart();
   const cartItemCount = getTotalItems();
+
+  // Helper function to check if a route is active
+  const isActiveRoute = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(href);
+  };
 
   // Handle Scroll Effect
   useEffect(() => {
@@ -117,7 +135,10 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
             {/* CART ICON - TOP BAR */}
             <Link href="/cart" className="relative ml-4">
-              <button className="relative p-1.5 hover:text-secondary transition-colors" aria-label="Shopping cart">
+              <button
+                className="relative p-1.5 hover:text-secondary transition-colors"
+                aria-label="Shopping cart"
+              >
                 <ShoppingCart size={16} />
                 {cartItemCount > 0 && (
                   <span className="absolute -top-1 -right-1 bg-secondary text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center leading-none">
@@ -168,52 +189,86 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
           {/* DESKTOP NAVIGATION - CENTERED */}
           <div className="hidden lg:flex flex-1 justify-center items-center gap-8">
-            {navLinks.map((link, index) => (
-              <div
-                key={index}
-                className="relative group"
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                <Link
-                  href={link.href}
-                  className="flex items-center gap-1 text-primary-500 font-medium hover:text-secondary py-2"
-                >
-                  {link.title}
-                  <ChevronDown
-                    size={14}
-                    className={`transition-transform duration-200 ${
-                      hoveredIndex === index ? "rotate-180" : ""
-                    }`}
-                  />
-                </Link>
+            {navLinks?.map((link, index) => {
+              const hasSubItems = link.subItems && link.subItems.length > 0;
+              const isMainActive = !hasSubItems && isActiveRoute(link.href);
+              const isSubItemActive = hasSubItems && link.subItems?.some(sub => isActiveRoute(sub.href));
+              const isActive = isMainActive || isSubItemActive;
 
-                {/* Submenu Dropdown */}
-                <AnimatePresence>
-                  {hoveredIndex === index && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 15 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute left-0 mt-0 w-64 bg-white shadow-xl rounded-md border-t-4 border-secondary overflow-hidden"
+              return (
+                <div
+                  key={index}
+                  className="relative group"
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  {hasSubItems ? (
+                    // Main item with subItems - not clickable
+                    <button
+                      className={`flex items-center gap-1 font-medium py-2 cursor-pointer ${
+                        isActive
+                          ? "text-secondary"
+                          : "text-primary-500 hover:text-secondary"
+                      }`}
                     >
-                      <div className="py-2">
-                        {link.subItems.map((sub, i) => (
-                          <Link
-                            key={i}
-                            href={sub.href}
-                            className="block px-4 py-3 text-sm text-gray-700 hover:bg-[#FAF9F6] hover:text-secondary transition-colors"
-                          >
-                            {sub.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
+                      {link.title}
+                      <ChevronDown
+                        size={14}
+                        className={`transition-transform duration-200 ${
+                          hoveredIndex === index ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                  ) : (
+                    // Main item without subItems - clickable
+                    <Link
+                      href={link.href}
+                      className={`flex items-center gap-1 font-medium py-2 ${
+                        isActive
+                          ? "text-secondary"
+                          : "text-primary-500 hover:text-secondary"
+                      }`}
+                    >
+                      {link.title}
+                    </Link>
                   )}
-                </AnimatePresence>
-              </div>
-            ))}
+
+                  {/* Submenu Dropdown - Only show if subItems exist */}
+                  <AnimatePresence>
+                    {hoveredIndex === index &&
+                      link.subItems &&
+                      link.subItems.length > 0 && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 15 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 15 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute left-0 mt-0 w-64 bg-white shadow-xl rounded-md border-t-4 border-secondary overflow-hidden"
+                        >
+                          <div className="py-2">
+                            {link.subItems.map((sub, i) => {
+                              const isSubActive = isActiveRoute(sub.href);
+                              return (
+                                <Link
+                                  key={i}
+                                  href={sub.href}
+                                  className={`block px-4 py-3 text-sm transition-colors ${
+                                    isSubActive
+                                      ? "bg-[#FAF9F6] text-secondary font-medium"
+                                      : "text-gray-700 hover:bg-[#FAF9F6] hover:text-secondary"
+                                  }`}
+                                >
+                                  {sub.name}
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </motion.div>
+                      )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
 
           {/* RIGHT SIDE ACTIONS (Separator + CTA) */}
@@ -238,7 +293,10 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
           <div className="lg:hidden flex items-center gap-4">
             {/* MOBILE CART ICON */}
             <Link href="/cart" className="relative">
-              <button className="relative p-2 text-[#0A2342]" aria-label="Shopping cart">
+              <button
+                className="relative p-2 text-[#0A2342]"
+                aria-label="Shopping cart"
+              >
                 <ShoppingCart size={24} />
                 {cartItemCount > 0 && (
                   <span className="absolute -top-1 -right-1 bg-secondary text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
@@ -270,23 +328,52 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
           >
             <div className="flex flex-col p-4 space-y-6">
               {/* Links */}
-              {navLinks.map((link, index) => (
-                <div key={index} className="space-y-2">
-                  <span className="block text-secondary font-bold uppercase text-xs tracking-wider border-b border-gray-100 pb-1">
-                    {link.title}
-                  </span>
-                  {link.subItems.map((sub, i) => (
-                    <Link
-                      key={i}
-                      href={sub.href}
-                      onClick={() => setIsOpen(false)}
-                      className="block pl-2 text-primary-500 font-medium py-1.5 text-sm"
-                    >
-                      {sub.name}
-                    </Link>
-                  ))}
-                </div>
-              ))}
+              {navLinks.map((link, index) => {
+                const hasSubItems = link.subItems && link.subItems.length > 0;
+                const isMainActive = !hasSubItems && isActiveRoute(link.href);
+                const isSubItemActive = hasSubItems && link.subItems?.some(sub => isActiveRoute(sub.href));
+
+                return (
+                  <div key={index} className="space-y-2">
+                    <span className={`block font-bold uppercase text-xs tracking-wider border-b border-gray-100 pb-1 ${
+                      isMainActive || isSubItemActive ? "text-secondary" : "text-gray-600"
+                    }`}>
+                      {link.title}
+                    </span>
+                    {hasSubItems ? (
+                      link.subItems.map((sub, i) => {
+                        const isSubActive = isActiveRoute(sub.href);
+                        return (
+                          <Link
+                            key={i}
+                            href={sub.href}
+                            onClick={() => setIsOpen(false)}
+                            className={`block pl-2 font-medium py-1.5 text-sm ${
+                              isSubActive
+                                ? "text-secondary"
+                                : "text-primary-500"
+                            }`}
+                          >
+                            {sub.name}
+                          </Link>
+                        );
+                      })
+                    ) : (
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`block pl-2 font-medium py-1.5 text-sm ${
+                          isMainActive
+                            ? "text-secondary"
+                            : "text-primary-500"
+                        }`}
+                      >
+                        View {link.title}
+                      </Link>
+                    )}
+                  </div>
+                );
+              })}
 
               {/* Mobile Cart Link */}
               <Link
@@ -296,7 +383,9 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               >
                 <div className="flex items-center gap-2">
                   <ShoppingCart size={20} className="text-primary-500" />
-                  <span className="text-primary-700 font-medium">Shopping Cart</span>
+                  <span className="text-primary-700 font-medium">
+                    Shopping Cart
+                  </span>
                 </div>
                 {cartItemCount > 0 && (
                   <span className="bg-secondary text-white text-xs font-bold rounded-full px-2 py-1 min-w-[24px] text-center">

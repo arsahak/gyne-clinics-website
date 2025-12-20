@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { ScrollMotion } from "@/component/motion";
 import { Clock, Phone, Send, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 
@@ -64,12 +64,7 @@ const BookConsultation = () => {
 
           {/* 2. RIGHT SIDE: The Form Card */}
           <div className="lg:w-7/12 w-full">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-gray-100 relative"
-            >
+            <ScrollMotion animation="fadeInUp" duration={0.5} className="bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-gray-100 relative">
               {/* Decorative Gold Line */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-1 bg-secondary rounded-b-full"></div>
 
@@ -191,7 +186,7 @@ const BookConsultation = () => {
                   </p>
                 </form>
               )}
-            </motion.div>
+            </ScrollMotion>
           </div>
         </div>
       </div>
