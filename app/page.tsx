@@ -1,10 +1,10 @@
+import AestheticSection from "@/component/home/AestheticSection";
 import BookConsultation from "@/component/home/BookConsultation";
-import ConditionsSection from "@/component/home/ConditionsSection";
+import GeneralGynaecologySection from "@/component/home/GeneralGynaecologySection";
 import HeroSection from "@/component/home/HeroSection";
-import SearchSection from "@/component/home/SearchSection";
-import ServicesSection from "@/component/home/ServicesSection";
+import MenopauseSection from "@/component/home/MenopauseSection";
 import StoreSection from "@/component/home/StoreSection";
-import WelcomeSection from "@/component/home/WelcomeSection";
+import Urogynaecology from "@/component/home/Urogynaecology";
 
 export const metadata = {
   title: "GyneClinics – Expertise Professionalism and Excellence",
@@ -25,11 +25,15 @@ export default function Home() {
   return (
     <div className="">
       <HeroSection />
-      <ServicesSection />
-      <WelcomeSection />
+      {/* <ServicesSection /> */}
+      <GeneralGynaecologySection />
+      {/* <WelcomeSection /> */}
+      <Urogynaecology />
+      <AestheticSection />
+      <MenopauseSection />
+      {/* 
+      <SearchSection /> */}
       <StoreSection />
-      <ConditionsSection />
-      <SearchSection />
       <BookConsultation />
     </div>
   );
