@@ -14,6 +14,7 @@ import {
   Phone,
   Youtube,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -71,7 +72,13 @@ const Footer = () => {
               href="/"
               className="text-3xl font-serif font-bold tracking-wide flex items-center gap-1"
             >
-              Gyne<span className="text-teal-400">Clinics</span>
+              <Image
+                src="/assets/logo/gyneclinics-logo.webp"
+                alt="GyneClinics"
+                width={500}
+                height={300}
+                className="w-64 h-auto object-contain"
+              />
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
               Leading the way in Women&apos;s Health. We combine expert

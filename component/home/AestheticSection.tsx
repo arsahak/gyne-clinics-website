@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import AIChatbotModal from "@/component/shared/AIChatbotModal";
 
 const aestheticData = {
   nonSurgical: [
@@ -58,6 +59,7 @@ const aestheticData = {
 
 const AestheticSection = () => {
   const [activeMode, setActiveMode] = useState<"nonSurgical" | "surgical">("nonSurgical");
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const treatments = aestheticData[activeMode];
 
   return (
@@ -182,7 +184,10 @@ const AestheticSection = () => {
                 <p className="text-gray-600 mb-4">
                   Not sure which treatment is right for you? Take our confidential 3-minute assessment for personalized recommendations
                 </p>
-                <button className="bg-secondary hover:bg-primary text-white px-6 py-3 rounded-full font-bold transition-all inline-flex items-center gap-2">
+                <button
+                  onClick={() => setIsChatbotOpen(true)}
+                  className="bg-secondary hover:bg-primary text-white px-6 py-3 rounded-full font-bold transition-all inline-flex items-center gap-2"
+                >
                   Start Free Assessment <ArrowRight size={18} />
                 </button>
               </div>
@@ -210,6 +215,13 @@ const AestheticSection = () => {
           </div>
         </ScrollMotion>
       </div>
+
+      {/* AI Chatbot Modal */}
+      <AIChatbotModal
+        isOpen={isChatbotOpen}
+        onClose={() => setIsChatbotOpen(false)}
+        chatbotType="aesthetic"
+      />
     </section>
   );
 };

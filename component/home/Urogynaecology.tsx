@@ -13,8 +13,11 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import AIChatbotModal from "@/component/shared/AIChatbotModal";
 
 const Urogynaecology = () => {
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const conditions = [
     {
       icon: Droplets,
@@ -124,7 +127,10 @@ const Urogynaecology = () => {
                 Answer a few questions about your symptoms and receive personalized guidance on your pelvic floor health.
               </p>
 
-              <button className="bg-white text-blue-600 px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all inline-flex items-center gap-2 w-fit">
+              <button
+                onClick={() => setIsChatbotOpen(true)}
+                className="bg-white text-blue-600 px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all inline-flex items-center gap-2 w-fit"
+              >
                 Start Assessment <ArrowRight size={20} />
               </button>
             </div>
@@ -165,6 +171,13 @@ const Urogynaecology = () => {
           </div>
         </ScrollMotion>
       </div>
+
+      {/* AI Chatbot Modal */}
+      <AIChatbotModal
+        isOpen={isChatbotOpen}
+        onClose={() => setIsChatbotOpen(false)}
+        chatbotType="urogynaecology"
+      />
     </section>
   );
 };

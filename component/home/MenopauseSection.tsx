@@ -11,8 +11,11 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import AIChatbotModal from "@/component/shared/AIChatbotModal";
 
 const MenopauseSection = () => {
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const symptoms = [
     "Hot Flushes",
     "Night Sweats",
@@ -151,7 +154,10 @@ const MenopauseSection = () => {
                   ))}
                 </div>
 
-                <button className="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-full font-bold transition-all flex items-center justify-center gap-2">
+                <button
+                  onClick={() => setIsChatbotOpen(true)}
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-full font-bold transition-all flex items-center justify-center gap-2"
+                >
                   <Shield size={18} />
                   Start Confidential Assessment
                 </button>
@@ -160,6 +166,13 @@ const MenopauseSection = () => {
           </ScrollMotion>
         </div>
       </div>
+
+      {/* AI Chatbot Modal */}
+      <AIChatbotModal
+        isOpen={isChatbotOpen}
+        onClose={() => setIsChatbotOpen(false)}
+        chatbotType="menopause"
+      />
     </section>
   );
 };

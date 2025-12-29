@@ -12,8 +12,11 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import AIChatbotModal from "@/component/shared/AIChatbotModal";
 
 const GeneralGynaecologySection = () => {
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const services = [
     {
       icon: CalendarHeart,
@@ -109,7 +112,10 @@ const GeneralGynaecologySection = () => {
                   Describe your symptoms and receive personalized
                   recommendations in 60 seconds
                 </p>
-                <button className="w-full bg-white text-primary px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition-all flex items-center justify-center gap-2">
+                <button
+                  onClick={() => setIsChatbotOpen(true)}
+                  className="w-full bg-white text-primary px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition-all flex items-center justify-center gap-2"
+                >
                   <Sparkles size={18} />
                   Start Assessment
                 </button>
@@ -149,6 +155,13 @@ const GeneralGynaecologySection = () => {
           </div>
         </ScrollMotion>
       </div>
+
+      {/* AI Chatbot Modal */}
+      <AIChatbotModal
+        isOpen={isChatbotOpen}
+        onClose={() => setIsChatbotOpen(false)}
+        chatbotType="general"
+      />
     </section>
   );
 };
