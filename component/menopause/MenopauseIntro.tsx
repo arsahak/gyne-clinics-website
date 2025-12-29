@@ -7,17 +7,17 @@ const symptoms = [
   {
     icon: Clock,
     label: "Perimenopause",
-    desc: "The years leading up to menopause where cycles change.",
+    desc: "Transitional phase characterized by irregular menstrual cycles and fluctuating hormone levels.",
   },
   {
     icon: Battery,
-    label: "Fatigue & Sleep",
-    desc: "Exhaustion that sleep doesn't seem to fix.",
+    label: "Sleep Disturbance",
+    desc: "Insomnia, night sweats, and chronic fatigue resistant to conventional sleep hygiene measures.",
   },
   {
     icon: Brain,
-    label: "Brain Fog",
-    desc: "Difficulty concentrating or remembering names.",
+    label: "Cognitive Dysfunction",
+    desc: "Memory impairment, reduced concentration, and executive function difficulties ('brain fog').",
   },
 ];
 
@@ -47,12 +47,9 @@ const MenopauseIntro = () => {
           </h2>
           <div className="w-20 h-1 bg-secondary mx-auto rounded-full mb-6"></div>
           <p className="text-gray-600 text-base md:text-lg leading-relaxed">
-            Every woman's journey is unique. For some, symptoms are mild. For
-            others, they can be debilitating, affecting work, relationships, and
-            self-esteem. We look at the{" "}
-            <strong className="text-primary font-semibold">whole picture</strong>
-            —from hormonal balance to mental health—to help you feel like yourself
-            again.
+            Menopausal transition presents with over 30 documented symptoms affecting vasomotor, urogenital, psychological, and metabolic systems. While symptom severity varies significantly between individuals, up to 75% of women experience impairment to quality of life. Our British Menopause Society-certified specialists conduct comprehensive hormonal assessment and provide{" "}
+            <strong className="text-primary font-semibold">holistic, individualized care</strong>
+            {" "}—integrating bioidentical HRT, cardiovascular risk stratification, bone health optimization, and psychological support to restore wellbeing throughout the menopausal transition and beyond.
           </p>
         </ScrollMotion>
 

@@ -25,14 +25,10 @@ export default function Home() {
   return (
     <div className="">
       <HeroSection />
-      {/* <ServicesSection /> */}
       <GeneralGynaecologySection />
-      {/* <WelcomeSection /> */}
       <Urogynaecology />
       <AestheticSection />
       <MenopauseSection />
-      {/* 
-      <SearchSection /> */}
       <StoreSection />
       <BookConsultation />
     </div>

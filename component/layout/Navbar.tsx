@@ -179,11 +179,11 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
             className="text-2xl font-serif font-bold text-primary-500 shrink-0"
           >
             <Image
-              src="/assets/logo/gyneclinics-logo.svg"
+              src="/assets/logo/gyneclinics-logo.webp"
               alt="GyneClinics"
-              width={180}
-              height={180}
-              className="w-full h-[40px] md:h-[60px]"
+              width={500}
+              height={300}
+              className="w-full h-10 md:h-[60px]"
             />
           </Link>
 
@@ -192,7 +192,9 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
             {navLinks?.map((link, index) => {
               const hasSubItems = link.subItems && link.subItems.length > 0;
               const isMainActive = !hasSubItems && isActiveRoute(link.href);
-              const isSubItemActive = hasSubItems && link.subItems?.some(sub => isActiveRoute(sub.href));
+              const isSubItemActive =
+                hasSubItems &&
+                link.subItems?.some((sub) => isActiveRoute(sub.href));
               const isActive = isMainActive || isSubItemActive;
 
               return (
@@ -331,13 +333,19 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               {navLinks.map((link, index) => {
                 const hasSubItems = link.subItems && link.subItems.length > 0;
                 const isMainActive = !hasSubItems && isActiveRoute(link.href);
-                const isSubItemActive = hasSubItems && link.subItems?.some(sub => isActiveRoute(sub.href));
+                const isSubItemActive =
+                  hasSubItems &&
+                  link.subItems?.some((sub) => isActiveRoute(sub.href));
 
                 return (
                   <div key={index} className="space-y-2">
-                    <span className={`block font-bold uppercase text-xs tracking-wider border-b border-gray-100 pb-1 ${
-                      isMainActive || isSubItemActive ? "text-secondary" : "text-gray-600"
-                    }`}>
+                    <span
+                      className={`block font-bold uppercase text-xs tracking-wider border-b border-gray-100 pb-1 ${
+                        isMainActive || isSubItemActive
+                          ? "text-secondary"
+                          : "text-gray-600"
+                      }`}
+                    >
                       {link.title}
                     </span>
                     {hasSubItems ? (
@@ -363,9 +371,7 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
                         href={link.href}
                         onClick={() => setIsOpen(false)}
                         className={`block pl-2 font-medium py-1.5 text-sm ${
-                          isMainActive
-                            ? "text-secondary"
-                            : "text-primary-500"
+                          isMainActive ? "text-secondary" : "text-primary-500"
                         }`}
                       >
                         View {link.title}

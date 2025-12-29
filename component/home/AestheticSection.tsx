@@ -3,157 +3,129 @@ import { ScrollMotion } from "@/component/motion";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
+  Bot,
   Clock,
   Gem,
   Scissors,
-  Sparkles, // CHANGED: Replaced 'Scalpel' with 'Scissors' to fix build error
+  Sparkles,
   Zap,
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-// 1. DATA SPLIT (Surgical vs Non-Surgical)
 const aestheticData = {
-  nonSurgical: {
-    label: "Non-Surgical",
-    subLabel: "Non-Invasive & Laser",
-    icon: Zap,
-    description:
-      "Rejuvenate with zero downtime. Our 'lunchtime treatments' use advanced laser and PRP technology to restore function and appearance instantly.",
-    treatments: [
-      {
-        title: "Laser Rejuvenation",
-        desc: "The 'Juliet' Laser treatment for tightness, dryness, and mild incontinence.",
-        downtime: "No Downtime",
-        tags: ["Pain-Free", "15 Mins"],
-      },
-      {
-        title: "O-Shot (PRP)",
-        desc: "Platelet Rich Plasma therapy to boost sensitivity and tissue health.",
-        downtime: "Immediate Return",
-        tags: ["Natural", "Regenerative"],
-      },
-      {
-        title: "Intimate Fillers",
-        desc: "Hyaluronic acid injections for aesthetic plumping and hydration.",
-        downtime: "Minimal Swelling",
-        tags: ["Instant Result", "Sculpting"],
-      },
-      {
-        title: "Whitening & Peels",
-        desc: "Specialized chemical and laser protocols for skin lightening.",
-        downtime: "No Downtime",
-        tags: ["Brightening", "Safe"],
-      },
-    ],
-  },
-  surgical: {
-    label: "Surgical",
-    subLabel: "Permanent Sculpture",
-    icon: Scissors, // CHANGED: Updated usage here
-    description:
-      "Permanent results for body contouring. Our expert surgeons specialize in functional and aesthetic restructuring for life-long confidence.",
-    treatments: [
-      {
-        title: "Labiaplasty",
-        desc: "Reshaping and reducing the size of the labia minora for comfort.",
-        downtime: "1-2 Weeks",
-        tags: ["Permanent", "Precision"],
-      },
-      {
-        title: "Vaginoplasty",
-        desc: "Surgical tightening of the vaginal canal to restore muscle tone.",
-        downtime: "4-6 Weeks",
-        tags: ["Restorative", "Functional"],
-      },
-      {
-        title: "Hoodectomy",
-        desc: "Reduction of the clitoral hood to improve aesthetics and sensation.",
-        downtime: "1 Week",
-        tags: ["Sensitivity", "Refinement"],
-      },
-      {
-        title: "Liposuction (Mons)",
-        desc: "Targeted fat removal from the pubic mound for a flatter profile.",
-        downtime: "3-5 Days",
-        tags: ["Contour", "Shape"],
-      },
-    ],
-  },
+  nonSurgical: [
+    {
+      title: "Laser Rejuvenation",
+      desc: "FDA-approved CO2 laser therapy for vaginal tightening and tissue regeneration",
+      time: "15 mins",
+      recovery: "No downtime",
+    },
+    {
+      title: "O-Shot (PRP)",
+      desc: "Platelet-Rich Plasma therapy to enhance sensitivity and natural lubrication",
+      time: "30 mins",
+      recovery: "Immediate return",
+    },
+    {
+      title: "Intimate Fillers",
+      desc: "Medical-grade hyaluronic acid for labial augmentation and G-spot enhancement",
+      time: "20 mins",
+      recovery: "Minimal swelling",
+    },
+  ],
+  surgical: [
+    {
+      title: "Labiaplasty",
+      desc: "Precision surgical reshaping of labia minora/majora using advanced techniques",
+      time: "1-2 hours",
+      recovery: "1-2 weeks",
+    },
+    {
+      title: "Vaginoplasty",
+      desc: "Surgical reconstruction and tightening of vaginal canal for enhanced function",
+      time: "2-3 hours",
+      recovery: "4-6 weeks",
+    },
+    {
+      title: "Mons Pubis Liposuction",
+      desc: "Targeted fat removal to create a flatter, more contoured pubic profile",
+      time: "1 hour",
+      recovery: "3-5 days",
+    },
+  ],
 };
 
 const AestheticSection = () => {
-  const [activeMode, setActiveMode] = useState<"nonSurgical" | "surgical">(
-    "nonSurgical"
-  );
-  const activeData = aestheticData[activeMode];
+  const [activeMode, setActiveMode] = useState<"nonSurgical" | "surgical">("nonSurgical");
+  const treatments = aestheticData[activeMode];
 
   return (
-    <section className="py-20 bg-white relative overflow-hidden">
-      {/* Background Decor: Elegant Curves */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-secondary/5 to-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+    <section className="py-20 md:py-24 bg-gradient-to-b from-white to-pink-50/30 relative overflow-hidden">
+      {/* Decorative circles */}
+      <div className="absolute top-20 right-10 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* 1. Header Area */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <ScrollMotion animation="fadeInDown">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-bold uppercase tracking-widest mb-4">
-              <Gem size={14} /> GynaeCosmetics
-            </div>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold text-primary mb-6">
-              Aesthetic{" "}
-              <span className="text-secondary italic font-serif">
-                Gynaecology
+        {/* Centered Header */}
+        <ScrollMotion animation="fadeInUp">
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-md mb-6">
+              <Gem className="text-secondary" size={16} />
+              <span className="text-xs font-bold text-secondary uppercase tracking-wide">
+                Aesthetic Gynaecology
               </span>
+            </div>
+
+            <h2 className="text-4xl md:text-6xl font-bold text-primary mb-6">
+              Intimate <span className="text-secondary italic">Wellness</span>
             </h2>
-            <p className="text-gray-500 text-lg">
-              Choosing between rapid rejuvenation and permanent restructuring.
-              Toggle below to explore our specialized approaches.
+
+            <p className="text-gray-600 text-lg mb-8">
+              From advanced laser rejuvenation to precision surgical reconstruction
             </p>
-          </ScrollMotion>
-        </div>
 
-        {/* 2. THE TOGGLE SWITCH (The "Beauty Switch") */}
-        <div className="flex justify-center mb-16">
-          <div className="bg-gray-100 p-1.5 rounded-full inline-flex relative shadow-inner">
-            {/* The Moving Background Pill */}
-            <motion.div
-              className="absolute top-1.5 bottom-1.5 bg-white rounded-full shadow-md z-0"
-              initial={false}
-              animate={{
-                left: activeMode === "nonSurgical" ? "6px" : "50%",
-                width: "calc(50% - 9px)",
-                x: activeMode === "nonSurgical" ? 0 : 3,
-              }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            />
+            {/* Toggle Switch - Centered & Prominent */}
+            <div className="inline-flex bg-gray-100 p-2 rounded-full shadow-inner">
+              <motion.div className="relative flex">
+                <button
+                  onClick={() => setActiveMode("nonSurgical")}
+                  className={`relative px-8 py-3 rounded-full font-bold text-sm transition-all z-10 ${
+                    activeMode === "nonSurgical"
+                      ? "text-white"
+                      : "text-gray-600 hover:text-gray-800"
+                  }`}
+                >
+                  <Zap className="inline w-4 h-4 mr-2" />
+                  Non-Surgical
+                </button>
+                <button
+                  onClick={() => setActiveMode("surgical")}
+                  className={`relative px-8 py-3 rounded-full font-bold text-sm transition-all z-10 ${
+                    activeMode === "surgical"
+                      ? "text-white"
+                      : "text-gray-600 hover:text-gray-800"
+                  }`}
+                >
+                  <Scissors className="inline w-4 h-4 mr-2" />
+                  Surgical
+                </button>
 
-            {/* Buttons */}
-            {["nonSurgical", "surgical"].map((mode) => (
-              <button
-                key={mode}
-                onClick={() =>
-                  setActiveMode(mode as "nonSurgical" | "surgical")
-                }
-                className={`relative z-10 px-8 py-3 rounded-full text-sm font-bold transition-colors duration-300 min-w-[160px] flex items-center justify-center gap-2 ${
-                  activeMode === mode
-                    ? "text-primary"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
-              >
-                {/* CHANGED: Updated usage here */}
-                {mode === "nonSurgical" ? (
-                  <Zap size={16} />
-                ) : (
-                  <Scissors size={16} />
-                )}
-                {mode === "nonSurgical" ? "Non-Surgical" : "Surgical"}
-              </button>
-            ))}
+                {/* Moving background */}
+                <motion.div
+                  className="absolute top-0 h-full bg-gradient-to-r from-secondary to-primary rounded-full shadow-lg"
+                  animate={{
+                    left: activeMode === "nonSurgical" ? "0" : "50%",
+                    width: "50%",
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              </motion.div>
+            </div>
           </div>
-        </div>
+        </ScrollMotion>
 
-        {/* 3. Dynamic Content Display */}
+        {/* Treatment Cards - Staggered Layout */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeMode}
@@ -161,100 +133,82 @@ const AestheticSection = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
+            className="mb-16"
           >
-            {/* Section Intro */}
-            <div className="text-center mb-10">
-              <h3 className="text-2xl font-bold text-primary mb-2 flex items-center justify-center gap-3">
-                {activeData.label} Solutions
-                {activeMode === "surgical" && (
-                  <span className="bg-red-50 text-red-500 text-[10px] px-2 py-1 rounded border border-red-100 uppercase">
-                    Hospital Based
-                  </span>
-                )}
-                {activeMode === "nonSurgical" && (
-                  <span className="bg-green-50 text-green-600 text-[10px] px-2 py-1 rounded border border-green-100 uppercase">
-                    Clinic Based
-                  </span>
-                )}
-              </h3>
-              <p className="text-gray-500 max-w-2xl mx-auto">
-                {activeData.description}
-              </p>
-            </div>
-
-            {/* Treatment Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {activeData.treatments.map((item, index) => (
-                <div
-                  key={index}
-                  className="group bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-xl hover:border-secondary/30 transition-all duration-300 flex flex-col"
-                >
-                  {/* Card Header */}
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="p-3 bg-secondary/5 text-secondary rounded-xl group-hover:bg-secondary group-hover:text-white transition-colors">
-                      {/* CHANGED: Updated usage here */}
-                      {activeMode === "nonSurgical" ? (
-                        <Sparkles size={20} />
-                      ) : (
-                        <Scissors size={20} />
-                      )}
+            <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {treatments.map((treatment, idx) => (
+                <ScrollMotion key={idx} animation="slideUp" delay={idx * 0.1}>
+                  <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all group border-t-4 border-secondary">
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center group-hover:bg-secondary transition-colors">
+                        {activeMode === "nonSurgical" ? (
+                          <Sparkles className="text-secondary group-hover:text-white" size={24} />
+                        ) : (
+                          <Scissors className="text-secondary group-hover:text-white" size={24} />
+                        )}
+                      </div>
+                      <div className="text-right text-xs text-gray-500">
+                        <div className="flex items-center gap-1 justify-end mb-1">
+                          <Clock size={12} />
+                          {treatment.time}
+                        </div>
+                        <span className="font-semibold text-blue-600">{treatment.recovery}</span>
+                      </div>
                     </div>
-                    {/* Downtime Badge */}
-                    <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 bg-gray-50 px-2 py-1 rounded-md">
-                      <Clock size={10} />
-                      {item.downtime}
-                    </div>
+
+                    <h3 className="text-xl font-bold text-primary mb-3">{treatment.title}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">{treatment.desc}</p>
                   </div>
-
-                  {/* Content */}
-                  <h4 className="text-lg font-bold text-primary mb-2">
-                    {item.title}
-                  </h4>
-                  <p className="text-sm text-gray-500 leading-relaxed mb-6 flex-grow">
-                    {item.desc}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex gap-2 mb-6">
-                    {item.tags.map((tag, i) => (
-                      <span
-                        key={i}
-                        className="text-[10px] font-semibold text-secondary bg-secondary/5 px-2 py-1 rounded border border-secondary/10"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Action Link */}
-                  <Link
-                    href="/contact"
-                    className="mt-auto flex items-center text-sm font-bold text-gray-400 group-hover:text-primary transition-colors"
-                  >
-                    Consult{" "}
-                    <ArrowRight
-                      size={14}
-                      className="ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"
-                    />
-                  </Link>
-                </div>
+                </ScrollMotion>
               ))}
-            </div>
-
-            {/* Bottom Gallery Call-to-Action */}
-            <div className="mt-12 flex justify-center">
-              <Link
-                href="/gallery"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white rounded-full font-bold shadow-lg hover:shadow-secondary/20 hover:bg-secondary transition-all"
-              >
-                <span>View Before & After Gallery</span>
-                <div className="bg-white/20 rounded-full p-1">
-                  <ArrowRight size={16} />
-                </div>
-              </Link>
             </div>
           </motion.div>
         </AnimatePresence>
+
+        {/* AI Assessment Banner */}
+        <ScrollMotion animation="fadeInUp">
+          <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100 mb-12">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="flex-shrink-0">
+                <div className="w-20 h-20 bg-gradient-to-br from-secondary to-primary rounded-2xl flex items-center justify-center text-white">
+                  <Bot size={40} />
+                </div>
+              </div>
+
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-2xl font-bold text-primary mb-2">
+                  AI Aesthetic Assessment
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Not sure which treatment is right for you? Take our confidential 3-minute assessment for personalized recommendations
+                </p>
+                <button className="bg-secondary hover:bg-primary text-white px-6 py-3 rounded-full font-bold transition-all inline-flex items-center gap-2">
+                  Start Free Assessment <ArrowRight size={18} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </ScrollMotion>
+
+        {/* CTA Buttons */}
+        <ScrollMotion animation="fadeInUp" delay={0.2}>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link
+              href="/aesthetic-gynaecology"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-secondary hover:bg-primary text-white rounded-full font-bold shadow-lg transition-all"
+            >
+              Explore All Treatments
+              <ArrowRight size={18} />
+            </Link>
+            <Link
+              href="/gallery"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white rounded-full font-bold transition-all"
+            >
+              View Before & After Gallery
+              <Gem size={18} />
+            </Link>
+          </div>
+        </ScrollMotion>
       </div>
     </section>
   );

@@ -1,15 +1,16 @@
 "use client";
 import { ScrollMotion } from "@/component/motion";
 import {
-  ArrowRight, // Screening
+  ArrowRight,
   Baby,
+  Bot,
   CalendarHeart,
-  Clock, // Fertility/Contraception
-  HeartPulse, // Menstrual
+  HeartPulse,
   Microscope,
-  Search,
+  ShieldCheck,
   Sparkles,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const GeneralGynaecologySection = () => {
@@ -17,134 +18,134 @@ const GeneralGynaecologySection = () => {
     {
       icon: CalendarHeart,
       title: "Menstrual Health",
-      desc: "Heavy periods, irregular cycles, and PMS management.",
-      tags: ["PCOS", "Endometriosis", "Hormone Balance"],
-      link: "/services/menstrual-health",
+      desc: "Expert management of menstrual disorders including heavy bleeding, irregular cycles, and severe PMS/PMDD.",
+      color: "from-rose-500 to-pink-500",
     },
     {
       icon: HeartPulse,
       title: "Pelvic Pain & Fibroids",
-      desc: "Investigation of pelvic pain and structural issues.",
-      tags: ["Fibroids", "Ovarian Cysts", "Pelvic Inflammatory Disease"],
-      link: "/services/pelvic-pain",
+      desc: "Advanced diagnostic imaging and minimally invasive treatment for chronic pelvic pain and fibroids.",
+      color: "from-violet-500 to-purple-500",
     },
     {
       icon: Microscope,
       title: "Screening & Prevention",
-      desc: "Rapid diagnostics for peace of mind.",
-      tags: ["Smear Tests", "HPV Vaccination", "Sexual Health (STI)"],
-      link: "/services/screening",
+      desc: "Comprehensive cervical screening, HPV vaccination, and sexual health testing.",
+      color: "from-blue-500 to-cyan-500",
     },
     {
       icon: Baby,
       title: "Contraception & Fertility",
-      desc: "Family planning tailored to your lifestyle.",
-      tags: ["Coil Fitting", "Implants", "Fertility Checks"],
-      link: "/services/family-planning",
+      desc: "Bespoke contraceptive counseling and fertility assessment with diagnostic ultrasound.",
+      color: "from-teal-500 to-emerald-500",
     },
   ];
 
   return (
-    <section className="py-20 bg-primary/5 relative">
-      <div className="container mx-auto px-4">
-        {/* 1. Header & AI Search Visual */}
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <ScrollMotion animation="fadeInDown">
-            <h4 className="text-secondary font-bold tracking-widest uppercase text-sm mb-4">
-              Comprehensive Care
-            </h4>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold text-primary mb-6">
-              General Gynaecology & <br />
-              <span className="text-secondary italic font-serif">
-                Everyday Wellness
-              </span>
-            </h2>
+    <section className="py-20 md:py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
 
-            {/* The "AI Search" Element - Visual Hook */}
-            <div className="relative max-w-xl mx-auto mt-8 group">
-              <div className="absolute inset-0 bg-secondary/20 rounded-full blur-xl group-hover:bg-secondary/30 transition-all duration-500"></div>
-              <div className="relative bg-white rounded-full shadow-lg border border-gray-100 flex items-center p-2 pr-4">
-                <div className="p-3 bg-primary/5 rounded-full text-primary">
-                  <Search size={20} />
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Compact Header */}
+        <ScrollMotion animation="fadeInUp">
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-2 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider rounded-full mb-4">
+              <ShieldCheck className="inline w-3 h-3 mr-2" />
+              GMC Registered Care
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold text-primary mb-4">
+              General Gynaecology
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Comprehensive women's health services from routine screening to
+              complex disorders
+            </p>
+          </div>
+        </ScrollMotion>
+
+        {/* Split Layout: Services Grid + Feature Box */}
+        <div className="grid lg:grid-cols-3 gap-8 mb-12">
+          {/* Left: Stacked Services (2 columns on large screens) */}
+          <div className="lg:col-span-2 grid sm:grid-cols-2 gap-6">
+            {services.map((service, idx) => (
+              <ScrollMotion key={idx} animation="slideUp" delay={idx * 0.1}>
+                <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all group border border-gray-100">
+                  <div
+                    className={`w-12 h-12 rounded-lg bg-gradient-to-br ${service.color} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`}
+                  >
+                    <service.icon size={24} />
+                  </div>
+                  <h3 className="text-lg font-bold text-primary mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-4">{service.desc}</p>
+                  <Link
+                    href="/general-gynaecology"
+                    className="text-sm font-semibold text-secondary flex items-center gap-2 group-hover:gap-3 transition-all"
+                  >
+                    Learn More <ArrowRight size={14} />
+                  </Link>
                 </div>
-                <input
-                  type="text"
-                  placeholder="Type a symptom (e.g. 'heavy periods')..."
-                  className="flex-1 bg-transparent border-none outline-none px-4 text-gray-600 placeholder:text-gray-400"
-                  readOnly // Read only for design demo, or make functional later
-                />
-                <button className="bg-primary hover:bg-secondary text-white p-2.5 rounded-full transition-colors">
-                  <ArrowRight size={18} />
+              </ScrollMotion>
+            ))}
+          </div>
+
+          {/* Right: AI Symptom Checker + Image */}
+          <div className="lg:col-span-1 space-y-6">
+            <ScrollMotion animation="fadeInRight">
+              {/* AI Box */}
+              <div className="bg-gradient-to-br from-primary to-secondary p-8 rounded-2xl text-white shadow-xl">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 bg-white/20 rounded-xl">
+                    <Bot size={28} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg">AI Symptom Checker</h4>
+                    <p className="text-xs opacity-90">Get instant guidance</p>
+                  </div>
+                </div>
+                <p className="text-sm mb-6 opacity-90">
+                  Describe your symptoms and receive personalized
+                  recommendations in 60 seconds
+                </p>
+                <button className="w-full bg-white text-primary px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition-all flex items-center justify-center gap-2">
+                  <Sparkles size={18} />
+                  Start Assessment
                 </button>
               </div>
-              <div className="flex items-center justify-center gap-2 mt-3 text-xs text-gray-500">
-                <Sparkles size={12} className="text-secondary" />
-                <span>AI-Assisted Triage Available</span>
-              </div>
-            </div>
-          </ScrollMotion>
-        </div>
 
-        {/* 2. The Smart Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((item, index) => (
-            <ScrollMotion
-              key={index}
-              animation="fadeInUp"
-              delay={index * 0.1}
-              className="h-full"
-            >
-              <Link href={item.link} className="block h-full group">
-                <div className="bg-white rounded-2xl p-6 h-full border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col relative overflow-hidden">
-                  {/* Hover Accent Line */}
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-
-                  {/* Icon */}
-                  <div className="w-14 h-14 bg-primary/5 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
-                    <item.icon size={28} />
-                  </div>
-
-                  {/* Content */}
-                  <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-secondary transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
-                    {item.desc}
-                  </p>
-
-                  {/* Mini Tags */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {item.tags.map((tag, i) => (
-                      <span
-                        key={i}
-                        className="text-[10px] uppercase tracking-wider font-semibold bg-gray-50 text-gray-500 px-2 py-1 rounded-md border border-gray-100"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Action */}
-                  <div className="flex items-center text-sm font-bold text-primary group-hover:translate-x-2 transition-transform">
-                    View Details{" "}
-                    <ArrowRight size={16} className="ml-2 text-secondary" />
+              {/* Quick Image */}
+              <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+                <Image
+                  src="/assets/home/clinic.jpg"
+                  alt="Gynaecology consultation"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-6">
+                  <div className="text-white">
+                    <p className="font-bold">CQC Registered Facilities</p>
+                    <p className="text-sm opacity-90">
+                      Same-day appointments available
+                    </p>
                   </div>
                 </div>
-              </Link>
+              </div>
             </ScrollMotion>
-          ))}
+          </div>
         </div>
 
-        {/* 3. Same Day Badge (Trust Signal) */}
-        <ScrollMotion animation="fadeInUp" delay={0.4}>
-          <div className="mt-16 flex justify-center">
-            <div className="inline-flex items-center gap-3 bg-white px-6 py-3 rounded-full border border-gray-200 shadow-sm text-sm text-gray-600">
-              <Clock size={18} className="text-secondary" />
-              <span>
-                <strong>Same-Day Appointments</strong> available for urgent
-                concerns.
-              </span>
-            </div>
+        {/* Bottom CTA */}
+        <ScrollMotion animation="fadeInUp">
+          <div className="text-center">
+            <Link
+              href="/general-gynaecology"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-secondary text-white rounded-full font-bold shadow-lg hover:shadow-xl transition-all"
+            >
+              Explore All Services
+              <ArrowRight size={18} />
+            </Link>
           </div>
         </ScrollMotion>
       </div>

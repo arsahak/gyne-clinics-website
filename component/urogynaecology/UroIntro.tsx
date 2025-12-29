@@ -12,15 +12,15 @@ const UroIntro = () => {
   const keyPoints = [
     {
       icon: Heart,
-      text: "Compassionate, confidential care",
+      text: "Dignified, confidential assessment",
     },
     {
       icon: Shield,
-      text: "Evidence-based treatments",
+      text: "NICE guideline-compliant treatment",
     },
     {
       icon: Users,
-      text: "Expert multidisciplinary team",
+      text: "Multidisciplinary specialist team",
     },
   ];
 
@@ -52,24 +52,18 @@ const UroIntro = () => {
               </h2>
               <div className="text-gray-600 text-base md:text-lg leading-relaxed space-y-5 mb-8">
                 <p>
-                  Urogynaecology is a specialized field dedicated to treating
-                  women with pelvic floor disorders. The pelvic floor is a
-                  complex system of muscles and ligaments that support your
-                  bladder, bowel, and uterus.
+                  Urogynaecology is a sub-specialty of gynaecology focused on the diagnosis and treatment of pelvic floor dysfunction. The pelvic floor comprises an intricate network of muscles, connective tissue, and neurovascular structures that provide essential support to the bladder, urethra, vagina, uterus, and rectum.
                 </p>
                 <p>
-                  Weakness in these areas can lead to{" "}
+                  Dysfunction in this complex anatomical region commonly manifests as{" "}
                   <strong className="text-primary font-semibold">
-                    Incontinence
+                    Urinary Incontinence
                   </strong>{" "}
-                  (leaking) or{" "}
+                  (stress or urge), {" "}
                   <strong className="text-primary font-semibold">
-                    Prolapse
+                    Pelvic Organ Prolapse
                   </strong>{" "}
-                  (a feeling of heaviness). These conditions are incredibly
-                  common, yet many women suffer in silence. Our goal is to
-                  diagnose the root cause and offer solutions ranging from
-                  physiotherapy to advanced reconstruction.
+                  (descent of pelvic organs), or voiding dysfunction. Affecting up to 50% of parous women, these conditions significantly impact quality of life. Our BSUG-accredited urogynaecologists provide comprehensive diagnostic workup and tailored treatment pathways from conservative pelvic floor physiotherapy to advanced minimally invasive surgical interventions.
                 </p>
               </div>
 
