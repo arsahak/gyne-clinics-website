@@ -1,47 +1,18 @@
 "use client";
 
 import { ScrollMotion } from "@/component/motion";
-import { ArrowRight, CheckCircle2, HeartPulse, Leaf, Pill } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
+import { menopauseServices } from "@/data/menopauseServices";
 
-const pathways = [
-  {
-    title: "HRT & Bio-Identicals",
-    icon: Pill,
-    desc: "Gold-standard treatment to replace falling hormone levels.",
-    points: [
-      "Body Identical Hormones",
-      "Gels, Patches & Sprays",
-      "Testosterone Replacement",
-      "Regular Monitoring",
-    ],
-    color: "bg-blue-50 text-blue-600",
-  },
-  {
-    title: "Non-Hormonal Support",
-    icon: Leaf,
-    desc: "Effective alternatives for those who cannot or choose not to take HRT.",
-    points: [
-      "Herbal & Supplement Guidance",
-      "Prescription Non-Hormonals",
-      "Cognitive Behavioral Therapy (CBT)",
-      "Lifestyle Prescriptions",
-    ],
-    color: "bg-green-50 text-green-600",
-  },
-  {
-    title: "Long-Term Health",
-    icon: HeartPulse,
-    desc: "Protecting your future self from silent post-menopausal risks.",
-    points: [
-      "Osteoporosis (Bone Density)",
-      "Cardiovascular Health Check",
-      "Sexual Function Support",
-      "Weight Management",
-    ],
-    color: "bg-red-50 text-red-600",
-  },
-];
+const pathways = menopauseServices.map((service) => ({
+  slug: service.slug,
+  title: service.title,
+  icon: service.icon,
+  desc: service.shortDesc,
+  points: service.treatmentApproach.items.slice(0, 4).map((item) => item.name),
+  color: service.iconGradient,
+}));
 
 const MenopauseServices = () => {
   const iconColors = [
@@ -113,7 +84,7 @@ const MenopauseServices = () => {
               </ul>
 
               <Link
-                href="/book-appointment"
+                href={`/menopause/${path.slug}`}
                 className="inline-flex items-center justify-center gap-2 w-full py-3 text-center border-2 border-gray-200 rounded-xl font-bold text-gray-700 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all group/link"
               >
                 Learn More

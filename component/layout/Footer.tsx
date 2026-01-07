@@ -136,20 +136,24 @@ const Footer = () => {
           {/* 3. SERVICES */}
           <div>
             <h3 className="text-white font-serif font-semibold text-lg mb-6 relative inline-block">
-              Our Services
+              Useful Links
               <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-teal-500 rounded-full"></span>
             </h3>
             <ul className="space-y-3 text-sm text-slate-300">
-              <FooterLink href="/general-gynaecology">
-                General Gynaecology
+              <FooterLink href="https://www.rcog.org.uk/for-the-public/browse-our-patient-information/">
+                RCOG
               </FooterLink>
-              <FooterLink href="/menopause">Menopause Clinic</FooterLink>
-              <FooterLink href="/urogynaecology">Urogynaecology</FooterLink>
-              <FooterLink href="/aesthetic-gynaecology/non-surgical">
-                Non-Surgical Treatments
+              <FooterLink href="https://bsug.org.uk/pages/information-for-patients/111">
+                BSUG
               </FooterLink>
-              <FooterLink href="/aesthetic-gynaecology/surgical">
-                Surgical Procedures
+              <FooterLink href="https://thebms.org.uk/">
+                British Menopause Society
+              </FooterLink>
+              <FooterLink href="https://www.womens-health-concern.org/">
+                Women’s Health Concern
+              </FooterLink>
+              <FooterLink href="https://www.cosrh.org/home/@/Public">
+                Faculty of Sexual and Reproductive Healthcare
               </FooterLink>
             </ul>
           </div>
@@ -312,9 +316,12 @@ const FooterLink = ({
 }: {
   href: string;
   children: React.ReactNode;
-}) => (
-  <li>
-    <Link href={href} className="group flex items-center gap-2 w-fit">
+}) => {
+  // Check if the link is external (starts with http:// or https://)
+  const isExternal = href.startsWith("http://") || href.startsWith("https://");
+
+  const content = (
+    <>
       <motion.span
         className="block h-1.5 w-1.5 rounded-full bg-teal-500/50 group-hover:bg-teal-400 transition-colors"
         whileHover={{ scale: 1.2 }}
@@ -322,9 +329,28 @@ const FooterLink = ({
       <span className="text-slate-400 group-hover:text-white group-hover:translate-x-1 transition-all duration-300">
         {children}
       </span>
-    </Link>
-  </li>
-);
+    </>
+  );
+
+  return (
+    <li>
+      {isExternal ? (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-center gap-2 w-fit"
+        >
+          {content}
+        </a>
+      ) : (
+        <Link href={href} className="group flex items-center gap-2 w-fit">
+          {content}
+        </Link>
+      )}
+    </li>
+  );
+};
 
 const SocialIcon = ({
   href,

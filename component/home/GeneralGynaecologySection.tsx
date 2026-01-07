@@ -2,11 +2,7 @@
 import { ScrollMotion } from "@/component/motion";
 import {
   ArrowRight,
-  Baby,
   Bot,
-  CalendarHeart,
-  HeartPulse,
-  Microscope,
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
@@ -14,35 +10,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import AIChatbotModal from "@/component/shared/AIChatbotModal";
+import { generalGynaecologyServices } from "@/data/generalGynaecologyServices";
 
 const GeneralGynaecologySection = () => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
-  const services = [
-    {
-      icon: CalendarHeart,
-      title: "Menstrual Health",
-      desc: "Expert management of menstrual disorders including heavy bleeding, irregular cycles, and severe PMS/PMDD.",
-      color: "from-rose-500 to-pink-500",
-    },
-    {
-      icon: HeartPulse,
-      title: "Pelvic Pain & Fibroids",
-      desc: "Advanced diagnostic imaging and minimally invasive treatment for chronic pelvic pain and fibroids.",
-      color: "from-violet-500 to-purple-500",
-    },
-    {
-      icon: Microscope,
-      title: "Screening & Prevention",
-      desc: "Comprehensive cervical screening, HPV vaccination, and sexual health testing.",
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
-      icon: Baby,
-      title: "Contraception & Fertility",
-      desc: "Bespoke contraceptive counseling and fertility assessment with diagnostic ultrasound.",
-      color: "from-teal-500 to-emerald-500",
-    },
-  ];
 
   return (
     <section className="py-20 md:py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
@@ -71,7 +42,7 @@ const GeneralGynaecologySection = () => {
         <div className="grid lg:grid-cols-3 gap-8 mb-12">
           {/* Left: Stacked Services (2 columns on large screens) */}
           <div className="lg:col-span-2 grid sm:grid-cols-2 gap-6">
-            {services.map((service, idx) => (
+            {generalGynaecologyServices.map((service, idx) => (
               <ScrollMotion key={idx} animation="slideUp" delay={idx * 0.1}>
                 <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all group border border-gray-100">
                   <div
@@ -82,9 +53,9 @@ const GeneralGynaecologySection = () => {
                   <h3 className="text-lg font-bold text-primary mb-2">
                     {service.title}
                   </h3>
-                  <p className="text-sm text-gray-600 mb-4">{service.desc}</p>
+                  <p className="text-sm text-gray-600 mb-4">{service.shortDesc}</p>
                   <Link
-                    href="/general-gynaecology"
+                    href={`/general-gynaecology/${service.slug}`}
                     className="text-sm font-semibold text-secondary flex items-center gap-2 group-hover:gap-3 transition-all"
                   >
                     Learn More <ArrowRight size={14} />

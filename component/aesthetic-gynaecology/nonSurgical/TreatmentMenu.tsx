@@ -7,31 +7,34 @@ import Link from "next/link";
 
 const treatments = [
   {
+    slug: "laser-rejuvenation",
     category: "Laser Technology",
     icon: Sun,
     title: "Vaginal Laser Rejuvenation",
     subtitle: "For Tightening & Dryness",
     desc: "Uses thermal energy to stimulate collagen production. Excellent for post-menopausal dryness, mild laxity, and stress incontinence.",
     tags: ["3 Sessions Recommended", "Pain-free", "Improves Lubrication"],
-    image: "/assets/aesthetic/laser-probe.jpg",
+    image: "/assets/home/banner1.svg", // TODO: Replace with medical illustration
   },
   {
+    slug: "prp-oshot",
     category: "Regenerative Medicine",
     icon: Droplet,
     title: "PRP (The O-Shot)",
     subtitle: "For Sensation & Lichen Sclerosus",
     desc: "We use your own blood platelets to regenerate healthy tissue. Proven to help with sexual dysfunction and skin conditions like Lichen Sclerosus.",
     tags: ["Natural", "Increases Sensitivity", "1-Hour Appointment"],
-    image: "/assets/aesthetic/prp-vial.jpg",
+    image: "/assets/home/banner2.svg", // TODO: Replace with medical illustration
   },
   {
+    slug: "labial-fillers",
     category: "Aesthetic Injectables",
     icon: Sparkles,
     title: "Labial Puffing (Fillers)",
     subtitle: "For Volume & Symmetry",
     desc: "Hyaluronic acid fillers (similar to lip fillers) are used to restore volume to the outer labia, creating a youthful, symmetrical appearance.",
     tags: ["Instant Results", "Lasts 12-18 Months", "Local Anaesthetic Cream"],
-    image: "/assets/aesthetic/filler-illustration.jpg",
+    image: "/assets/home/banner3.svg", // TODO: Replace with medical illustration
   },
 ];
 
@@ -58,13 +61,19 @@ const TreatmentMenu = () => {
               {/* Image Side */}
               <div className="lg:w-1/2 w-full">
                 <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-primary/20 flex items-center justify-center">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-secondary/60 to-primary/60 flex items-center justify-center">
                     <div className="text-center p-8">
-                      <div className="w-20 h-20 bg-white/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <item.icon className="text-secondary" size={40} />
+                      <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+                        <item.icon className="text-white" size={40} />
                       </div>
-                      <span className="text-primary font-bold tracking-widest uppercase text-sm">
-                        {item.title} Image
+                      <span className="text-sm uppercase tracking-widest font-bold text-white">
+                        Professional Care
                       </span>
                     </div>
                   </div>
@@ -102,16 +111,21 @@ const TreatmentMenu = () => {
                   ))}
                 </div>
 
-                <Link
-                  href="/book-appointment"
-                  className="inline-flex items-center gap-2 text-primary font-bold border-b-2 border-primary pb-1 hover:text-secondary hover:border-secondary transition-colors group"
-                >
-                  View Treatment Details
-                  <ArrowRight
-                    size={18}
-                    className="group-hover:translate-x-1 transition-transform"
-                  />
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-bold text-sm hover:bg-[#1a3a5e] transition-all shadow-lg hover:shadow-xl"
+                  >
+                    Book Consultation
+                  </Link>
+                  <Link
+                    href="/gallery"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-200 text-gray-700 rounded-full font-bold text-sm hover:border-primary hover:text-primary hover:bg-primary/5 transition-all"
+                  >
+                    <ArrowRight size={16} />
+                    View Results Gallery
+                  </Link>
+                </div>
               </div>
             </ScrollMotion>
           ))}

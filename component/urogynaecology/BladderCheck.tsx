@@ -2,9 +2,11 @@
 
 import { ScrollMotion } from "@/component/motion";
 import { ArrowRight, CheckCircle2, Clock, Sparkles } from "lucide-react";
-import Link from "next/link";
+import { useState } from "react";
+import AIChatbotModal from "@/component/shared/AIChatbotModal";
 
 const BladderCheck = () => {
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const benefits = [
     {
       icon: Clock,
@@ -84,13 +86,13 @@ const BladderCheck = () => {
                 ))}
               </ul>
 
-              <Link
-                href="/bladder-check"
+              <button
+                onClick={() => setIsChatbotOpen(true)}
                 className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-full font-bold hover:bg-primary/90 transition-all shadow-xl hover:shadow-2xl hover:scale-105 duration-300"
               >
                 <span>Start Assessment</span>
                 <ArrowRight size={20} />
-              </Link>
+              </button>
             </ScrollMotion>
           </div>
 
@@ -128,6 +130,13 @@ const BladderCheck = () => {
           </div>
         </div>
       </div>
+
+      {/* AI Chatbot Modal */}
+      <AIChatbotModal
+        isOpen={isChatbotOpen}
+        onClose={() => setIsChatbotOpen(false)}
+        chatbotType="urogynaecology"
+      />
     </section>
   );
 };

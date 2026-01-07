@@ -7,6 +7,7 @@ import Link from "next/link";
 
 const procedures = [
   {
+    slug: "labioplasty",
     title: "Labioplasty (Labial Reduction)",
     desc: "A procedure to reduce the size of the labia minora (inner lips) to alleviate discomfort during exercise or intercourse, and improve aesthetic appearance.",
     details: [
@@ -14,9 +15,10 @@ const procedures = [
       "Duration: 60-90 mins",
       "Return to work: 3-5 days",
     ],
-    image: "/assets/aesthetic/labioplasty-art.jpg", // Use abstract line art or tasteful medical illustration
+    image: "/assets/home/banner1.svg", // TODO: Replace with medical illustration
   },
   {
+    slug: "vaginoplasty",
     title: "Vaginoplasty (Vaginal Tightening)",
     desc: "Surgical tightening of the vaginal canal and perineal muscles, often performed to reverse laxity caused by childbirth or aging.",
     details: [
@@ -24,9 +26,10 @@ const procedures = [
       "Duration: 1-2 hours",
       "Return to work: 1 week",
     ],
-    image: "/assets/aesthetic/vaginoplasty-art.jpg",
+    image: "/assets/home/banner2.svg", // TODO: Replace with medical illustration
   },
   {
+    slug: "hoodectomy",
     title: "Hoodectomy (Clitoral Hood Reduction)",
     desc: "Removal of excess skin around the clitoris to improve sensitivity and balance the aesthetic appearance of the vulva.",
     details: [
@@ -34,7 +37,7 @@ const procedures = [
       "Duration: 45 mins",
       "Often combined with Labioplasty",
     ],
-    image: "/assets/aesthetic/hoodectomy-art.jpg",
+    image: "/assets/home/banner3.svg", // TODO: Replace with medical illustration
   },
 ];
 
@@ -72,14 +75,20 @@ const ProcedureList = () => {
               className="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 flex flex-col md:flex-row group"
             >
               {/* Image/Art Section */}
-              <div className="md:w-1/3 bg-gradient-to-br from-primary/10 to-secondary/10 relative min-h-[250px] md:min-h-[300px] flex items-center justify-center">
-                <div className="absolute inset-0 flex items-center justify-center">
+              <div className="md:w-1/3 relative min-h-[250px] md:min-h-[300px] overflow-hidden">
+                <Image
+                  src={proc.image}
+                  alt={proc.title}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/60 to-secondary/60 flex items-center justify-center">
                   <div className="text-center p-8">
-                    <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <ShieldCheck className="text-primary" size={40} />
+                    <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+                      <ShieldCheck className="text-white" size={40} />
                     </div>
-                    <span className="text-sm uppercase tracking-widest font-bold text-primary/60">
-                      Medical Illustration
+                    <span className="text-sm uppercase tracking-widest font-bold text-white">
+                      Professional Care
                     </span>
                   </div>
                 </div>
@@ -114,16 +123,19 @@ const ProcedureList = () => {
 
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Link
-                    href="/book-appointment"
+                    href="/contact"
                     className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-bold text-sm hover:bg-[#1a3a5e] transition-all shadow-lg hover:shadow-xl"
                   >
                     <Calendar size={16} />
-                    Consultation Request
+                    Book Consultation
                   </Link>
-                  <button className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-200 text-gray-700 rounded-full font-bold text-sm hover:border-primary hover:text-primary hover:bg-primary/5 transition-all">
+                  <Link
+                    href="/gallery"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-200 text-gray-700 rounded-full font-bold text-sm hover:border-primary hover:text-primary hover:bg-primary/5 transition-all"
+                  >
                     <ArrowRight size={16} />
-                    Download Factsheet
-                  </button>
+                    View Results Gallery
+                  </Link>
                 </div>
               </div>
             </ScrollMotion>

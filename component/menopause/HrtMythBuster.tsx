@@ -2,9 +2,11 @@
 
 import { ScrollMotion } from "@/component/motion";
 import { Bot, Check, MessageCircleQuestion, Sparkles, X } from "lucide-react";
-import Link from "next/link";
+import { useState } from "react";
+import AIChatbotModal from "@/component/shared/AIChatbotModal";
 
 const HrtMythBuster = () => {
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const myths = [
     {
       type: "myth",
@@ -46,13 +48,13 @@ const HrtMythBuster = () => {
                 the latest evidence-based safety data regarding HRT, Breast
                 Cancer, and Heart Health specific to your age group.
               </p>
-              <Link
-                href="/book-appointment"
+              <button
+                onClick={() => setIsChatbotOpen(true)}
                 className="inline-flex items-center gap-2 bg-white text-primary px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl hover:scale-105"
               >
                 <Sparkles size={20} />
                 Ask the Expert AI
-              </Link>
+              </button>
             </ScrollMotion>
           </div>
 
@@ -94,6 +96,13 @@ const HrtMythBuster = () => {
           </div>
         </div>
       </div>
+
+      {/* AI Chatbot Modal */}
+      <AIChatbotModal
+        isOpen={isChatbotOpen}
+        onClose={() => setIsChatbotOpen(false)}
+        chatbotType="menopause"
+      />
     </section>
   );
 };

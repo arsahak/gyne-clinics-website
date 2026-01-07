@@ -1,0 +1,44 @@
+TEMPORARY PLACEHOLDER IMAGES
+
+The gallery currently uses placeholder paths. To add real images:
+
+OPTION 1 - Quick Fix (Temporary)
+================================
+Use generic medical or aesthetic images as placeholders:
+- Download professional medical stock photos
+- Name them according to the naming convention in README.md
+- Place them in this directory
+
+Recommended sources:
+- Shutterstock Medical
+- Getty Images Medical
+- iStock Medical Photography
+- Unsplash (free, but limited medical content)
+
+OPTION 2 - Professional Approach (Recommended)
+===============================================
+1. Work with your medical photography team
+2. Obtain proper patient consent
+3. Take professional before/after photos
+4. Anonymize images (remove faces, identifying marks)
+5. Name files according to README.md guidelines
+6. Place in this directory
+
+OPTION 3 - Alternative Display
+===============================
+Instead of showing placeholder images, modify the gallery page to:
+- Show "Images available during consultation" message
+- Remove gallery section until real images are available
+- Use consultation booking as call-to-action
+
+Current Placeholder Names Needed:
+- labiaplasty-before-1.jpg / labiaplasty-after-1.jpg
+- labiaplasty-before-2.jpg / labiaplasty-after-2.jpg
+- labiaplasty-before-3.jpg / labiaplasty-after-3.jpg
+- vaginoplasty-before-1.jpg / vaginoplasty-after-1.jpg
+- laser-before-1.jpg / laser-after-1.jpg
+- o-shot-before-1.jpg / o-shot-after-1.jpg
+
+TEMPORARY SOLUTION:
+You can use the existing clinic/banner images as placeholders until real images are available.
+The gallery has a blur feature by default to protect viewer sensitivity.
