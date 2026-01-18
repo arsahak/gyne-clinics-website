@@ -1,8 +1,14 @@
 import {
+  Activity,
+  Baby,
+  Bug,
   CalendarHeart,
+  Flame,
+  Heart,
   HeartPulse,
   Microscope,
-  Baby,
+  Scissors,
+  Shield,
   type LucideIcon,
 } from "lucide-react";
 
@@ -438,6 +444,819 @@ export const generalGynaecologyServices: GeneralGynaecologyService[] = [
         question: "What fertility tests will I need?",
         answer:
           "Basic tests include hormone blood tests, an ultrasound scan to check your ovaries and uterus, and a test to check your fallopian tubes are open. Your partner will need a semen analysis. We'll arrange all these tests and review results together, usually within 2-3 weeks.",
+      },
+    ],
+  },
+  {
+    slug: "sexual-health-difficulties",
+    title: "Sexual Health & Difficulties",
+    shortDesc:
+      "Compassionate support for sexual concerns including pain, low libido, and relationship issues affecting intimate wellbeing.",
+    icon: Heart,
+    color: "from-pink-500 to-rose-500",
+    heroImage: "/assets/services/sexual-health.jpg",
+    overview:
+      "Sexual difficulties are common but often go undiscussed. Our sensitive and confidential service addresses a wide range of intimate concerns including painful intercourse (dyspareunia), low libido, vaginal dryness, and relationship issues. We provide comprehensive assessment, treatment, and counseling in a safe, non-judgmental environment. Our holistic approach combines medical treatment with psychological support to help you regain confidence and enjoyment in your intimate life.",
+    symptoms: [
+      "Pain during or after intercourse (dyspareunia)",
+      "Vaginal dryness or discomfort",
+      "Low sexual desire or libido",
+      "Difficulty achieving orgasm",
+      "Vaginismus (involuntary vaginal muscle spasm)",
+      "Bleeding after intercourse",
+      "Anxiety or fear around intimacy",
+      "Relationship difficulties affecting sex life",
+    ],
+    diagnosticApproach: {
+      title: "Comprehensive Assessment",
+      items: [
+        "Detailed sexual and relationship history in private setting",
+        "Physical examination to identify anatomical causes",
+        "Hormone level testing (estrogen, testosterone, thyroid)",
+        "Assessment for infections or skin conditions",
+        "Psychological screening for anxiety, depression, or trauma",
+        "Relationship dynamics evaluation",
+        "Medication review (many drugs affect sexual function)",
+      ],
+    },
+    treatmentOptions: {
+      title: "Treatment Approaches",
+      description:
+        "We offer individualized treatment plans addressing both physical and psychological factors:",
+      options: [
+        {
+          name: "Hormone Therapy",
+          description:
+            "Vaginal estrogen for dryness, testosterone therapy for low libido, treatment of thyroid imbalances",
+        },
+        {
+          name: "Pelvic Floor Therapy",
+          description:
+            "Specialized physiotherapy for vaginismus, pelvic pain, and muscle tension affecting intimacy",
+        },
+        {
+          name: "Psychosexual Counseling",
+          description:
+            "Individual or couples therapy addressing psychological barriers, trauma, anxiety, and relationship issues",
+        },
+        {
+          name: "Medical Treatment",
+          description:
+            "Treatment of infections, endometriosis, or other conditions causing pain; medication adjustments",
+        },
+        {
+          name: "Laser Therapy",
+          description:
+            "Vaginal laser treatment to improve lubrication, elasticity, and comfort during intercourse",
+        },
+        {
+          name: "Surgical Options",
+          description:
+            "When appropriate, surgery for endometriosis, fibroids, or anatomical issues causing pain",
+        },
+      ],
+    },
+    whyChooseUs: [
+      "Confidential, sensitive environment for discussing intimate concerns",
+      "Experienced specialists in sexual medicine and psychosexual therapy",
+      "Holistic approach addressing physical and emotional factors",
+      "Individual and couples counseling available",
+      "Multidisciplinary team including gynecologists, therapists, and physiotherapists",
+      "Evidence-based treatments tailored to your needs",
+    ],
+    faqs: [
+      {
+        question: "Is it normal to experience pain during sex?",
+        answer:
+          "While common, pain during sex is not normal and should always be investigated. Many treatable causes exist including infections, hormonal changes, endometriosis, or pelvic floor dysfunction. Don't suffer in silence - we can help.",
+      },
+      {
+        question: "Can low libido be treated?",
+        answer:
+          "Yes, low libido often has treatable causes including hormonal imbalances, medications, stress, relationship issues, or underlying health conditions. We'll identify the cause and develop a personalized treatment plan.",
+      },
+      {
+        question: "Will I need to bring my partner?",
+        answer:
+          "Your first consultation is typically individual, but partner involvement can be very beneficial for relationship-related issues. We offer couples counseling when appropriate and with your consent.",
+      },
+      {
+        question: "How confidential is this service?",
+        answer:
+          "Completely confidential. Your discussions and treatment remain private. We understand the sensitive nature of sexual health concerns and provide a safe, non-judgmental space.",
+      },
+    ],
+  },
+  {
+    slug: "vulva-vaginal-conditions",
+    title: "Vulva & Vaginal Conditions",
+    shortDesc:
+      "Expert diagnosis and treatment of vulvar pain, skin conditions, infections, and discomfort affecting intimate areas.",
+    icon: Flame,
+    color: "from-orange-500 to-red-500",
+    heroImage: "/assets/services/vulva-conditions.jpg",
+    overview:
+      "Vulvar and vaginal conditions can cause significant discomfort and distress but are often undertreated due to embarrassment. Our specialist service provides expert diagnosis and treatment for a wide range of conditions including vulvodynia (chronic vulvar pain), lichen sclerosus, lichen planus, vaginal infections, and other dermatological conditions. We offer comprehensive care in a sensitive, understanding environment with access to the latest treatments including laser therapy and specialized medications.",
+    symptoms: [
+      "Chronic vulvar pain or burning (vulvodynia)",
+      "Itching, soreness, or irritation",
+      "White patches or skin changes on vulva",
+      "Painful intercourse due to vulvar sensitivity",
+      "Abnormal vaginal discharge",
+      "Recurrent thrush or bacterial vaginosis",
+      "Skin splitting or tearing",
+      "Vulvar swelling or lumps",
+    ],
+    diagnosticApproach: {
+      title: "Specialist Investigation",
+      items: [
+        "Detailed history of symptoms and triggers",
+        "Careful examination of vulva and vagina",
+        "Vulvoscopy (magnified examination) when needed",
+        "Skin biopsy for dermatological conditions",
+        "Swabs for infections (bacterial, fungal, viral)",
+        "pH testing and microscopy",
+        "Allergy testing if contact dermatitis suspected",
+        "Assessment for underlying conditions (diabetes, autoimmune diseases)",
+      ],
+    },
+    treatmentOptions: {
+      title: "Treatment Options",
+      description:
+        "Tailored treatment plans based on accurate diagnosis of your specific condition:",
+      options: [
+        {
+          name: "Topical Medications",
+          description:
+            "Steroid creams for inflammatory conditions, antifungal or antibacterial treatments, hormone creams for atrophy",
+        },
+        {
+          name: "Systemic Medications",
+          description:
+            "Oral medications for infections, nerve pain medications for vulvodynia, immunosuppressants for severe cases",
+        },
+        {
+          name: "Laser Therapy",
+          description:
+            "Fractional CO2 laser treatment for lichen sclerosus, vaginal atrophy, and chronic pain conditions",
+        },
+        {
+          name: "Pelvic Floor Therapy",
+          description:
+            "Specialized physiotherapy for pelvic floor dysfunction contributing to vulvar pain",
+        },
+        {
+          name: "Lifestyle Modifications",
+          description:
+            "Advice on hygiene, clothing, irritant avoidance, and vulvar care to reduce symptoms",
+        },
+        {
+          name: "Surgical Treatment",
+          description:
+            "Removal of cysts, abscesses, or concerning lesions; vestibulectomy for severe vulvodynia",
+        },
+      ],
+    },
+    whyChooseUs: [
+      "Specialist expertise in vulvar dermatology and pain conditions",
+      "Access to vulvoscopy and advanced diagnostic techniques",
+      "Latest treatments including laser therapy",
+      "Sensitive, understanding approach to intimate concerns",
+      "Multidisciplinary team including dermatologists and pain specialists",
+      "Long-term management and follow-up care",
+    ],
+    faqs: [
+      {
+        question: "What is vulvodynia?",
+        answer:
+          "Vulvodynia is chronic vulvar pain lasting more than 3 months without an obvious cause like infection. It can be constant or triggered by touch. While challenging to treat, many women find significant relief with the right combination of therapies.",
+      },
+      {
+        question: "Is lichen sclerosus serious?",
+        answer:
+          "Lichen sclerosus is a chronic skin condition affecting the vulva. While not life-threatening, it requires ongoing treatment to prevent scarring and reduce cancer risk (though this is rare). With proper treatment, symptoms can be well-controlled.",
+      },
+      {
+        question: "Why do I keep getting thrush?",
+        answer:
+          "Recurrent thrush can be caused by antibiotics, diabetes, hormonal changes, or immune system issues. Sometimes it's actually not thrush but another condition. We'll investigate the cause and provide effective long-term management.",
+      },
+      {
+        question: "Can vulvar conditions affect my sex life?",
+        answer:
+          "Yes, many vulvar conditions cause pain during intimacy. However, with proper diagnosis and treatment, most women see significant improvement in comfort and can resume normal sexual activity.",
+      },
+    ],
+  },
+  {
+    slug: "post-pregnancy-problems",
+    title: "Post-Pregnancy Problems",
+    shortDesc:
+      "Specialized care for postnatal concerns including pelvic floor issues, incontinence, and recovery complications.",
+    icon: Baby,
+    color: "from-blue-500 to-cyan-500",
+    heroImage: "/assets/services/post-pregnancy.jpg",
+    overview:
+      "Pregnancy and childbirth can have lasting effects on your body, particularly the pelvic floor. Many women experience problems after delivery but don't seek help, thinking it's 'normal' or will improve on its own. Our postnatal service addresses urinary incontinence, prolapse, perineal pain, cesarean section complications, and other issues affecting your recovery and quality of life. We provide expert assessment and treatment to help you regain confidence and comfort in your body.",
+    symptoms: [
+      "Urinary leakage when coughing, sneezing, or exercising",
+      "Feeling of heaviness or bulge in vagina (prolapse)",
+      "Painful intercourse after childbirth",
+      "Persistent perineal pain or discomfort",
+      "Cesarean section scar problems",
+      "Fecal incontinence or difficulty controlling bowels",
+      "Separation of abdominal muscles (diastasis recti)",
+      "Persistent heavy bleeding after delivery",
+    ],
+    diagnosticApproach: {
+      title: "Postnatal Assessment",
+      items: [
+        "Detailed birth history and delivery complications",
+        "Pelvic floor examination and strength assessment",
+        "Prolapse evaluation using standardized grading",
+        "Perineal scar assessment (tears or episiotomy)",
+        "Cesarean scar examination",
+        "Urodynamic testing if significant incontinence",
+        "Ultrasound assessment of pelvic organs",
+        "Abdominal examination for muscle separation",
+      ],
+    },
+    treatmentOptions: {
+      title: "Recovery Solutions",
+      description:
+        "Comprehensive treatment options to restore your health and confidence after childbirth:",
+      options: [
+        {
+          name: "Pelvic Floor Physiotherapy",
+          description:
+            "Specialized exercises and techniques to strengthen pelvic floor muscles and improve bladder control",
+        },
+        {
+          name: "Pessary Fitting",
+          description:
+            "Vaginal support devices for prolapse, allowing time for natural healing while maintaining quality of life",
+        },
+        {
+          name: "Perineal Repair",
+          description:
+            "Surgical correction of poorly healed tears or episiotomy causing pain or dysfunction",
+        },
+        {
+          name: "Prolapse Surgery",
+          description:
+            "Minimally invasive procedures to repair pelvic organ prolapse when conservative measures insufficient",
+        },
+        {
+          name: "Incontinence Treatment",
+          description:
+            "Range of options from bladder training to surgical procedures for persistent stress incontinence",
+        },
+        {
+          name: "Scar Revision",
+          description:
+            "Treatment for problematic cesarean scars including massage, laser therapy, or surgical revision",
+        },
+      ],
+    },
+    whyChooseUs: [
+      "Specialist urogynaecologists experienced in postnatal problems",
+      "Comprehensive pelvic floor assessment and rehabilitation",
+      "Non-judgmental environment understanding postnatal challenges",
+      "Conservative treatments prioritized before considering surgery",
+      "Multidisciplinary team including physiotherapists and midwives",
+      "Support for both immediate and long-term postnatal issues",
+    ],
+    faqs: [
+      {
+        question: "How soon after delivery should I seek help?",
+        answer:
+          "While some recovery is normal in the first 6-12 weeks, don't wait if you're concerned. Seek help immediately for severe pain, heavy bleeding, or signs of infection. For pelvic floor issues, earlier intervention often leads to better outcomes.",
+      },
+      {
+        question: "Will my prolapse get better on its own?",
+        answer:
+          "Mild prolapse may improve with pelvic floor exercises, especially in the first year postpartum. However, moderate to severe prolapse typically requires intervention. Early assessment helps prevent worsening.",
+      },
+      {
+        question: "Can I have surgery while breastfeeding?",
+        answer:
+          "Most gynecological surgeries are safe while breastfeeding, though we typically recommend waiting until breastfeeding is established. We'll discuss timing based on your individual circumstances and urgency of treatment.",
+      },
+      {
+        question: "Is it too late to get help years after childbirth?",
+        answer:
+          "It's never too late! Many women seek help years or even decades after childbirth. Effective treatments are available regardless of when your symptoms started.",
+      },
+    ],
+  },
+  {
+    slug: "gynaecological-masses",
+    title: "Gynaecological Masses & Swellings",
+    shortDesc:
+      "Expert investigation and management of pelvic masses, ovarian cysts, and abdominal swellings.",
+    icon: Activity,
+    color: "from-purple-500 to-indigo-500",
+    heroImage: "/assets/services/masses.jpg",
+    overview:
+      "Discovery of a pelvic mass or swelling can be worrying. Our expert team provides rapid assessment, accurate diagnosis, and appropriate management of all types of gynecological masses including ovarian cysts, fibroids, and other pelvic swellings. Using advanced imaging and minimally invasive techniques, we ensure you receive the right treatment promptly. Most masses are benign, but we have expertise in managing complex cases and rapid referral pathways for suspected malignancies.",
+    symptoms: [
+      "Palpable mass or swelling in abdomen or pelvis",
+      "Abdominal bloating or distension",
+      "Pelvic pressure or heaviness",
+      "Changes in bowel or bladder habits",
+      "Abdominal or pelvic pain",
+      "Unexplained weight gain or abdominal enlargement",
+      "Difficulty eating or early satiety",
+      "Abnormal vaginal bleeding",
+    ],
+    diagnosticApproach: {
+      title: "Comprehensive Investigation",
+      items: [
+        "Detailed clinical examination including bimanual pelvic exam",
+        "Transvaginal and transabdominal ultrasound scan",
+        "3D/4D ultrasound for detailed assessment",
+        "MRI scanning for complex masses or surgical planning",
+        "Blood tests including tumor markers (CA125, CEA, AFP, HCG)",
+        "CT scanning if malignancy suspected",
+        "Diagnostic laparoscopy when imaging inconclusive",
+        "Multidisciplinary team review for complex cases",
+      ],
+    },
+    treatmentOptions: {
+      title: "Management Options",
+      description:
+        "Treatment tailored to the type, size, and characteristics of the mass:",
+      options: [
+        {
+          name: "Watchful Waiting",
+          description:
+            "Monitoring simple cysts with serial ultrasounds as many resolve spontaneously, especially in premenopausal women",
+        },
+        {
+          name: "Medical Management",
+          description:
+            "Hormonal treatment for functional cysts, GnRH analogues for fibroids, or other medications based on diagnosis",
+        },
+        {
+          name: "Laparoscopic Surgery",
+          description:
+            "Minimally invasive keyhole surgery to remove cysts or masses while preserving healthy ovarian tissue",
+        },
+        {
+          name: "Hysteroscopic Procedures",
+          description:
+            "Camera-guided removal of intrauterine masses such as polyps or submucosal fibroids",
+        },
+        {
+          name: "Open Surgery",
+          description:
+            "Laparotomy for large masses, suspected malignancy, or when minimally invasive approach not suitable",
+        },
+        {
+          name: "Cancer Treatment",
+          description:
+            "Rapid referral to gynecological oncology team for confirmed or suspected malignancies",
+        },
+      ],
+    },
+    whyChooseUs: [
+      "Expert subspecialists in benign and malignant gynecology",
+      "Access to advanced imaging including 3D ultrasound and MRI",
+      "Minimally invasive surgical expertise",
+      "Rapid assessment and treatment pathways",
+      "Multidisciplinary team meetings for complex cases",
+      "Direct links to oncology services for suspected cancers",
+    ],
+    faqs: [
+      {
+        question: "Are ovarian cysts dangerous?",
+        answer:
+          "Most ovarian cysts are benign and harmless. Simple cysts often resolve on their own. However, complex cysts, large cysts, or those in postmenopausal women require careful evaluation to rule out malignancy.",
+      },
+      {
+        question: "How do you know if a mass is cancerous?",
+        answer:
+          "We use a combination of ultrasound characteristics, blood tumor markers, and sometimes MRI or CT scans. Features suggesting cancer include solid components, irregular borders, and rapid growth. Definitive diagnosis requires surgical removal and pathology examination.",
+      },
+      {
+        question: "Will I lose my ovary?",
+        answer:
+          "We always aim to preserve healthy ovarian tissue, especially in women of reproductive age. Cystectomy (removing just the cyst) is often possible. Oophorectomy (removing the whole ovary) is reserved for large, complex, or suspicious masses.",
+      },
+      {
+        question: "How long is recovery after surgery?",
+        answer:
+          "Laparoscopic surgery typically allows return to normal activities within 1-2 weeks. Open surgery requires 4-6 weeks recovery. We'll discuss expected recovery time based on your specific procedure.",
+      },
+    ],
+  },
+  {
+    slug: "gynaecological-cancer",
+    title: "Gynaecological Cancer Screening & Management",
+    shortDesc:
+      "Early detection saves lives. Expert screening, diagnosis, and rapid referral for suspected gynaecological cancers.",
+    icon: Shield,
+    color: "from-red-500 to-pink-500",
+    heroImage: "/assets/services/cancer-screening.jpg",
+    overview:
+      "Gynaecological cancers include cervical, ovarian, uterine (endometrial), vulvar, and vaginal cancers. Early detection dramatically improves outcomes. We provide comprehensive screening programs, investigate suspicious symptoms, and ensure rapid referral to specialist oncology teams when cancer is suspected. Our goal is prevention through screening and early detection when treatment is most effective. We support you throughout the diagnostic process and coordinate your care with leading cancer centers.",
+    symptoms: [
+      "Abnormal vaginal bleeding (between periods, after menopause, after sex)",
+      "Persistent pelvic or abdominal pain",
+      "Bloating that doesn't go away",
+      "Changes in bowel or bladder habits",
+      "Unexplained weight loss",
+      "Persistent back pain",
+      "Unusual vaginal discharge",
+      "Vulvar itching, burning, or visible changes",
+    ],
+    diagnosticApproach: {
+      title: "Screening & Investigation",
+      items: [
+        "Cervical screening (smear test) and HPV testing",
+        "Transvaginal ultrasound for ovarian and uterine assessment",
+        "CA125 blood test for ovarian cancer markers",
+        "Endometrial biopsy for abnormal bleeding",
+        "Colposcopy for abnormal smear results",
+        "Hysteroscopy to examine uterine cavity",
+        "MRI or CT scanning for staging if cancer suspected",
+        "Two-week wait urgent referral pathway to oncology",
+      ],
+    },
+    treatmentOptions: {
+      title: "Our Cancer Services",
+      description:
+        "We focus on prevention, early detection, and rapid specialist referral:",
+      options: [
+        {
+          name: "Cervical Cancer Screening",
+          description:
+            "Regular smear tests and HPV testing to detect pre-cancerous changes. Treatment of abnormalities with LLETZ/cone biopsy to prevent cancer developing",
+        },
+        {
+          name: "Ovarian Cancer Screening",
+          description:
+            "CA125 testing and ultrasound assessment for women with symptoms or family history. Genetic counseling for BRCA carriers",
+        },
+        {
+          name: "Endometrial Cancer Investigation",
+          description:
+            "Rapid investigation of postmenopausal bleeding or abnormal pre-menopausal bleeding with ultrasound and biopsy",
+        },
+        {
+          name: "Vulvar & Vaginal Assessment",
+          description:
+            "Examination and biopsy of suspicious vulvar or vaginal lesions with fast-track referral if cancer suspected",
+        },
+        {
+          name: "Risk Assessment",
+          description:
+            "Family history evaluation, genetic counseling, and screening for women at high risk of gynaecological cancers",
+        },
+        {
+          name: "Rapid Oncology Referral",
+          description:
+            "Two-week wait referrals to specialist gynecological oncology teams for suspected cancers, coordinated care throughout treatment",
+        },
+      ],
+    },
+    whyChooseUs: [
+      "Expert in early cancer detection and screening",
+      "Direct access to specialist oncology teams",
+      "Two-week wait urgent referral pathways",
+      "Advanced imaging and diagnostic capabilities",
+      "Genetic counseling for high-risk individuals",
+      "Supportive, compassionate care throughout diagnostic journey",
+    ],
+    faqs: [
+      {
+        question: "What are the warning signs of gynaecological cancer?",
+        answer:
+          "The most important warning sign is abnormal vaginal bleeding - between periods, after sex, or after menopause. Other signs include persistent pelvic pain, bloating that doesn't go away, and unexplained weight loss. Any unusual or persistent symptoms should be checked.",
+      },
+      {
+        question: "How effective is cervical screening?",
+        answer:
+          "Cervical screening has reduced cervical cancer deaths by 70% in the UK. It detects abnormal cells before they become cancerous, allowing treatment to prevent cancer developing. Regular screening is one of the most effective cancer prevention tools available.",
+      },
+      {
+        question: "Am I at high risk for ovarian cancer?",
+        answer:
+          "Risk factors include family history (especially BRCA gene mutations), endometriosis, never having children, and increasing age. If you have strong family history, we can arrange genetic counseling and tailored screening.",
+      },
+      {
+        question: "What happens if cancer is suspected?",
+        answer:
+          "We ensure rapid two-week wait referrals to specialist gynecological oncology teams. We coordinate all your tests and provide support throughout. Early referral to specialists dramatically improves outcomes.",
+      },
+    ],
+  },
+  {
+    slug: "gynaecological-procedures",
+    title: "Gynaecological Operations & Procedures",
+    shortDesc:
+      "Modern minimally invasive surgical techniques for a wide range of gynaecological conditions.",
+    icon: Scissors,
+    color: "from-blue-500 to-indigo-500",
+    heroImage: "/assets/services/procedures.jpg",
+    overview:
+      "We offer a comprehensive range of gynaecological procedures from minor outpatient treatments to major surgery. Our expertise in minimally invasive surgery means smaller incisions, less pain, and faster recovery for most procedures. We perform diagnostic procedures (hysteroscopy, laparoscopy), treat benign conditions (fibroids, endometriosis, prolapse), and provide cosmetic gynaecology services. Every procedure is performed by experienced consultants using the latest techniques and equipment.",
+    symptoms: [
+      "You've been diagnosed with a condition requiring surgery",
+      "Medical management hasn't resolved your symptoms",
+      "Investigation needed to diagnose your symptoms",
+      "Seeking surgical treatment options",
+      "Wanting minimally invasive alternatives",
+      "Requiring cosmetic gynaecological procedures",
+    ],
+    diagnosticApproach: {
+      title: "Diagnostic Procedures",
+      items: [
+        "Hysteroscopy - camera examination of uterine cavity",
+        "Diagnostic laparoscopy - keyhole examination of pelvis",
+        "Colposcopy - detailed cervical examination",
+        "Endometrial biopsy - tissue sampling",
+        "Cystoscopy - bladder examination",
+        "Urodynamics - bladder function testing",
+        "Pelvic ultrasound - imaging assessment",
+      ],
+    },
+    treatmentOptions: {
+      title: "Surgical Procedures We Offer",
+      description:
+        "Comprehensive range of procedures performed by expert surgeons:",
+      options: [
+        {
+          name: "Hysteroscopic Surgery",
+          description:
+            "Removal of polyps, fibroids, adhesions, or septum through the vagina without external incisions. Endometrial ablation for heavy periods",
+        },
+        {
+          name: "Laparoscopic (Keyhole) Surgery",
+          description:
+            "Treatment of endometriosis, ovarian cysts, fibroids, adhesions. Laparoscopic hysterectomy with faster recovery than traditional surgery",
+        },
+        {
+          name: "Hysterectomy",
+          description:
+            "Removal of uterus via laparoscopic, vaginal, or (rarely) abdominal approach. Subtotal or total hysterectomy depending on indication",
+        },
+        {
+          name: "Myomectomy",
+          description:
+            "Surgical removal of fibroids while preserving the uterus for women wanting to maintain fertility",
+        },
+        {
+          name: "Prolapse Surgery",
+          description:
+            "Vaginal or laparoscopic repair of pelvic organ prolapse including sacrocolpopexy and traditional repairs",
+        },
+        {
+          name: "Incontinence Surgery",
+          description:
+            "TVT (tension-free vaginal tape) or colposuspension for stress urinary incontinence",
+        },
+        {
+          name: "Aesthetic Procedures",
+          description:
+            "Labiaplasty, vaginoplasty, hymenoplasty, and other cosmetic gynecological procedures",
+        },
+        {
+          name: "Sterilization",
+          description:
+            "Laparoscopic tubal occlusion for permanent contraception",
+        },
+      ],
+    },
+    whyChooseUs: [
+      "Consultant-performed surgery every time",
+      "Expertise in minimally invasive techniques",
+      "Day surgery for many procedures",
+      "Fast recovery protocols",
+      "State-of-the-art facilities and equipment",
+      "Comprehensive pre-operative counseling and post-operative care",
+    ],
+    faqs: [
+      {
+        question: "What's the benefit of laparoscopic surgery?",
+        answer:
+          "Laparoscopic (keyhole) surgery involves small incisions rather than one large cut. Benefits include less pain, smaller scars, shorter hospital stay (often day surgery), faster return to normal activities, and lower risk of complications like infection or hernias.",
+      },
+      {
+        question: "How long is recovery after hysterectomy?",
+        answer:
+          "Recovery depends on the approach. Vaginal or laparoscopic hysterectomy typically allows return to normal activities within 2-4 weeks. Abdominal hysterectomy requires 6-8 weeks. Most women feel significantly better within days of surgery.",
+      },
+      {
+        question: "Will I need to stay in hospital?",
+        answer:
+          "Many procedures are day surgery - you go home the same day. Others require overnight stay. Major surgery like hysterectomy typically requires 1-2 nights. We'll discuss this during your consultation.",
+      },
+      {
+        question: "What are the risks of surgery?",
+        answer:
+          "All surgery carries risks including bleeding, infection, and damage to nearby organs. However, complication rates for gynaecological surgery are low. We'll discuss specific risks for your procedure and how we minimize them.",
+      },
+    ],
+  },
+  {
+    slug: "infections-treatment",
+    title: "Gynaecological Infections",
+    shortDesc:
+      "Expert diagnosis and treatment of vaginal, pelvic, and sexually transmitted infections.",
+    icon: Bug,
+    color: "from-green-500 to-teal-500",
+    heroImage: "/assets/services/infections.jpg",
+    overview:
+      "Gynaecological infections are common and usually treatable, but can cause significant discomfort and complications if left untreated. We provide comprehensive diagnosis and treatment of all types of infections including bacterial vaginosis, thrush, sexually transmitted infections, and pelvic inflammatory disease. Our confidential service ensures accurate diagnosis with immediate testing, appropriate treatment, and partner notification when required. We also investigate recurrent infections to identify and address underlying causes.",
+    symptoms: [
+      "Abnormal vaginal discharge (change in color, smell, or amount)",
+      "Vaginal itching, burning, or irritation",
+      "Pain or burning during urination",
+      "Pain during intercourse",
+      "Pelvic or lower abdominal pain",
+      "Abnormal bleeding or spotting",
+      "Vulvar redness, swelling, or sores",
+      "Unusual vaginal odor",
+    ],
+    diagnosticApproach: {
+      title: "Comprehensive Testing",
+      items: [
+        "Vaginal swabs for bacterial, fungal, and viral cultures",
+        "STI screening panel (chlamydia, gonorrhea, HIV, syphilis)",
+        "Microscopy for immediate assessment",
+        "pH testing and whiff test",
+        "Blood tests for systemic infections",
+        "Pelvic ultrasound if pelvic inflammatory disease suspected",
+        "Urinalysis to rule out urinary tract infection",
+      ],
+    },
+    treatmentOptions: {
+      title: "Treatment Options",
+      description:
+        "Targeted treatment based on accurate diagnosis of your specific infection:",
+      options: [
+        {
+          name: "Bacterial Vaginosis",
+          description:
+            "Antibiotic treatment with metronidazole or clindamycin (oral or vaginal). Investigation and management of recurrent BV",
+        },
+        {
+          name: "Thrush (Candida)",
+          description:
+            "Antifungal treatment with fluconazole or topical creams. Long-term suppressive therapy for recurrent thrush",
+        },
+        {
+          name: "Sexually Transmitted Infections",
+          description:
+            "Appropriate antibiotics or antivirals for chlamydia, gonorrhea, herpes, trichomonas. Partner notification and treatment",
+        },
+        {
+          name: "Pelvic Inflammatory Disease",
+          description:
+            "Combination antibiotic therapy, pain management, and follow-up to prevent complications like infertility",
+        },
+        {
+          name: "Recurrent Infection Management",
+          description:
+            "Investigation of underlying causes, immune system assessment, lifestyle advice, and preventative strategies",
+        },
+        {
+          name: "Partner Treatment",
+          description:
+            "Confidential partner notification and treatment to prevent reinfection",
+        },
+      ],
+    },
+    whyChooseUs: [
+      "Confidential, non-judgmental service",
+      "Immediate testing and same-day diagnosis for many infections",
+      "Expert in managing recurrent and complex infections",
+      "Comprehensive STI screening",
+      "Private, discrete environment",
+      "Partner notification support",
+    ],
+    faqs: [
+      {
+        question: "What's the difference between BV and thrush?",
+        answer:
+          "Bacterial vaginosis causes thin, fishy-smelling discharge and is caused by bacterial imbalance. Thrush causes thick, white discharge with intense itching and is caused by yeast. Both are common but require different treatments. Accurate diagnosis is essential.",
+      },
+      {
+        question: "Why do I keep getting thrush?",
+        answer:
+          "Recurrent thrush can be caused by antibiotics, diabetes, hormonal changes, tight clothing, or immune system issues. Sometimes it's not actually thrush but another condition. We'll investigate the cause and provide effective long-term management.",
+      },
+      {
+        question: "How do I know if I have an STI?",
+        answer:
+          "Many STIs have no symptoms initially, which is why regular screening is important if you're sexually active. Symptoms can include discharge, pain, sores, or bleeding. Confidential testing provides peace of mind and early treatment prevents complications.",
+      },
+      {
+        question: "Will you tell my partner?",
+        answer:
+          "We maintain complete confidentiality. For STIs, we'll discuss partner notification options including anonymous notification services. Treating partners is essential to prevent reinfection and protect sexual health.",
+      },
+    ],
+  },
+  {
+    slug: "sti-screening",
+    title: "Sexually Transmitted Infections (STIs)",
+    shortDesc:
+      "Confidential STI screening, diagnosis, and treatment in a private, judgment-free environment.",
+    icon: Shield,
+    color: "from-purple-500 to-pink-500",
+    heroImage: "/assets/services/sti.jpg",
+    overview:
+      "Sexually transmitted infections are common and often have no symptoms, but can cause serious health problems if untreated including infertility, chronic pain, and increased HIV transmission. Our confidential STI service provides comprehensive screening, accurate diagnosis, appropriate treatment, and partner notification support. We test for all common STIs including chlamydia, gonorrhea, HIV, syphilis, herpes, and hepatitis. Regular screening is recommended for all sexually active individuals, especially with new or multiple partners. Early detection and treatment protect your health and prevent transmission.",
+    symptoms: [
+      "Unusual vaginal discharge",
+      "Pain or burning during urination",
+      "Genital sores, ulcers, or blisters",
+      "Pelvic pain or discomfort",
+      "Pain during sex",
+      "Abnormal bleeding between periods or after sex",
+      "Genital itching or irritation",
+      "Many STIs have NO symptoms - screening is essential",
+    ],
+    diagnosticApproach: {
+      title: "Comprehensive STI Screening",
+      items: [
+        "Chlamydia and gonorrhea testing (urine or swab)",
+        "HIV antibody and antigen testing",
+        "Syphilis blood test",
+        "Hepatitis B and C screening",
+        "Herpes simplex virus testing",
+        "Trichomonas testing",
+        "HPV testing and cervical screening",
+        "Full sexual health history and risk assessment",
+      ],
+    },
+    treatmentOptions: {
+      title: "STI Treatment & Management",
+      description:
+        "Effective treatment for all sexually transmitted infections:",
+      options: [
+        {
+          name: "Bacterial STIs",
+          description:
+            "Single-dose or short-course antibiotics for chlamydia, gonorrhea, syphilis. Test of cure to ensure successful treatment",
+        },
+        {
+          name: "Viral STIs",
+          description:
+            "Antiviral therapy for herpes (treatment and suppression). PrEP and PEP for HIV prevention. Hepatitis B vaccination",
+        },
+        {
+          name: "Parasitic Infections",
+          description:
+            "Antiparasitic treatment for trichomonas and other parasitic STIs",
+        },
+        {
+          name: "Partner Notification",
+          description:
+            "Confidential contact tracing and partner treatment to prevent reinfection and transmission",
+        },
+        {
+          name: "Prevention Counseling",
+          description:
+            "Advice on safer sex practices, condom use, PrEP for HIV prevention, and HPV vaccination",
+        },
+        {
+          name: "Follow-up Testing",
+          description:
+            "Repeat testing to confirm cure and screen for reinfection. Regular screening schedules for at-risk individuals",
+        },
+      ],
+    },
+    whyChooseUs: [
+      "Completely confidential service",
+      "Non-judgmental, professional care",
+      "Rapid testing with same-day results for many infections",
+      "Treatment provided same-visit when possible",
+      "Anonymous partner notification services",
+      "Evening and weekend appointments available",
+    ],
+    faqs: [
+      {
+        question: "How often should I get tested?",
+        answer:
+          "Annual screening is recommended if sexually active. More frequent testing (every 3-6 months) is advised with multiple partners or new partner. Always test after unprotected sex or if a partner has an STI.",
+      },
+      {
+        question: "Can STIs be cured?",
+        answer:
+          "Bacterial STIs (chlamydia, gonorrhea, syphilis) can be cured with antibiotics. Viral STIs (herpes, HIV, HPV) can be managed but not cured. Early treatment is crucial to prevent complications.",
+      },
+      {
+        question: "Will it be confidential?",
+        answer:
+          "Absolutely. Your STI testing and treatment are completely confidential. We won't contact your GP without your permission. We offer anonymous testing options if preferred.",
+      },
+      {
+        question: "What if I test positive?",
+        answer:
+          "We'll provide immediate treatment and support. Most STIs are easily treatable. We'll discuss partner notification, prevention, and follow-up testing. A positive test is manageable and nothing to be ashamed of.",
       },
     ],
   },
