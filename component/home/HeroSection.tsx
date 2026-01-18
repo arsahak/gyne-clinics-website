@@ -11,7 +11,7 @@ import {
 import Link from "next/link";
 
 const HeroSection = () => {
-  const VIDEO_ID = "wAntjj-n834";
+  const VIDEO_ID = "IWepoGpIZ2g"; // GyneClinics YouTube - Mr Joe Daniels
   const embedUrl = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&controls=0&loop=1&playlist=${VIDEO_ID}&showinfo=0&rel=0&disablekb=1&modestbranding=1`;
 
   // Animation variants
@@ -59,7 +59,7 @@ const HeroSection = () => {
           {/* Subtle Tag */}
           <motion.div variants={fadeInUp}>
             <span className="inline-block py-1 px-4 rounded-full border border-secondary/30 bg-primary/30 backdrop-blur-md text-white text-xs font-bold tracking-[0.2em] uppercase mb-8 shadow-sm">
-              Excellence in Care
+              GMC & RCOG Registered Gynaecologist
             </span>
           </motion.div>
 
@@ -68,19 +68,18 @@ const HeroSection = () => {
             variants={fadeInUp}
             className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-white leading-[1.1] mb-6 drop-shadow-xl"
           >
-            Reimagining <br className="hidden md:block" />
-            <span className="text-secondary italic font-serif">
-              Women&apos;s Health
+            Expertise Passion <br className="hidden md:block" />
+            <span className="text-secondary font-heading">
+              Excellence in Care
             </span>
           </motion.h1>
 
           {/* Description */}
           <motion.p
             variants={fadeInUp}
-            className="text-lg text-gray-200 md:text-2xl leading-relaxed max-w-2xl mx-auto font-light drop-shadow-md"
+            className="text-lg text-white md:text-2xl leading-relaxed max-w-3xl mx-auto font-light drop-shadow-md"
           >
-            A private sanctuary dedicated to your complete well-being, comfort,
-            and confidence.
+            Designed To Put Women First | A Private Sanctuary Dedicated to Your Complete Well-Being and Supporting You at Every Stage
           </motion.p>
         </motion.div>
       </div>

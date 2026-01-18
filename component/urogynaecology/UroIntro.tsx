@@ -24,7 +24,7 @@ const UroIntro = () => {
     },
   ];
 
-  const VIDEO_ID = "wAntjj-n834";
+  const VIDEO_ID = "IWepoGpIZ2g"; // GyneClinics YouTube - Mr Joe Daniels
   const embedUrl = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1`;
   const thumbnailUrl = `https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`;
 

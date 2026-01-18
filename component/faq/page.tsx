@@ -142,7 +142,7 @@ const faqs: FAQ[] = [
 const categories = ["All", "General", "Aesthetic Gynaecology", "General Gynaecology", "Menopause", "Urogynaecology", "Payment & Billing"];
 
 const FAQPage = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -165,6 +165,17 @@ const FAQPage = () => {
     return filtered;
   }, [selectedCategory, searchQuery]);
 
+  // Reset open index when filters change
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    setOpenIndex(null);
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+    setOpenIndex(null);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Search and Filter Section */}
@@ -177,7 +188,7 @@ const FAQPage = () => {
                 type="text"
                 placeholder="Search frequently asked questions..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={handleSearchChange}
                 className="w-full pl-12 pr-4 py-4 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors text-gray-700 placeholder-gray-400"
               />
             </div>
@@ -189,7 +200,7 @@ const FAQPage = () => {
               {categories.map((category) => (
                 <button
                   key={category}
-                  onClick={() => setSelectedCategory(category)}
+                  onClick={() => handleCategoryChange(category)}
                   className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
                     selectedCategory === category
                       ? "bg-primary text-white shadow-lg scale-105"

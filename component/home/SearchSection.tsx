@@ -78,11 +78,11 @@ const SearchSection = () => {
             </div>
 
             <ul className="space-y-4">
-              <ResourceLink href="#" label="RCOG (Royal College)" />
-              <ResourceLink href="#" label="BSUG (Urogynaecology)" />
-              <ResourceLink href="#" label="British Menopause Society" />
-              <ResourceLink href="#" label="Women's Health Concern" />
-              <ResourceLink href="#" label="Faculty of Sexual Healthcare" />
+              <ResourceLink href="https://www.rcog.org.uk/for-the-public/browse-our-patient-information/" label="RCOG (Royal College)" />
+              <ResourceLink href="https://bsug.org.uk/pages/information-for-patients/111" label="BSUG (Urogynaecology)" />
+              <ResourceLink href="https://thebms.org.uk/" label="British Menopause Society" />
+              <ResourceLink href="https://www.womens-health-concern.org/" label="Women's Health Concern" />
+              <ResourceLink href="https://www.cosrh.org/" label="College of Sexual & Reproductive Healthcare" />
             </ul>
           </div>
 
@@ -130,12 +130,11 @@ const SearchSection = () => {
 };
 
 // --- Helper Component for the List Links ---
-const ResourceLink = ({ href, label }: { href: string; label: string }) => (
-  <li>
-    <Link
-      href={href}
-      className="flex items-center justify-between group p-2 hover:bg-gray-50 rounded-lg transition-colors"
-    >
+const ResourceLink = ({ href, label }: { href: string; label: string }) => {
+  const isExternal = href.startsWith("http://") || href.startsWith("https://");
+
+  const content = (
+    <>
       <span className="text-gray-600 font-medium group-hover:text-primary transition-colors">
         {label}
       </span>
@@ -143,8 +142,30 @@ const ResourceLink = ({ href, label }: { href: string; label: string }) => (
         size={16}
         className="text-gray-300 group-hover:text-secondary group-hover:translate-x-1 transition-all"
       />
-    </Link>
-  </li>
-);
+    </>
+  );
+
+  return (
+    <li>
+      {isExternal ? (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-between group p-2 hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          {content}
+        </a>
+      ) : (
+        <Link
+          href={href}
+          className="flex items-center justify-between group p-2 hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          {content}
+        </Link>
+      )}
+    </li>
+  );
+};
 
 export default SearchSection;

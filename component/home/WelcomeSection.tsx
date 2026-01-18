@@ -52,12 +52,11 @@ const WelcomeSection = () => {
 
               <div className="prose prose-lg text-gray-500 mb-8">
                 <p>
-                  Welcome to the GyneClinics website, where you will find very
-                  useful information on most of your general gynaecological
-                  concerns. This site is designed to help you acquire important
-                  information about women&apos;s health and other health-related
-                  general issues, allowing you easy access to health care
-                  suitable for you.
+                  Leading the way in Women&apos;s Health. We combine expert
+                  Gynaecology, Urogynaecology, Menopause and Aesthetic solutions
+                  in a private, trusted environment. This site is designed to help
+                  you acquire important information about women&apos;s health,
+                  allowing you easy access to healthcare suitable for you.
                 </p>
               </div>
 

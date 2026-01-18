@@ -177,6 +177,16 @@ export const generalGynaecologyServices: GeneralGynaecologyService[] = [
             "Non-surgical procedure that blocks blood supply to fibroids, causing them to shrink",
         },
         {
+          name: "Radiofrequency Ablation (RFA)",
+          description:
+            "Minimally invasive procedure using heat energy to destroy fibroid tissue while preserving healthy uterine tissue",
+        },
+        {
+          name: "HIFU (High-Intensity Focused Ultrasound)",
+          description:
+            "Non-invasive treatment using focused ultrasound waves to heat and destroy fibroid tissue without incisions",
+        },
+        {
           name: "Myomectomy",
           description:
             "Surgical removal of fibroids while preserving the uterus - ideal for women wanting to maintain fertility",
