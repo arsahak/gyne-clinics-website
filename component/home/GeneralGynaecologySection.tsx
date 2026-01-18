@@ -81,9 +81,9 @@ const GeneralGynaecologySection = () => {
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           {/* AI Symptom Checker */}
           <ScrollMotion animation="fadeInLeft" delay={0.2}>
-            <div className="bg-gradient-to-br from-primary to-secondary p-8 rounded-2xl text-white shadow-xl relative overflow-hidden">
+            <div className="bg-gradient-to-br from-primary to-secondary p-8 rounded-2xl text-white shadow-xl relative overflow-hidden h-full min-h-[320px] flex flex-col">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-              <div className="relative z-10">
+              <div className="relative z-10 flex flex-col h-full">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm">
                     <Bot size={28} />
@@ -93,7 +93,7 @@ const GeneralGynaecologySection = () => {
                     <p className="text-sm opacity-90">Get instant guidance</p>
                   </div>
                 </div>
-                <p className="text-sm mb-6 opacity-95 leading-relaxed">
+                <p className="text-sm mb-6 opacity-95 leading-relaxed flex-grow">
                   Describe your symptoms and receive personalized
                   recommendations from our AI assistant in 60 seconds
                 </p>
@@ -110,7 +110,7 @@ const GeneralGynaecologySection = () => {
 
           {/* CQC Image Box */}
           <ScrollMotion animation="fadeInRight" delay={0.2}>
-            <div className="relative h-full min-h-[280px] rounded-2xl overflow-hidden shadow-xl group">
+            <div className="relative h-full min-h-[320px] rounded-2xl overflow-hidden shadow-xl group">
               <Image
                 src="/assets/home/clinic.jpg"
                 alt="Gynaecology consultation"

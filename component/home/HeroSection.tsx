@@ -11,7 +11,7 @@ import {
 import Link from "next/link";
 
 const HeroSection = () => {
-  const VIDEO_ID = "IWepoGpIZ2g"; // GyneClinics YouTube - Mr Joe Daniels
+  const VIDEO_ID = "Bg1n1LxBk90"; // GyneClinics YouTube - New Video
   const embedUrl = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&controls=0&loop=1&playlist=${VIDEO_ID}&showinfo=0&rel=0&disablekb=1&modestbranding=1`;
 
   // Animation variants
