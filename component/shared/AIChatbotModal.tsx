@@ -8,6 +8,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 
 export type ChatbotType = "general" | "urogynaecology" | "aesthetic" | "menopause";
 
@@ -151,7 +152,12 @@ const AIChatbotModal = ({ isOpen, onClose, chatbotType }: AIChatbotModalProps) =
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [sessionId] = useState(() => `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`);
+  const [useAI, setUseAI] = useState(true); // Toggle between AI and mock
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // API endpoint - change this to your production URL
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
   // Initialize chat with welcome message
   useEffect(() => {
@@ -187,18 +193,86 @@ const AIChatbotModal = ({ isOpen, onClose, chatbotType }: AIChatbotModalProps) =
     setInputValue("");
     setIsTyping(true);
 
-    // Simulate AI thinking time
-    setTimeout(() => {
-      const aiResponse = getMockAIResponse(messageText, chatbotType);
-      const aiMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: aiResponse,
-        sender: "ai",
-        timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, aiMessage]);
+    try {
+      if (useAI) {
+        // Call real AI API
+        const conversationHistory = messages
+          .filter(m => m.id !== "initial") // Exclude initial message
+          .slice(-5) // Last 5 messages for context
+          .map(m => ({
+            role: m.sender === "user" ? "user" : "assistant",
+            content: m.text
+          }));
+
+        const response = await fetch(`${API_BASE_URL}/api/chatbot/query`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            message: messageText,
+            chatbotType: chatbotType,
+            sessionId: sessionId,
+            conversationHistory: conversationHistory
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`API error: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.success) {
+          const aiMessage: Message = {
+            id: (Date.now() + 1).toString(),
+            text: data.data.response,
+            sender: "ai",
+            timestamp: new Date(),
+          };
+          setMessages((prev) => [...prev, aiMessage]);
+        } else {
+          throw new Error(data.message || "Failed to get response");
+        }
+      } else {
+        // Use mock response (fallback)
+        await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
+        const aiResponse = getMockAIResponse(messageText, chatbotType);
+        const aiMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          text: aiResponse,
+          sender: "ai",
+          timestamp: new Date(),
+        };
+        setMessages((prev) => [...prev, aiMessage]);
+      }
+    } catch (error) {
+      console.error('Chatbot error:', error);
+      
+      // If AI fails, try mock response
+      if (useAI) {
+        console.log('AI failed, using mock response');
+        const aiResponse = getMockAIResponse(messageText, chatbotType);
+        const aiMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          text: aiResponse,
+          sender: "ai",
+          timestamp: new Date(),
+        };
+        setMessages((prev) => [...prev, aiMessage]);
+      } else {
+        // Show error message
+        const errorMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          text: "Sorry, I'm having trouble responding right now. Please try again or contact our support team.",
+          sender: "ai",
+          timestamp: new Date(),
+        };
+        setMessages((prev) => [...prev, errorMessage]);
+      }
+    } finally {
       setIsTyping(false);
-    }, 1000 + Math.random() * 1000); // Random delay 1-2 seconds
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -281,21 +355,82 @@ const AIChatbotModal = ({ isOpen, onClose, chatbotType }: AIChatbotModalProps) =
                   }`}
                 >
                   <div
-                    className={`max-w-[80%] rounded-2xl p-4 ${
+                    className={`max-w-[85%] rounded-2xl p-4 ${
                       message.sender === "user"
                         ? "bg-primary text-white"
-                        : "bg-white border border-gray-200 text-gray-800"
+                        : "bg-white border border-gray-200 text-gray-800 shadow-sm"
                     }`}
                   >
                     {message.sender === "ai" && (
-                      <div className="flex items-center gap-2 mb-2">
+                      <div className="flex items-center gap-2 mb-3 pb-2 border-b border-gray-100">
                         <MessageCircle size={16} className="text-secondary" />
                         <span className="text-xs font-semibold text-secondary">
                           AI Assistant
                         </span>
                       </div>
                     )}
-                    <p className="text-sm leading-relaxed">{message.text}</p>
+                    {message.sender === "user" ? (
+                      <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.text}</p>
+                    ) : (
+                      <div className="prose prose-sm max-w-none">
+                        <ReactMarkdown
+                          components={{
+                            p: ({ children }) => (
+                              <p className="text-sm leading-relaxed mb-3 last:mb-0 text-gray-800">
+                                {children}
+                              </p>
+                            ),
+                            strong: ({ children }) => (
+                              <strong className="font-semibold text-gray-900">
+                                {children}
+                              </strong>
+                            ),
+                            ol: ({ children }) => (
+                              <ol className="list-decimal list-outside ml-4 space-y-2 mb-3 text-sm text-gray-800">
+                                {children}
+                              </ol>
+                            ),
+                            ul: ({ children }) => (
+                              <ul className="list-disc list-outside ml-4 space-y-2 mb-3 text-sm text-gray-800">
+                                {children}
+                              </ul>
+                            ),
+                            li: ({ children }) => (
+                              <li className="text-sm leading-relaxed text-gray-800">
+                                {children}
+                              </li>
+                            ),
+                            h1: ({ children }) => (
+                              <h1 className="text-lg font-bold mb-2 text-gray-900">
+                                {children}
+                              </h1>
+                            ),
+                            h2: ({ children }) => (
+                              <h2 className="text-base font-bold mb-2 text-gray-900">
+                                {children}
+                              </h2>
+                            ),
+                            h3: ({ children }) => (
+                              <h3 className="text-sm font-bold mb-2 text-gray-900">
+                                {children}
+                              </h3>
+                            ),
+                            code: ({ children }) => (
+                              <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs font-mono text-gray-800">
+                                {children}
+                              </code>
+                            ),
+                            blockquote: ({ children }) => (
+                              <blockquote className="border-l-4 border-secondary pl-4 italic text-gray-700 my-3">
+                                {children}
+                              </blockquote>
+                            ),
+                          }}
+                        >
+                          {message.text}
+                        </ReactMarkdown>
+                      </div>
+                    )}
                     <span
                       className={`text-xs mt-2 block ${
                         message.sender === "user"
