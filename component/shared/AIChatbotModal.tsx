@@ -485,34 +485,32 @@ const AIChatbotModal = ({ isOpen, onClose, chatbotType }: AIChatbotModalProps) =
             )}
 
             {/* Input Area */}
-            <div className="p-4 bg-white border-t border-gray-200">
-              <div className="flex items-end gap-3">
+            <div className="p-6 bg-gradient-to-r from-gray-50 to-white border-t border-gray-200">
+              <div className="flex items-center gap-3 max-w-4xl mx-auto">
                 <div className="flex-1 relative">
-                  <textarea
+                  <input
+                    type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    placeholder="Type your message here..."
-                    rows={1}
-                    className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:outline-none focus:border-primary resize-none"
-                    style={{ minHeight: "48px", maxHeight: "120px" }}
+                    placeholder="Ask me anything about your health..."
+                    className="w-full h-14 pl-6 pr-14 border-2 border-gray-200 rounded-full focus:outline-none focus:border-primary focus:shadow-lg transition-all text-gray-900 placeholder-gray-400 bg-white font-medium"
                   />
-                  <Sparkles
-                    size={18}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
-                  />
+                  <div className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400">
+                    <Sparkles size={20} />
+                  </div>
                 </div>
                 <button
                   onClick={() => handleSendMessage()}
                   disabled={!inputValue.trim() || isTyping}
-                  className="p-3 bg-primary hover:bg-secondary disabled:bg-gray-300 text-white rounded-xl transition-colors disabled:cursor-not-allowed"
+                  className="h-14 w-14 bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary disabled:from-gray-300 disabled:to-gray-400 text-white rounded-full transition-all disabled:cursor-not-allowed flex items-center justify-center flex-shrink-0 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
                   aria-label="Send message"
                 >
-                  <Send size={20} />
+                  <Send size={22} className="ml-0.5" />
                 </button>
               </div>
-              <p className="text-xs text-gray-400 mt-2 text-center">
-                This is AI-powered guidance. Book a consultation for personalized medical advice.
+              <p className="text-xs text-gray-500 mt-3 text-center max-w-2xl mx-auto">
+                💬 AI-powered medical guidance • Always consult a doctor for diagnosis
               </p>
             </div>
           </motion.div>
