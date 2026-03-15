@@ -41,7 +41,7 @@ const HrtMythBuster = () => {
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
                 Confused about{" "}
-                <span className="text-secondary italic font-serif">HRT Risks?</span>
+                <span className="text-secondary font-serif">HRT Risks?</span>
               </h2>
               <p className="text-white/90 text-base md:text-lg mb-8 leading-relaxed">
                 Headlines can be misleading. Use our AI-powered tool to understand

@@ -12,7 +12,7 @@ const featuredProducts = [
     category: "Nutrition & Gut Health",
     price: "£34.99",
     rating: 4.8,
-    image: "/assets/product/probiotic.jpg",
+    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=400&fit=crop", // Placeholder: Supplement bottles
     link: "https://whpstore.org/en-gb/collections/nutrition-gut-health",
   },
   {
@@ -21,7 +21,7 @@ const featuredProducts = [
     category: "Nutrition & Gut Health",
     price: "£29.99",
     rating: 4.9,
-    image: "/assets/product/multivitamin.jpg",
+    image: "https://images.unsplash.com/photo-1550572017-4a6a5a5a9485?w=400&h=400&fit=crop", // Placeholder: Vitamins
     link: "https://whpstore.org/en-gb/collections/nutrition-gut-health",
   },
   {
@@ -30,7 +30,7 @@ const featuredProducts = [
     category: "Nutrition & Gut Health",
     price: "£24.99",
     rating: 4.7,
-    image: "/assets/product/digestive.jpg",
+    image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400&h=400&fit=crop", // Placeholder: Wellness products
     link: "https://whpstore.org/en-gb/collections/nutrition-gut-health",
   },
 ];

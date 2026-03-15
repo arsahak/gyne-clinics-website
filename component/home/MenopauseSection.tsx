@@ -47,7 +47,7 @@ const MenopauseSection = () => {
               {/* Headline */}
               <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
                 Navigating Menopause with{" "}
-                <span className="text-secondary italic">Confidence</span>
+                <span className="text-secondary">Confidence</span>
               </h2>
 
               <p className="text-gray-600 text-lg mb-8 leading-relaxed">
@@ -119,21 +119,21 @@ const MenopauseSection = () => {
 
                 {/* Overlay text */}
                 <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                  <p className="text-2xl font-serif italic mb-2">
+                  <p className="text-2xl font-serif mb-2">
                     "I finally got my energy back"
                   </p>
                   <p className="text-sm opacity-90 font-semibold">— Patient Success Story</p>
                 </div>
               </div>
 
-              {/* AI Symptom Tracker Card */}
+              {/* Menopause Symptom Tracker Card */}
               <div className="bg-white rounded-3xl p-8 shadow-xl border border-purple-100">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white">
                     <Bot size={32} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-primary">AI Symptom Tracker</h3>
+                    <h3 className="text-xl font-bold text-primary">Menopause Symptom Tracker</h3>
                     <p className="text-sm text-gray-500">Free 2-minute assessment</p>
                   </div>
                 </div>

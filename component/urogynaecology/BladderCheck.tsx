@@ -60,7 +60,7 @@ const BladderCheck = () => {
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary mb-6 leading-tight">
                 Not sure which type{" "}
-                <span className="text-secondary italic font-serif">
+                <span className="text-secondary font-serif">
                   you have?
                 </span>
               </h2>

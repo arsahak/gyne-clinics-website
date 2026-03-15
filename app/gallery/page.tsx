@@ -104,19 +104,6 @@ export default function GalleryPage() {
       recovery: "Immediate",
       age: "45",
     },
-    {
-      id: 6,
-      category: "labiaplasty",
-      title: "Combined Labiaplasty & Clitoral Hood Reduction",
-      before: "/assets/home/banner1.svg", // TODO: Replace with actual medical image
-      after: "/assets/home/banner2.svg", // TODO: Replace with actual medical image
-      description:
-        "Patient with enlarged labia minora and excess clitoral hood tissue. Combined procedure for optimal aesthetic outcome.",
-      procedure: "Labiaplasty + Hood Reduction",
-      technique: "Combined Technique",
-      recovery: "2-3 weeks",
-      age: "35",
-    },
   ];
 
   const filteredGallery =

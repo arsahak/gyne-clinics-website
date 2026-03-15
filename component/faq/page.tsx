@@ -33,9 +33,9 @@ const faqs: FAQ[] = [
   },
   {
     category: "General",
-    question: "Can I get a same-day appointment?",
+    question: "Can I get rapid access?",
     answer:
-      "We do our best to accommodate urgent requests. Same-day appointments are subject to availability. Please call our office to check availability for urgent consultations.",
+      "We do our best to accommodate urgent requests. Quick appointments are subject to availability. Please call our office to check availability for urgent consultations.",
   },
   {
     category: "General",

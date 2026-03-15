@@ -41,7 +41,7 @@ const MenopauseIntro = () => {
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary mb-6">
             It's not just{" "}
-            <span className="text-secondary italic font-serif">
+            <span className="text-secondary font-serif">
               "Hot Flushes"
             </span>
           </h2>

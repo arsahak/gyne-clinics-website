@@ -80,7 +80,7 @@ const AestheticSection = () => {
             </div>
 
             <h2 className="text-4xl md:text-6xl font-bold text-primary mb-6">
-              Intimate <span className="text-secondary italic">Wellness</span>
+              Intimate <span className="text-secondary">Wellness</span>
             </h2>
 
             <p className="text-gray-600 text-lg mb-8">
@@ -179,7 +179,7 @@ const AestheticSection = () => {
 
               <div className="flex-1 text-center md:text-left">
                 <h3 className="text-2xl font-bold text-primary mb-2">
-                  AI Aesthetic Assessment
+                  Aesthetic Assessment
                 </h3>
                 <p className="text-gray-600 mb-4">
                   Not sure which treatment is right for you? Take our confidential 3-minute assessment for personalized recommendations

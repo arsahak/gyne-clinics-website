@@ -45,7 +45,7 @@ const WelcomeSection = () => {
               </h4>
               <h2 className="text-3xl md:text-5xl font-heading font-bold text-primary mb-6 leading-tight">
                 Welcome to <br />
-                <span className="text-secondary italic font-serif">
+                <span className="text-secondary font-serif">
                   Gynaecology Clinics
                 </span>
               </h2>

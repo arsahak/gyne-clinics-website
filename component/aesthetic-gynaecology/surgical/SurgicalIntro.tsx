@@ -36,7 +36,7 @@ const SurgicalIntro = () => {
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary mb-6 leading-tight">
                 Why Choose a{" "}
-                <span className="text-secondary italic font-serif">
+                <span className="text-secondary font-serif">
                   Surgical Approach?
                 </span>
               </h2>

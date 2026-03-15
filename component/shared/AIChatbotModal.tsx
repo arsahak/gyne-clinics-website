@@ -28,9 +28,9 @@ interface AIChatbotModalProps {
 // Content configuration for each section
 const chatbotConfig = {
   general: {
-    title: "General Gynaecology Assistant",
+    title: "Gina - Your Gynaecology Assistant",
     subtitle: "Tell me about your symptoms",
-    initialMessage: "Hello! I'm your General Gynaecology AI assistant. I can help you understand symptoms related to menstrual health, pelvic pain, screening, and contraception. What brings you here today?",
+    initialMessage: "Hello! I'm Gina, your General Gynaecology assistant. I can help you understand symptoms related to menstrual health, pelvic pain, screening, and contraception. What brings you here today?",
     quickQuestions: [
       "Heavy or irregular periods",
       "Pelvic pain concerns",
@@ -44,9 +44,9 @@ const chatbotConfig = {
     ],
   },
   urogynaecology: {
-    title: "Urogynaecology Assistant",
+    title: "Donna - Urogynaecology Specialist",
     subtitle: "Bladder & pelvic floor health",
-    initialMessage: "Hello! I'm your Urogynaecology AI assistant. I can help with questions about urinary incontinence, pelvic organ prolapse, and bladder health. How can I assist you today?",
+    initialMessage: "Hello! I'm Donna, your Urogynaecology specialist. I can help with questions about urinary incontinence, pelvic organ prolapse, and bladder health. How can I assist you today?",
     quickQuestions: [
       "Bladder leakage issues",
       "Pelvic organ prolapse",
@@ -60,9 +60,9 @@ const chatbotConfig = {
     ],
   },
   aesthetic: {
-    title: "Aesthetic Gynaecology Assistant",
+    title: "Jodie - Aesthetic Gynaecology Assistant",
     subtitle: "Intimate wellness consultation",
-    initialMessage: "Hello! I'm your Aesthetic Gynaecology AI assistant. I can help you learn about both surgical and non-surgical intimate wellness treatments. What would you like to know?",
+    initialMessage: "Hello! I'm Jodie, your Aesthetic Gynaecology specialist. I can help you learn about both surgical and non-surgical intimate wellness treatments. What would you like to know?",
     quickQuestions: [
       "Labiaplasty information",
       "Laser rejuvenation",
@@ -76,9 +76,9 @@ const chatbotConfig = {
     ],
   },
   menopause: {
-    title: "Menopause Health Assistant",
+    title: "Nicky - Menopause Health Expert",
     subtitle: "Hormone & symptom support",
-    initialMessage: "Hello! I'm your Menopause Health AI assistant. I can help you understand menopause symptoms, HRT options, and lifestyle management. What symptoms are you experiencing?",
+    initialMessage: "Hello! I'm Nicky, your Menopause Health specialist. I can help you understand menopause symptoms, HRT options, and lifestyle management. What symptoms are you experiencing?",
     quickQuestions: [
       "Hot flushes & night sweats",
       "Mood changes",
@@ -365,7 +365,9 @@ const AIChatbotModal = ({ isOpen, onClose, chatbotType }: AIChatbotModalProps) =
                       <div className="flex items-center gap-2 mb-3 pb-2 border-b border-gray-100">
                         <MessageCircle size={16} className="text-secondary" />
                         <span className="text-xs font-semibold text-secondary">
-                          AI Assistant
+                          {chatbotType === "general" ? "Gina" : 
+                           chatbotType === "urogynaecology" ? "Donna" :
+                           chatbotType === "aesthetic" ? "Jodie" : "Nicky"}
                         </span>
                       </div>
                     )}
@@ -421,7 +423,7 @@ const AIChatbotModal = ({ isOpen, onClose, chatbotType }: AIChatbotModalProps) =
                               </code>
                             ),
                             blockquote: ({ children }) => (
-                              <blockquote className="border-l-4 border-secondary pl-4 italic text-gray-700 my-3">
+                              <blockquote className="border-l-4 border-secondary pl-4 text-gray-700 my-3">
                                 {children}
                               </blockquote>
                             ),
@@ -457,7 +459,11 @@ const AIChatbotModal = ({ isOpen, onClose, chatbotType }: AIChatbotModalProps) =
                         <span className="w-2 h-2 bg-secondary rounded-full animate-bounce delay-100"></span>
                         <span className="w-2 h-2 bg-secondary rounded-full animate-bounce delay-200"></span>
                       </div>
-                      <span className="text-xs text-gray-500">AI is typing...</span>
+                      <span className="text-xs text-gray-500">
+                        {chatbotType === "general" ? "Gina" : 
+                         chatbotType === "urogynaecology" ? "Donna" :
+                         chatbotType === "aesthetic" ? "Jodie" : "Nicky"} is typing...
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -510,7 +516,9 @@ const AIChatbotModal = ({ isOpen, onClose, chatbotType }: AIChatbotModalProps) =
                 </button>
               </div>
               <p className="text-xs text-gray-500 mt-3 text-center max-w-2xl mx-auto">
-                💬 AI-powered medical guidance • Always consult a doctor for diagnosis
+                💬 {chatbotType === "general" ? "Gina" : 
+                     chatbotType === "urogynaecology" ? "Donna" :
+                     chatbotType === "aesthetic" ? "Jodie" : "Nicky"} - AI-powered medical guidance • Always consult a doctor for diagnosis
               </p>
             </div>
           </motion.div>

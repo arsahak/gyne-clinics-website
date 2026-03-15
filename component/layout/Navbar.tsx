@@ -12,6 +12,7 @@ import {
   LogOut,
   Menu,
   Phone,
+  Search,
   ShoppingCart,
   User,
   X,
@@ -288,6 +289,16 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
           <div className="hidden lg:flex items-center gap-6 shrink-0">
             {/* SEPARATOR */}
             <div className="h-6 w-px bg-gray-200"></div>
+
+            {/* SEARCH BUTTON */}
+            <Link href="/#search" scroll={true}>
+              <button
+                className="flex items-center gap-2 text-primary-500 hover:text-secondary transition-colors p-2 hover:bg-gray-50 rounded-full"
+                aria-label="Search"
+              >
+                <Search size={20} />
+              </button>
+            </Link>
 
             {/* CTA BUTTON */}
             <Link href="/book-appointment">

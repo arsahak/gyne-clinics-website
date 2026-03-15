@@ -60,7 +60,7 @@ const Urogynaecology = () => {
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-primary mb-3">
                 Urogynaecology &<br />
-                <span className="text-secondary italic">Pelvic Health</span>
+                <span className="text-secondary">Pelvic Health</span>
               </h2>
               <p className="text-gray-600 text-lg max-w-xl">
                 NICE guideline-compliant treatment for incontinence, prolapse, and bladder dysfunction
@@ -118,7 +118,7 @@ const Urogynaecology = () => {
                   <Bot size={36} />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold">AI Bladder Health Check</h3>
+                  <h3 className="text-2xl font-bold">Bladder Health Check</h3>
                   <p className="text-sm opacity-90">Free 2-minute assessment</p>
                 </div>
               </div>

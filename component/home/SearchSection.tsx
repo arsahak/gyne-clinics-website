@@ -1,4 +1,4 @@
-
+"use client";
 
 import {
   ArrowRight,
@@ -10,10 +10,23 @@ import {
   Search,
 } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const SearchSection = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      // Redirect to a search results page or filter content
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
   return (
-    <section className="py-12 md:py-16 lg:py-24 bg-[#F4F6F8] relative">
+    <section id="search" className="py-12 md:py-16 lg:py-24 bg-[#F4F6F8] relative">
       <div className="container mx-auto px-4">
         {/* 1. SECTION HEADER & SEARCH (Combined) */}
         <div className="max-w-4xl mx-auto text-center mb-16">
@@ -22,17 +35,22 @@ const SearchSection = () => {
           </h2>
 
           {/* Premium Search Bar */}
-          <div className="relative group shadow-2xl rounded-full">
+          <form onSubmit={handleSearch} className="relative group shadow-2xl rounded-full">
             <input
               type="text"
-              placeholder="Search conditions, treatments, or products..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search conditions, treatments, or services..."
               className="w-full h-16 pl-8 pr-36 rounded-full border border-gray-200 focus:border-secondary bg-white text-lg text-primary outline-none transition-all placeholder:text-gray-400"
             />
-            <button className="absolute right-2 top-2 h-12 px-8 bg-primary text-white rounded-full font-bold hover:bg-secondary transition-colors flex items-center gap-2">
+            <button 
+              type="submit"
+              className="absolute right-2 top-2 h-12 px-8 bg-primary text-white rounded-full font-bold hover:bg-secondary transition-colors flex items-center gap-2"
+            >
               <Search size={18} />
               <span className="hidden sm:inline">Search</span>
             </button>
-          </div>
+          </form>
         </div>
 
         {/* 2. THE "BENTO GRID" LAYOUT */}

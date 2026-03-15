@@ -111,7 +111,7 @@ export const blogArticles: BlogArticle[] = [
         "Every woman's contraceptive needs are unique. At GyneClinics, we offer comprehensive contraception counseling to help you find the method that best suits your individual circumstances. Our specialists will discuss all options with you, taking into account your medical history, lifestyle, and preferences. Book a consultation today to discuss your contraceptive options in a confidential, supportive environment.",
     },
     relatedTopics: [
-      "Contraception & Fertility",
+      "Contraception Or Fertility",
       "Family Planning Services",
       "Sexual Health Screening",
     ],

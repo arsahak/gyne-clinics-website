@@ -107,7 +107,7 @@ export const generalGynaecologyServices: GeneralGynaecologyService[] = [
     whyChooseUs: [
       "Specialist consultants with decades of combined experience in menstrual disorders",
       "Access to cutting-edge diagnostic technology including 3D ultrasound",
-      "Same-day appointments and rapid access to investigations",
+      "Rapid Access and quick access to investigations",
       "Holistic approach addressing physical and emotional well-being",
       "Multidisciplinary team including gynecologists, psychologists, and specialist nurses",
       "Evidence-based treatments tailored to your individual needs",
@@ -220,7 +220,7 @@ export const generalGynaecologyServices: GeneralGynaecologyService[] = [
       "Fertility-sparing surgery options with expert reproductive medicine colleagues",
       "Multidisciplinary pain management team",
       "Clinical trials access for novel treatments",
-      "Same-day diagnosis in our one-stop clinic",
+      "Quick diagnosis in our one-stop clinic",
     ],
     faqs: [
       {
@@ -317,7 +317,7 @@ export const generalGynaecologyServices: GeneralGynaecologyService[] = [
     },
     whyChooseUs: [
       "Private, comfortable environment for sensitive examinations",
-      "Same-day results available for many tests",
+      "Quick results available for many tests",
       "Expert colposcopy with 'see and treat' option",
       "Fast-track referral pathways for abnormal results",
       "Comprehensive sexual health services with complete confidentiality",
@@ -348,7 +348,7 @@ export const generalGynaecologyServices: GeneralGynaecologyService[] = [
   },
   {
     slug: "contraception-fertility",
-    title: "Contraception & Fertility",
+    title: "Contraception Or Fertility",
     shortDesc:
       "Bespoke contraceptive counseling and fertility assessment with diagnostic ultrasound.",
     icon: Baby,
@@ -418,7 +418,7 @@ export const generalGynaecologyServices: GeneralGynaecologyService[] = [
     },
     whyChooseUs: [
       "Subspecialist-led contraception and fertility clinics",
-      "All contraception methods available including same-day coil fitting",
+      "All contraception methods available including quick coil fitting",
       "Comprehensive fertility testing in one-stop clinic",
       "Links with leading UK fertility centers",
       "Fertility preservation counseling and coordination",
@@ -1014,17 +1014,12 @@ export const generalGynaecologyServices: GeneralGynaecologyService[] = [
         {
           name: "Incontinence Surgery",
           description:
-            "TVT (tension-free vaginal tape) or colposuspension for stress urinary incontinence",
-        },
-        {
-          name: "Aesthetic Procedures",
-          description:
-            "Labiaplasty, vaginoplasty, hymenoplasty, and other cosmetic gynecological procedures",
+            "Bulkamid injection, Biological Mid-Urethral Sling or Colposuspension for stress urinary incontinence",
         },
         {
           name: "Sterilization",
           description:
-            "Laparoscopic tubal occlusion for permanent contraception",
+            "Laparoscopic tubal occlusion or removal for permanent contraception",
         },
       ],
     },
@@ -1130,7 +1125,7 @@ export const generalGynaecologyServices: GeneralGynaecologyService[] = [
     },
     whyChooseUs: [
       "Confidential, non-judgmental service",
-      "Immediate testing and same-day diagnosis for many infections",
+      "Immediate testing and quick diagnosis for many infections",
       "Expert in managing recurrent and complex infections",
       "Comprehensive STI screening",
       "Private, discrete environment",
@@ -1232,7 +1227,7 @@ export const generalGynaecologyServices: GeneralGynaecologyService[] = [
     whyChooseUs: [
       "Completely confidential service",
       "Non-judgmental, professional care",
-      "Rapid testing with same-day results for many infections",
+      "Rapid testing with quick results for many infections",
       "Treatment provided same-visit when possible",
       "Anonymous partner notification services",
       "Evening and weekend appointments available",

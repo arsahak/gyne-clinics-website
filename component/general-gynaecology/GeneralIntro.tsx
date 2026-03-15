@@ -94,7 +94,7 @@ const GeneralIntro = () => {
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-6xl font-heading font-bold text-primary mb-6 leading-tight max-w-4xl mx-auto">
               Comprehensive Care for <br />
-              <span className="text-secondary italic font-serif">Women's Health</span>
+              <span className="text-secondary font-serif">Women's Health</span>
             </h2>
             <p className="text-gray-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
               Welcome to <strong className="text-primary">GyneClinics</strong>, where consultant-led gynaecological care meets clinical excellence. Our GMC-registered specialists provide comprehensive assessment and treatment for the full spectrum of women's health conditions.

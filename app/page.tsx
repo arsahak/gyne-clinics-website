@@ -5,6 +5,7 @@ import HeroSection from "@/component/home/HeroSection";
 import MenopauseSection from "@/component/home/MenopauseSection";
 import StoreSection from "@/component/home/StoreSection";
 import Urogynaecology from "@/component/home/Urogynaecology";
+import VideoSection from "@/component/home/VideoSection";
 
 export const metadata = {
   title: "GyneClinics – Expertise Professionalism and Excellence",
@@ -25,6 +26,7 @@ export default function Home() {
   return (
     <div className="">
       <HeroSection />
+      <VideoSection />
       <GeneralGynaecologySection />
       <Urogynaecology />
       <AestheticSection />

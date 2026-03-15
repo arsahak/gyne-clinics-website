@@ -41,7 +41,7 @@ const NonSurgicalIntro = () => {
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary mb-6">
             Intimate Wellness,{" "}
-            <span className="text-secondary italic font-serif">Reimagined</span>
+            <span className="text-secondary font-serif">Reimagined</span>
           </h2>
           <div className="w-20 h-1 bg-secondary mx-auto rounded-full mb-6"></div>
           <p className="text-gray-600 text-base md:text-lg leading-relaxed">

@@ -46,7 +46,7 @@ const UroIntro = () => {
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary mb-6 leading-tight">
                 What is{" "}
-                <span className="text-secondary italic font-serif">
+                <span className="text-secondary font-serif">
                   Urogynaecology?
                 </span>
               </h2>

@@ -28,7 +28,7 @@ const TechSpotlight = () => {
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
                 Powered by{" "}
-                <span className="text-secondary italic font-serif">
+                <span className="text-secondary font-serif">
                   CO2RE® Intima
                 </span>
               </h2>

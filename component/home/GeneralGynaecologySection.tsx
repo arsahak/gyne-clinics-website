@@ -2,13 +2,63 @@
 import { ScrollMotion } from "@/component/motion";
 import AIChatbotModal from "@/component/shared/AIChatbotModal";
 import { generalGynaecologyServices } from "@/data/generalGynaecologyServices";
-import { ArrowRight, Bot, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Bot, ShieldCheck, Sparkles, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
 const GeneralGynaecologySection = () => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
+  const VIDEO_ID = "Bg1n1LxBk90";
+  const embedUrl = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1`;
+  const thumbnailUrl = `https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`;
+
+  // Video Card Component
+  const VideoCard = () => (
+    <div className="relative h-full min-h-[320px] rounded-2xl overflow-hidden shadow-xl bg-gray-900">
+      {isVideoPlaying ? (
+        <iframe
+          src={embedUrl}
+          className="w-full h-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          title="GyneClinics Video"
+        />
+      ) : (
+        <>
+          <Image
+            src={thumbnailUrl}
+            alt="GyneClinics Video"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+          <button
+            onClick={() => setIsVideoPlaying(true)}
+            className="absolute inset-0 flex items-center justify-center group cursor-pointer"
+            aria-label="Play video"
+          >
+            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+              <Play size={24} className="text-primary ml-1" fill="currentColor" />
+            </div>
+          </button>
+          <div className="absolute bottom-6 left-6 right-6 text-white z-10">
+            <div className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold mb-3">
+              Watch Our Story
+            </div>
+            <p className="font-bold text-xl mb-2">
+              Discover GyneClinics
+            </p>
+            <p className="text-sm opacity-90 font-normal">
+              Meet our team • See our facilities • Learn about our care
+            </p>
+          </div>
+        </>
+      )}
+    </div>
+  );
 
   return (
     <section className="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
@@ -22,13 +72,13 @@ const GeneralGynaecologySection = () => {
           <div className="text-center mb-12 md:mb-16">
             <span className="inline-block px-4 py-2 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider rounded-full mb-4">
               <ShieldCheck className="inline w-3 h-3 mr-2" />
-              GMC & RCOG Registered Care
+              GMC Registered Specialist
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary mb-4">
               General Gynaecology
             </h2>
             <div className="w-20 h-1 bg-secondary mx-auto rounded-full mb-4"></div>
-            <p className="text-gray-600 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+            <p className="text-gray-600 text-base md:text-lg max-w-3xl mx-auto leading-relaxed font-normal">
               Comprehensive women&apos;s health services from routine screening
               to complex disorders. Expert care for all stages of your life.
             </p>
@@ -59,7 +109,7 @@ const GeneralGynaecologySection = () => {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-sm text-gray-600 mb-4 flex-grow leading-relaxed">
+                  <p className="text-sm text-gray-600 mb-4 flex-grow leading-relaxed font-normal">
                     {service.shortDesc}
                   </p>
 
@@ -79,7 +129,7 @@ const GeneralGynaecologySection = () => {
 
         {/* Feature Boxes Row */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
-          {/* AI Symptom Checker */}
+          {/* Symptom Checker */}
           <ScrollMotion animation="fadeInLeft" delay={0.2}>
             <div className="bg-gradient-to-br from-primary to-secondary p-8 rounded-2xl text-white shadow-xl relative overflow-hidden h-full min-h-[320px] flex flex-col">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
@@ -89,11 +139,11 @@ const GeneralGynaecologySection = () => {
                     <Bot size={28} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-xl">AI Symptom Checker</h4>
+                    <h4 className="font-bold text-xl">Symptom Checker</h4>
                     <p className="text-sm opacity-90">Get instant guidance</p>
                   </div>
                 </div>
-                <p className="text-sm mb-6 opacity-95 leading-relaxed flex-grow">
+                <p className="text-sm mb-6 opacity-95 leading-relaxed flex-grow font-normal">
                   Describe your symptoms and receive personalized
                   recommendations from our AI assistant in 60 seconds
                 </p>
@@ -108,29 +158,9 @@ const GeneralGynaecologySection = () => {
             </div>
           </ScrollMotion>
 
-          {/* CQC Image Box */}
+          {/* YouTube Video Box - Replacing CQC Image Box */}
           <ScrollMotion animation="fadeInRight" delay={0.2}>
-            <div className="relative h-full min-h-[320px] rounded-2xl overflow-hidden shadow-xl group">
-              <Image
-                src="/assets/home/clinic.jpg"
-                alt="Gynaecology consultation"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent flex items-end p-6 md:p-8">
-                <div className="text-white">
-                  <div className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold mb-3">
-                    CQC Registered
-                  </div>
-                  <p className="font-bold text-xl mb-2">
-                    State-of-the-Art Facilities
-                  </p>
-                  <p className="text-sm opacity-90">
-                    Same-day appointments • Evening & weekend clinics available
-                  </p>
-                </div>
-              </div>
-            </div>
+            <VideoCard />
           </ScrollMotion>
         </div>
 

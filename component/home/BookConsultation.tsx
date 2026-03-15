@@ -138,7 +138,7 @@ const BookConsultation = () => {
             </h4>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6 leading-tight">
               Begin Your Journey to{" "}
-              <span className="text-secondary italic">Better Health</span>
+              <span className="text-secondary">Better Health</span>
             </h2>
             <p className="text-gray-500 text-lg leading-relaxed mb-10">
               Whether you need a routine check-up, a second opinion, or

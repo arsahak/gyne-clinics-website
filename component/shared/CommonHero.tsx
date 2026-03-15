@@ -232,7 +232,7 @@ const CommonHero = ({
           {subtitle && (
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl lg:text-2xl text-white/90 font-light leading-relaxed max-w-2xl mx-auto drop-shadow-lg"
+              className="text-lg md:text-xl lg:text-2xl text-white/90 font-normal leading-relaxed max-w-2xl mx-auto drop-shadow-lg"
             >
               {subtitle}
             </motion.p>

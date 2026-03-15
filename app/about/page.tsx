@@ -271,7 +271,7 @@ export default function AboutPage() {
                       confidence and quality of life through both surgical and
                       non-surgical treatments.
                     </p>
-                    <p className="text-primary font-semibold italic">
+                    <p className="text-primary font-semibold">
                       "My approach is simple: listen to my patients, understand
                       their concerns, and provide the best possible care with
                       empathy and expertise."

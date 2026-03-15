@@ -8,12 +8,10 @@ import {
   Droplet,
   Sparkles,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const HeroSection = () => {
-  const VIDEO_ID = "Bg1n1LxBk90"; // GyneClinics YouTube - New Video
-  const embedUrl = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&controls=0&loop=1&playlist=${VIDEO_ID}&showinfo=0&rel=0&disablekb=1&modestbranding=1`;
-
   // Animation variants
   const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 30 },
@@ -36,17 +34,18 @@ const HeroSection = () => {
     <section className="relative h-screen w-full overflow-hidden bg-primary flex flex-col justify-between pt-20 md:pt-[100px]">
       {/* --- 1. BACKGROUND LAYERS --- */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 w-[300%] h-[300%] -translate-x-1/2 -translate-y-1/2">
-          <iframe
-            src={embedUrl}
-            className="w-full h-full opacity-70"
-            title="Ambient Background"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            style={{ border: "none" }}
-          />
-        </div>
+        {/* Static Image Background */}
+        <Image
+          src="/assets/home/heorimage.jpeg"
+          alt="Gyne Clinics"
+          fill
+          className="object-cover opacity-40"
+          priority
+          quality={90}
+        />
       </div>
-      <div className="absolute inset-0 bg-linear-to-b from-primary/50 via-primary/40 to-primary/90 z-10" />
+      {/* Emerald Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-emerald-600/50 via-emerald-700/60 to-emerald-900/90 z-10" />
 
       {/* --- 2. MAIN CENTER CONTENT --- */}
       <div className="relative z-20 container mx-auto px-4 grow flex flex-col justify-center items-center text-center mt-10">
@@ -59,7 +58,7 @@ const HeroSection = () => {
           {/* Subtle Tag */}
           <motion.div variants={fadeInUp}>
             <span className="inline-block py-1 px-4 rounded-full border border-secondary/30 bg-primary/30 backdrop-blur-md text-white text-xs font-bold tracking-[0.2em] uppercase mb-8 shadow-sm">
-              GMC & RCOG Registered Gynaecologist
+              GMC Registered Specialist
             </span>
           </motion.div>
 
@@ -77,9 +76,10 @@ const HeroSection = () => {
           {/* Description */}
           <motion.p
             variants={fadeInUp}
-            className="text-lg text-white md:text-2xl leading-relaxed max-w-3xl mx-auto font-light drop-shadow-md"
+            className="text-lg text-white md:text-2xl leading-relaxed max-w-3xl mx-auto font-normal drop-shadow-md"
           >
-            Designed To Put Women First | A Private Sanctuary Dedicated to Your Complete Well-Being and Supporting You at Every Stage
+            Designed To Put Women First | A Private Sanctuary Dedicated to Your
+            Complete Well-Being and Supporting You at Every Stage
           </motion.p>
         </motion.div>
       </div>
@@ -91,7 +91,7 @@ const HeroSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
             {/* Item 1 */}
             <DiscoveryLink
-              href="/general"
+              href="/general-gynaecology"
               title="General Gynaecology"
               subtitle="Wellness & Screening"
               icon={<Activity size={20} />}
@@ -107,7 +107,7 @@ const HeroSection = () => {
 
             {/* Item 3 */}
             <DiscoveryLink
-              href="/aesthetic"
+              href="/aesthetic-gynaecology"
               title="Aesthetic Gynaecology"
               subtitle="Rejuvenation & Beauty"
               icon={<Sparkles size={20} />}
@@ -139,7 +139,7 @@ const DiscoveryLink = ({ href, title, subtitle, icon }: any) => {
       <div className="flex items-center gap-4">
         <div className="text-white transition-colors">{icon}</div>
         <div className="text-left">
-          <h3 className="text-white font-heading font-semibold text-lg  transition-colors">
+          <h3 className="text-white font-heading font-semibold text-lg transition-colors">
             {title}
           </h3>
           <p className="text-gray-300 text-xs uppercase tracking-wider">
@@ -147,7 +147,7 @@ const DiscoveryLink = ({ href, title, subtitle, icon }: any) => {
           </p>
         </div>
       </div>
-      <div className="text-gray-500 group-hover:translate-x-1  transition-all">
+      <div className="text-gray-500 group-hover:translate-x-1 transition-all">
         <ArrowRight size={20} />
       </div>
     </Link>
