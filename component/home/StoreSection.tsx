@@ -12,7 +12,7 @@ const featuredProducts = [
     category: "Nutrition & Gut Health",
     price: "£34.99",
     rating: 4.8,
-    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=400&fit=crop", // Placeholder: Supplement bottles
+    image: "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&w=800&q=80",
     link: "https://whpstore.org/en-gb/collections/nutrition-gut-health",
   },
   {
@@ -21,7 +21,7 @@ const featuredProducts = [
     category: "Nutrition & Gut Health",
     price: "£29.99",
     rating: 4.9,
-    image: "https://images.unsplash.com/photo-1550572017-4a6a5a5a9485?w=400&h=400&fit=crop", // Placeholder: Vitamins
+    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=80",
     link: "https://whpstore.org/en-gb/collections/nutrition-gut-health",
   },
   {
@@ -30,7 +30,7 @@ const featuredProducts = [
     category: "Nutrition & Gut Health",
     price: "£24.99",
     rating: 4.7,
-    image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400&h=400&fit=crop", // Placeholder: Wellness products
+    image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=800&q=80",
     link: "https://whpstore.org/en-gb/collections/nutrition-gut-health",
   },
 ];
@@ -117,28 +117,29 @@ const ProductCard = ({
       className="group relative bg-white rounded-xl md:rounded-2xl overflow-hidden border border-transparent hover:border-secondary/20 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-full"
     >
       {/* IMAGE AREA */}
-      <div className="relative aspect-square md:h-64 bg-gray-50 p-4 md:p-6 flex items-center justify-center overflow-hidden">
+      <div className="relative h-56 md:h-64 w-full overflow-hidden bg-gray-100">
+        {/* Image - full width, object-cover */}
+        <Image
+          src={product.image}
+          alt={product.name}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          quality={90}
+          loading={index < 3 ? "eager" : "lazy"}
+        />
+
+        {/* Gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
         {/* Badges - Floating at top */}
-        <div className="absolute top-3 left-3 md:top-4 md:left-4 z-10 flex flex-wrap gap-1.5 md:gap-2">
-          <span className="bg-white/80 backdrop-blur-sm text-primary text-[9px] md:text-[10px] font-bold px-2 md:px-3 py-0.5 md:py-1 rounded-full uppercase tracking-wider border border-gray-100 shadow-sm">
+        <div className="absolute top-3 left-3 z-10 flex flex-wrap gap-2">
+          <span className="bg-white/90 backdrop-blur-sm text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
             {product.category}
           </span>
-          <span className="bg-secondary text-white text-[9px] md:text-[10px] font-bold px-2 md:px-3 py-0.5 md:py-1 rounded-full uppercase tracking-wider shadow-md">
+          <span className="bg-secondary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
             Featured
           </span>
-        </div>
-
-        {/* Image */}
-        <div className="w-full h-full flex items-center justify-center relative z-0 group-hover:scale-110 transition-transform duration-500 ease-in-out">
-          <Image
-            src={product.image}
-            alt={product.name}
-            fill
-            className="object-contain"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            quality={85}
-            loading={index < 3 ? "eager" : "lazy"}
-          />
         </div>
 
         {/* Quick Shop Button - Slides up from bottom (desktop only) */}
@@ -147,14 +148,11 @@ const ProductCard = ({
             href={product.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full bg-primary text-white py-3 rounded-xl font-bold text-sm shadow-lg hover:bg-[#1a3a5e] flex items-center justify-center gap-2 transition-colors"
+            className="w-full bg-white text-primary py-3 rounded-xl font-bold text-sm shadow-lg hover:bg-secondary hover:text-white flex items-center justify-center gap-2 transition-colors"
           >
             <ExternalLink size={16} /> Shop Now
           </a>
         </div>
-
-        {/* Gradient Overlay */}
-        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       </div>
 
       {/* DETAILS AREA */}

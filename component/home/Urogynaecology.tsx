@@ -1,6 +1,7 @@
 "use client";
 
 import { ScrollMotion } from "@/component/motion";
+import AIChatbotModal from "@/component/shared/AIChatbotModal";
 import {
   Activity,
   ArrowRight,
@@ -14,7 +15,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import AIChatbotModal from "@/component/shared/AIChatbotModal";
 
 const Urogynaecology = () => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
@@ -63,7 +63,8 @@ const Urogynaecology = () => {
                 <span className="text-secondary">Pelvic Health</span>
               </h2>
               <p className="text-gray-600 text-lg max-w-xl">
-                NICE guideline-compliant treatment for incontinence, prolapse, and bladder dysfunction
+                NICE guideline-compliant treatment for incontinence, prolapse,
+                and bladder dysfunction
               </p>
             </div>
           </ScrollMotion>
@@ -95,7 +96,9 @@ const Urogynaecology = () => {
                   <item.icon className="text-blue-600" size={32} />
                 </div>
 
-                <h3 className="text-xl font-bold text-primary mb-3">{item.title}</h3>
+                <h3 className="text-xl font-bold text-primary mb-3">
+                  {item.title}
+                </h3>
                 <p className="text-sm text-gray-600 mb-4">{item.desc}</p>
 
                 <div className="pt-4 border-t border-gray-100">
@@ -124,7 +127,8 @@ const Urogynaecology = () => {
               </div>
 
               <p className="mb-6 text-lg opacity-95">
-                Answer a few questions about your symptoms and receive personalized guidance on your pelvic floor health.
+                Answer a few questions about your symptoms and receive
+                personalized guidance on your pelvic floor health.
               </p>
 
               <button
@@ -138,8 +142,8 @@ const Urogynaecology = () => {
             {/* Right: Image with overlay stats */}
             <div className="relative h-80 rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/assets/home/clinic.jpg"
-                alt="Urogynaecology care"
+                src="/assets/home/clinicone.jpg"
+                alt="Urogynaecology care image"
                 fill
                 className="object-cover"
               />
@@ -147,11 +151,15 @@ const Urogynaecology = () => {
               <div className="absolute bottom-0 left-0 right-0 p-6 space-y-2">
                 <div className="flex items-center gap-2">
                   <Heart className="text-white" size={20} />
-                  <span className="text-white font-semibold">Confidential consultations</span>
+                  <span className="text-white font-semibold">
+                    Confidential consultations
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Activity className="text-white" size={20} />
-                  <span className="text-white font-semibold">In-house urodynamics suite</span>
+                  <span className="text-white font-semibold">
+                    In-house urodynamics suite
+                  </span>
                 </div>
               </div>
             </div>

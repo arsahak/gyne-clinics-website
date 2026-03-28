@@ -2,7 +2,7 @@
 import { ScrollMotion } from "@/component/motion";
 import AIChatbotModal from "@/component/shared/AIChatbotModal";
 import { generalGynaecologyServices } from "@/data/generalGynaecologyServices";
-import { ArrowRight, Bot, ShieldCheck, Sparkles, Play } from "lucide-react";
+import { ArrowRight, Bot, Play, ShieldCheck, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -41,16 +41,18 @@ const GeneralGynaecologySection = () => {
             aria-label="Play video"
           >
             <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
-              <Play size={24} className="text-primary ml-1" fill="currentColor" />
+              <Play
+                size={24}
+                className="text-primary ml-1"
+                fill="currentColor"
+              />
             </div>
           </button>
           <div className="absolute bottom-6 left-6 right-6 text-white z-10">
             <div className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold mb-3">
               Watch Our Story
             </div>
-            <p className="font-bold text-xl mb-2">
-              Discover GyneClinics
-            </p>
+            <p className="font-bold text-xl mb-2">Discover GyneClinics</p>
             <p className="text-sm opacity-90 font-normal">
               Meet our team • See our facilities • Learn about our care
             </p>
@@ -128,7 +130,7 @@ const GeneralGynaecologySection = () => {
         </div>
 
         {/* Feature Boxes Row */}
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
+        <div className="px-6 md:px-72 mb-12">
           {/* Symptom Checker */}
           <ScrollMotion animation="fadeInLeft" delay={0.2}>
             <div className="bg-gradient-to-br from-primary to-secondary p-8 rounded-2xl text-white shadow-xl relative overflow-hidden h-full min-h-[320px] flex flex-col">
@@ -159,9 +161,9 @@ const GeneralGynaecologySection = () => {
           </ScrollMotion>
 
           {/* YouTube Video Box - Replacing CQC Image Box */}
-          <ScrollMotion animation="fadeInRight" delay={0.2}>
+          {/* <ScrollMotion animation="fadeInRight" delay={0.2}>
             <VideoCard />
-          </ScrollMotion>
+          </ScrollMotion> */}
         </div>
 
         {/* Bottom CTA */}
