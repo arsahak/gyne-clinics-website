@@ -196,7 +196,7 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               alt="GyneClinics"
               width={500}
               height={300}
-              className="w-[40px] h-10 md:h-[60px]"
+              className="h-8 w-auto sm:h-10 md:h-12 lg:h-14 object-contain"
             />
           </Link>
 
