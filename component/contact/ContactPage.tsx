@@ -21,21 +21,21 @@ const LOCATIONS = [
     city: "London",
     address: "10, Harley Street,\nLondon W1G 9PF",
     whatsapp: "07538 295504",
-    phone: "0207 117 6456",
+    phone: "+44 7554 228100",
     email: "info@gyneclinics.com",
   },
   {
     city: "Leeds",
     address: "Leeds Private Hospital\nRed Hall Lane\nLeeds. LS17 8NB",
     whatsapp: "07538 295504",
-    phone: "0207 117 6456",
+    phone: "+44 7554 228100",
     email: "info@gyneclinics.com",
   },
   {
     city: "Manchester",
     address: "Manchester Private Hospital\nNew Court, Regent Place,\nWindsor Street, Salford\nManchester. M5 4HB",
     whatsapp: "07538 295504",
-    phone: "0207 117 6456",
+    phone: "+44 7554 228100",
     email: "info@gyneclinics.com",
   },
 ];
@@ -44,7 +44,7 @@ const LOCATIONS = [
 const COLLABORATIONS = [
   {
     name: "One Health Group",
-    url: "https://www.onehealthgroup.co.uk/",
+    url: "https://www.onehealth.co.uk/",
   },
   {
     name: "Nuffield Health Leeds",
@@ -52,7 +52,7 @@ const COLLABORATIONS = [
   },
   {
     name: "Yorkshire Clinic",
-    url: "https://www.theyorkshireclinic.com/",
+    url: "https://www.ramsayhealth.co.uk/hospitals/the-yorkshire-clinic",
   },
   {
     name: "Harley Health Village",
@@ -64,7 +64,7 @@ const COLLABORATIONS = [
   },
   {
     name: "Kinvara Hospital",
-    url: "https://www.kinvarahospital.ie/",
+    url: "https://kinvarahospital.co.uk/",
   },
   {
     name: "Claremont Hospital",
@@ -487,6 +487,7 @@ const ContactPage = () => {
                     </span>
                     <span className="whitespace-pre-line">{loc.address}</span>
                   </p>
+                  {/* WhatsApp hidden — number temporarily unavailable
                   <p className="flex items-center gap-3">
                     <span className="w-4 block">
                       <svg className="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
@@ -502,6 +503,7 @@ const ContactPage = () => {
                       WhatsApp: {loc.whatsapp}
                     </a>
                   </p>
+                  */}
                   <p className="flex items-center gap-3">
                     <span className="w-4 block">
                       <Phone size={14} className="text-gray-400" />

@@ -422,10 +422,10 @@ const PrivacyPolicyDetilas = () => {
                 <div>
                   <p className="font-semibold text-gray-900">Phone</p>
                   <a
-                    href="tel:02071176456"
+                    href="tel:+447554228100"
                     className="text-primary hover:underline"
                   >
-                    0207-117-6456
+                    +44 7554 228100
                   </a>
                 </div>
               </div>

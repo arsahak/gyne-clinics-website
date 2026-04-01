@@ -1,63 +1,90 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import {
-  Activity,
-  ArrowRight,
-  ChevronDown,
-  Droplet,
-  Sparkles,
-} from "lucide-react";
+import { Activity, ArrowRight, CalendarCheck, Droplet, Play, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
+const VIDEO_ID = "Bg1n1LxBk90";
+const videoEmbedUrl = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${VIDEO_ID}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=0`;
 
 const HeroSection = () => {
-  // Animation variants
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } },
   };
 
-  const staggerContainer: Variants = {
+  const stagger: Variants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.3 },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.18, delayChildren: 0.2 } },
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-primary flex flex-col justify-between pt-20 md:pt-[100px]">
-      {/* --- 1. BACKGROUND LAYERS --- */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Static Image Background */}
+    <section className="relative h-screen w-full overflow-hidden bg-slate-900 flex flex-col justify-between pt-20 md:pt-[100px]">
+
+      {/* ── Layer 0: Fallback image (instant display before video) ── */}
+      <div className="absolute inset-0 z-0">
         <Image
           src="/assets/home/heorimage.jpeg"
-          alt="Gyne Clinics"
+          alt="GyneClinics"
           fill
-          className="object-cover opacity-40"
+          className="object-cover"
           priority
-          quality={90}
+          quality={95}
         />
       </div>
-      {/* Emerald Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-emerald-600/50 via-emerald-700/60 to-emerald-900/90 z-10" />
 
-      {/* --- 2. MAIN CENTER CONTENT --- */}
-      <div className="relative z-20 container mx-auto px-4 grow flex flex-col justify-center items-center text-center mt-10">
+      {/* ── Layer 1: YouTube background video ── */}
+      {isMounted && (
+        <div className="absolute inset-0 z-1 pointer-events-none overflow-hidden">
+          <iframe
+            src={videoEmbedUrl}
+            title="GyneClinics Background Video"
+            allow="autoplay; encrypted-media"
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              width: "calc(max(100vw, 177.78vh))",
+              height: "calc(max(100vh, 56.25vw))",
+              transform: "translate(-50%, -50%)",
+              border: "none",
+              pointerEvents: "none",
+              opacity: 0.65,
+            }}
+          />
+        </div>
+      )}
+
+      {/* ── Layer 2: Cinematic overlay — dark edges, light centre ── */}
+      <div className="absolute inset-0 z-2 pointer-events-none">
+        {/* Left-right vignette */}
+        <div className="absolute inset-0 bg-linear-to-r from-slate-900/75 via-transparent to-slate-900/50" />
+        {/* Top-to-bottom: keep top readable, darken bottom for bar */}
+        <div className="absolute inset-0 bg-linear-to-b from-black/40 via-black/10 to-black/80" />
+        {/* Subtle teal/teal brand tint over center */}
+        <div className="absolute inset-0 bg-teal-900/20" />
+      </div>
+
+      {/* ── Layer 3: Main Content ── */}
+      <div className="relative z-3 flex flex-col justify-center items-center text-center grow px-4 container mx-auto">
         <motion.div
-          variants={staggerContainer}
+          variants={stagger}
           initial="hidden"
           animate="visible"
-          className="max-w-5xl flex flex-col items-center"
+          className="max-w-4xl flex flex-col items-center"
         >
-          {/* Subtle Tag */}
-          <motion.div variants={fadeInUp}>
-            <span className="inline-block py-1 px-4 rounded-full border border-secondary/30 bg-primary/30 backdrop-blur-md text-white text-xs font-bold tracking-[0.2em] uppercase mb-8 shadow-sm">
+          {/* Badge */}
+          <motion.div variants={fadeInUp} className="mb-6">
+            <span className="inline-flex items-center gap-2 py-1.5 px-5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-xs font-semibold tracking-[0.2em] uppercase shadow-lg">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
               GMC Registered Specialist
             </span>
           </motion.div>
@@ -65,93 +92,105 @@ const HeroSection = () => {
           {/* Headline */}
           <motion.h1
             variants={fadeInUp}
-            className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-white leading-[1.1] mb-6 drop-shadow-xl"
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-heading font-bold text-white leading-[1.08] mb-5 tracking-tight drop-shadow-2xl"
           >
-            Expertise Passion <br className="hidden md:block" />
-            <span className="text-secondary font-heading">
-              Excellence in Care
+            Expert Women&apos;s Care,{" "}
+            <br className="hidden sm:block" />
+            <span className="text-teal-300">
+              Built Around You
             </span>
           </motion.h1>
 
-          {/* Description */}
+          {/* Subtitle */}
           <motion.p
             variants={fadeInUp}
-            className="text-lg text-white md:text-2xl leading-relaxed max-w-3xl mx-auto font-normal drop-shadow-md"
+            className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed max-w-2xl mx-auto font-normal mb-10 drop-shadow"
           >
-            Designed To Put Women First | A Private Sanctuary Dedicated to Your
-            Complete Well-Being and Supporting You at Every Stage
+            A private sanctuary dedicated to your complete well-being —
+            specialist gynaecological care at every stage of your life.
           </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/contact">
+              <button className="group inline-flex items-center gap-3 bg-teal-500 hover:bg-teal-400 text-white font-bold text-sm md:text-base px-7 py-4 rounded-full shadow-2xl shadow-teal-900/40 transition-all duration-300 hover:scale-105 hover:shadow-teal-500/30">
+                <CalendarCheck size={18} />
+                Book a Consultation
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </Link>
+            <Link href="#search">
+              <button className="inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-white font-semibold text-sm md:text-base px-7 py-4 rounded-full transition-all duration-300 hover:scale-105">
+                <Play size={16} className="fill-white" />
+                Our Services
+              </button>
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
 
-      {/* --- 3. THE "DISCOVERY BAR" (REPLACES BUTTONS) --- */}
-      {/* This sits at the bottom, guiding users to specific areas elegantly */}
-      <div className="relative z-30 w-full border-t border-white/10 bg-primary/40 backdrop-blur-xl">
+      {/* ── Layer 3: Discovery Bar at bottom ── */}
+      <div className="relative z-3 w-full bg-white/5 backdrop-blur-xl border-t border-white/10">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
-            {/* Item 1 */}
             <DiscoveryLink
               href="/general-gynaecology"
               title="General Gynaecology"
               subtitle="Wellness & Screening"
-              icon={<Activity size={20} />}
+              icon={<Activity size={18} />}
             />
-
-            {/* Item 2 */}
             <DiscoveryLink
               href="/urogynaecology"
               title="Urogynaecology"
               subtitle="Bladder & Pelvic Health"
-              icon={<Droplet size={20} />}
+              icon={<Droplet size={18} />}
             />
-
-            {/* Item 3 */}
             <DiscoveryLink
               href="/aesthetic-gynaecology"
               title="Aesthetic Gynaecology"
               subtitle="Rejuvenation & Beauty"
-              icon={<Sparkles size={20} />}
+              icon={<Sparkles size={18} />}
             />
           </div>
         </div>
       </div>
-
-      {/* Scroll Indicator (Optional Visual Queue) */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 text-white/50 animate-bounce md:hidden"
-      >
-        <ChevronDown size={24} />
-      </motion.div>
     </section>
   );
 };
 
-// --- Helper Component for the Bar ---
-const DiscoveryLink = ({ href, title, subtitle, icon }: any) => {
-  return (
-    <Link
-      href={href}
-      className="group flex items-center justify-between p-6 hover:bg-white/5 transition-all duration-300 cursor-pointer"
-    >
-      <div className="flex items-center gap-4">
-        <div className="text-white transition-colors">{icon}</div>
-        <div className="text-left">
-          <h3 className="text-white font-heading font-semibold text-lg transition-colors">
-            {title}
-          </h3>
-          <p className="text-gray-300 text-xs uppercase tracking-wider">
-            {subtitle}
-          </p>
-        </div>
+const DiscoveryLink = ({
+  href,
+  title,
+  subtitle,
+  icon,
+}: {
+  href: string;
+  title: string;
+  subtitle: string;
+  icon: React.ReactNode;
+}) => (
+  <Link
+    href={href}
+    className="group flex items-center justify-between px-6 py-5 hover:bg-white/8 transition-all duration-300"
+  >
+    <div className="flex items-center gap-4">
+      <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-teal-300 group-hover:bg-teal-500 group-hover:text-white transition-all duration-300 shrink-0">
+        {icon}
       </div>
-      <div className="text-gray-500 group-hover:translate-x-1 transition-all">
-        <ArrowRight size={20} />
+      <div className="text-left">
+        <p className="text-white font-semibold text-sm md:text-base leading-tight">
+          {title}
+        </p>
+        <p className="text-white/50 text-xs uppercase tracking-wider mt-0.5">
+          {subtitle}
+        </p>
       </div>
-    </Link>
-  );
-};
+    </div>
+    <ArrowRight
+      size={16}
+      className="text-white/30 group-hover:text-teal-300 group-hover:translate-x-1 transition-all duration-300"
+    />
+  </Link>
+);
 
 export default HeroSection;

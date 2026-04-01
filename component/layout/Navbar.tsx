@@ -103,6 +103,7 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
         className="bg-primary-500 text-white text-xs overflow-hidden"
       >
         <div className="container mx-auto px-4 h-full flex justify-between items-center">
+          {/* WhatsApp hidden — number temporarily unavailable
           <div className="flex items-center gap-4">
             <a
               href="https://wa.me/447538295504"
@@ -116,6 +117,7 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               <span>07538 295504</span>
             </a>
           </div>
+          */}
           <div className="flex items-center gap-4">
             <a
               href="https://youtube.com/@gyneclinics"

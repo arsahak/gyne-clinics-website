@@ -12,7 +12,7 @@ const featuredProducts = [
     category: "Nutrition & Gut Health",
     price: "£34.99",
     rating: 4.8,
-    image: "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&w=800&q=80",
+    image: "/assets/store/store-gut-health-probiotics1.png",
     link: "https://whpstore.org/en-gb/collections/nutrition-gut-health",
   },
   {
@@ -21,7 +21,7 @@ const featuredProducts = [
     category: "Nutrition & Gut Health",
     price: "£29.99",
     rating: 4.9,
-    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=80",
+    image: "/assets/store/store-womens-multivitamin1.png",
     link: "https://whpstore.org/en-gb/collections/nutrition-gut-health",
   },
   {
@@ -30,7 +30,7 @@ const featuredProducts = [
     category: "Nutrition & Gut Health",
     price: "£24.99",
     rating: 4.7,
-    image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=800&q=80",
+    image: "/assets/store/store-digestive-enzyme1.png",
     link: "https://whpstore.org/en-gb/collections/nutrition-gut-health",
   },
 ];
@@ -75,7 +75,11 @@ const StoreSection = () => {
         </div>
 
         {/* Shop More CTA */}
-        <ScrollMotion animation="fadeInUp" delay={0.4} className="text-center mt-12">
+        <ScrollMotion
+          animation="fadeInUp"
+          delay={0.4}
+          className="text-center mt-12"
+        >
           <a
             href="https://whpstore.org/en-gb/collections/nutrition-gut-health"
             target="_blank"
@@ -165,7 +169,9 @@ const ProductCard = ({
                 key={i}
                 size={11}
                 className={`md:w-3 md:h-3 ${
-                  i < Math.floor(product.rating) ? "fill-current" : "text-gray-300"
+                  i < Math.floor(product.rating)
+                    ? "fill-current"
+                    : "text-gray-300"
                 }`}
               />
             ))}
