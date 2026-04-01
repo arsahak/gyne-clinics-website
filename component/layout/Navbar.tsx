@@ -11,7 +11,6 @@ import {
   LogIn,
   LogOut,
   Menu,
-  Phone,
   Search,
   ShoppingCart,
   User,
@@ -197,7 +196,7 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               alt="GyneClinics"
               width={500}
               height={300}
-              className="w-full h-10 md:h-[60px]"
+              className="w-[40px] h-10 md:h-[60px]"
             />
           </Link>
 

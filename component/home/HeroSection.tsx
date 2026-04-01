@@ -1,8 +1,14 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { Activity, ArrowRight, CalendarCheck, Droplet, Play, Sparkles } from "lucide-react";
-import Image from "next/image";
+import {
+  Activity,
+  ArrowRight,
+  CalendarCheck,
+  Droplet,
+  Play,
+  Sparkles,
+} from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -18,29 +24,23 @@ const HeroSection = () => {
 
   const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.9, ease: "easeOut" },
+    },
   };
 
   const stagger: Variants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.18, delayChildren: 0.2 } },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.18, delayChildren: 0.2 },
+    },
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-slate-900 flex flex-col justify-between pt-20 md:pt-[100px]">
-
-      {/* ── Layer 0: Fallback image (instant display before video) ── */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/assets/home/heorimage.jpeg"
-          alt="GyneClinics"
-          fill
-          className="object-cover"
-          priority
-          quality={95}
-        />
-      </div>
-
+    <section className="relative h-screen w-full overflow-hidden bg-emerald-900 flex flex-col justify-between pt-20 md:pt-[100px]">
       {/* ── Layer 1: YouTube background video ── */}
       {isMounted && (
         <div className="absolute inset-0 z-1 pointer-events-none overflow-hidden">
@@ -66,11 +66,11 @@ const HeroSection = () => {
       {/* ── Layer 2: Cinematic overlay — dark edges, light centre ── */}
       <div className="absolute inset-0 z-2 pointer-events-none">
         {/* Left-right vignette */}
-        <div className="absolute inset-0 bg-linear-to-r from-slate-900/75 via-transparent to-slate-900/50" />
+        <div className="absolute inset-0 bg-linear-to-r from-emerald-900/75 via-transparent to-emerald-900/50" />
         {/* Top-to-bottom: keep top readable, darken bottom for bar */}
         <div className="absolute inset-0 bg-linear-to-b from-black/40 via-black/10 to-black/80" />
-        {/* Subtle teal/teal brand tint over center */}
-        <div className="absolute inset-0 bg-teal-900/20" />
+        {/* Subtle emerald brand tint over center */}
+        <div className="absolute inset-0 bg-emerald-900/20" />
       </div>
 
       {/* ── Layer 3: Main Content ── */}
@@ -84,7 +84,7 @@ const HeroSection = () => {
           {/* Badge */}
           <motion.div variants={fadeInUp} className="mb-6">
             <span className="inline-flex items-center gap-2 py-1.5 px-5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-xs font-semibold tracking-[0.2em] uppercase shadow-lg">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               GMC Registered Specialist
             </span>
           </motion.div>
@@ -94,11 +94,8 @@ const HeroSection = () => {
             variants={fadeInUp}
             className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-heading font-bold text-white leading-[1.08] mb-5 tracking-tight drop-shadow-2xl"
           >
-            Expert Women&apos;s Care,{" "}
-            <br className="hidden sm:block" />
-            <span className="text-teal-300">
-              Built Around You
-            </span>
+            Expert Women&apos;s Care, <br className="hidden sm:block" />
+            <span className="text-emerald-300">Built Around You</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -111,12 +108,18 @@ const HeroSection = () => {
           </motion.p>
 
           {/* CTA Buttons */}
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center">
+          <motion.div
+            variants={fadeInUp}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
             <Link href="/contact">
-              <button className="group inline-flex items-center gap-3 bg-teal-500 hover:bg-teal-400 text-white font-bold text-sm md:text-base px-7 py-4 rounded-full shadow-2xl shadow-teal-900/40 transition-all duration-300 hover:scale-105 hover:shadow-teal-500/30">
+              <button className="group inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm md:text-base px-7 py-4 rounded-full shadow-2xl shadow-emerald-900/40 transition-all duration-300 hover:scale-105 hover:shadow-emerald-500/30">
                 <CalendarCheck size={18} />
                 Book a Consultation
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight
+                  size={16}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
               </button>
             </Link>
             <Link href="#search">
@@ -174,7 +177,7 @@ const DiscoveryLink = ({
     className="group flex items-center justify-between px-6 py-5 hover:bg-white/8 transition-all duration-300"
   >
     <div className="flex items-center gap-4">
-      <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-teal-300 group-hover:bg-teal-500 group-hover:text-white transition-all duration-300 shrink-0">
+      <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-emerald-300 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300 shrink-0">
         {icon}
       </div>
       <div className="text-left">
@@ -188,7 +191,7 @@ const DiscoveryLink = ({
     </div>
     <ArrowRight
       size={16}
-      className="text-white/30 group-hover:text-teal-300 group-hover:translate-x-1 transition-all duration-300"
+      className="text-white/30 group-hover:text-emerald-300 group-hover:translate-x-1 transition-all duration-300"
     />
   </Link>
 );
