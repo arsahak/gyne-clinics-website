@@ -147,7 +147,7 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
             </a>
 
             {/* CART ICON - TOP BAR */}
-            <Link href="/cart" className="relative ml-4">
+            {/* <Link href="/cart" className="relative ml-4">
               <button
                 className="relative p-1.5 hover:text-secondary transition-colors"
                 aria-label="Shopping cart"
@@ -159,10 +159,10 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
                   </span>
                 )}
               </button>
-            </Link>
+            </Link> */}
 
             {/* AUTH SECTION - MOVED TO TOP BAR */}
-            <div className="ml-2 pl-4 border-l border-primary-400 flex items-center gap-4">
+            {/* <div className="ml-2 pl-4 border-l border-primary-400 flex items-center gap-4">
               {!isLoggedIn ? (
                 <Link
                   href="/sign-in"
@@ -178,7 +178,7 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
                   Dashboard
                 </Link>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
       </motion.div>

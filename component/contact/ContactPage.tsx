@@ -4,13 +4,13 @@ import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import {
   AlertCircle,
+  Building2,
   CheckCircle,
+  ExternalLink,
   Mail,
   MapPin,
   Phone,
   Send,
-  ExternalLink,
-  Building2,
 } from "lucide-react";
 import { useState } from "react";
 import { CommonHero } from "../shared";
@@ -21,21 +21,22 @@ const LOCATIONS = [
     city: "London",
     address: "10, Harley Street,\nLondon W1G 9PF",
     whatsapp: "07538 295504",
-    phone: "+44 7554 228100",
+    phone: "+44 7554 228100, 07538 295504",
     email: "info@gyneclinics.com",
   },
   {
     city: "Leeds",
     address: "Leeds Private Hospital\nRed Hall Lane\nLeeds. LS17 8NB",
     whatsapp: "07538 295504",
-    phone: "+44 7554 228100",
+    phone: "+44 7554 228100, 07538 295504",
     email: "info@gyneclinics.com",
   },
   {
     city: "Manchester",
-    address: "Manchester Private Hospital\nNew Court, Regent Place,\nWindsor Street, Salford\nManchester. M5 4HB",
+    address:
+      "Manchester Private Hospital\nNew Court, Regent Place,\nWindsor Street, Salford\nManchester. M5 4HB",
     whatsapp: "07538 295504",
-    phone: "+44 7554 228100",
+    phone: "+44 7554 228100, 07538 295504",
     email: "info@gyneclinics.com",
   },
 ];
@@ -78,6 +79,10 @@ const COLLABORATIONS = [
     name: "Pall Mall Medical",
     url: "https://www.pallmallmedical.co.uk/",
   },
+  {
+    name: "Airedale NHS Trust",
+    url: "https://www.airedale-trust.nhs.uk/",
+  },
 ];
 
 const ContactPage = () => {
@@ -105,7 +110,7 @@ const ContactPage = () => {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -182,7 +187,7 @@ const ContactPage = () => {
         console.log("FAILED...", err);
         setStatus("error");
         alert("Failed to send. Please try again.");
-      }
+      },
     );
   };
 
@@ -459,7 +464,8 @@ const ContactPage = () => {
               <strong className="text-primary">Strictly By Appointment</strong>
             </p>
             <p className="text-gray-500 text-sm">
-              We use various Clinics and Surgical Centres, depending on your location and clinical requirements and treatment pathway.
+              We use various Clinics and Surgical Centres, depending on your
+              location and clinical requirements and treatment pathway.
             </p>
           </div>
 
@@ -509,7 +515,7 @@ const ContactPage = () => {
                       <Phone size={14} className="text-gray-400" />
                     </span>
                     <a
-                      href={`tel:${loc.phone.replace(/\s/g, '')}`}
+                      href={`tel:${loc.phone.replace(/\s/g, "")}`}
                       className="hover:text-primary transition-colors"
                     >
                       {loc.phone}
@@ -561,11 +567,17 @@ const ContactPage = () => {
                 transition={{ delay: idx * 0.05 }}
                 className="group bg-white hover:bg-primary/5 p-4 md:p-6 rounded-xl border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center text-center gap-2"
               >
-                <Building2 size={20} className="text-primary group-hover:text-secondary transition-colors" />
+                <Building2
+                  size={20}
+                  className="text-primary group-hover:text-secondary transition-colors"
+                />
                 <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-primary transition-colors leading-tight">
                   {partner.name}
                 </p>
-                <ExternalLink size={12} className="text-gray-400 group-hover:text-secondary transition-colors" />
+                <ExternalLink
+                  size={12}
+                  className="text-gray-400 group-hover:text-secondary transition-colors"
+                />
               </motion.a>
             ))}
           </div>

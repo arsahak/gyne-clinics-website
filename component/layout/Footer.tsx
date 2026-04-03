@@ -56,7 +56,7 @@ const Footer = () => {
       (error) => {
         console.error("FAILED...", error);
         setStatus("error");
-      }
+      },
     );
   };
 
@@ -199,7 +199,7 @@ const Footer = () => {
                     href="tel:+447554228100"
                     className="hover:text-white transition"
                   >
-                    +44 7554 228100
+                    07538 295504
                   </a>
                   {/* WhatsApp hidden — number temporarily unavailable
                   <a
@@ -312,7 +312,7 @@ const Footer = () => {
           <p className="text-slate-300 text-sm">
             Design & Developed by{" "}
             <Link
-              href="https://arsahak.com"
+              href="https://arsahak.info"
               className="text-slate-400 hover:text-white transition"
             >
               AR Sahak

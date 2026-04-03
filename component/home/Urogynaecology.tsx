@@ -73,7 +73,7 @@ const Urogynaecology = () => {
             <div className="bg-white p-6 rounded-xl shadow-lg border-2 border-blue-100">
               <div className="flex items-center gap-3 mb-2">
                 <Award className="text-blue-500" size={20} />
-                <span className="font-bold text-primary">BSUG Accredited</span>
+                <span className="font-bold text-primary">BSUG Guided</span>
               </div>
               <p className="text-sm text-gray-500">
                 Specialist-led pelvic floor care
@@ -158,7 +158,7 @@ const Urogynaecology = () => {
                 <div className="flex items-center gap-2">
                   <Activity className="text-white" size={20} />
                   <span className="text-white font-semibold">
-                    In-house urodynamics suite
+                    Access to Urodynamics suite
                   </span>
                 </div>
               </div>
