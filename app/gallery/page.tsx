@@ -43,8 +43,8 @@ export default function GalleryPage() {
       id: 1,
       category: "labiaplasty",
       title: "Labiaplasty - Edge Trim Technique",
-      before: "/assets/home/banner1.svg", // TODO: Replace with actual medical image
-      after: "/assets/home/banner2.svg", // TODO: Replace with actual medical image
+      before: "/assets/gallery/a1.png",
+      after: "/assets/gallery/a1.png",
       description:
         "Patient in her 30s presenting with asymmetric labia minora causing discomfort during exercise. Edge trim technique performed for natural-looking results.",
       procedure: "Labiaplasty",
@@ -56,8 +56,8 @@ export default function GalleryPage() {
       id: 2,
       category: "labiaplasty",
       title: "Labiaplasty - Wedge Technique",
-      before: "/assets/home/banner2.svg", // TODO: Replace with actual medical image
-      after: "/assets/home/banner3.svg", // TODO: Replace with actual medical image
+      before: "/assets/gallery/a3.png",
+      after: "/assets/gallery/a3.png",
       description:
         "Patient experiencing chafing and self-consciousness. Wedge resection technique used to preserve natural edge pigmentation.",
       procedure: "Labiaplasty",
@@ -69,8 +69,8 @@ export default function GalleryPage() {
       id: 3,
       category: "vaginoplasty",
       title: "Vaginoplasty Post-Childbirth",
-      before: "/assets/home/banner1.svg", // TODO: Replace with actual medical image
-      after: "/assets/home/banner3.svg", // TODO: Replace with actual medical image
+      before: "/assets/gallery/a4.png",
+      after: "/assets/gallery/a4.png",
       description:
         "Mother of two experiencing vaginal laxity affecting intimacy. Comprehensive vaginoplasty with perineoplasty performed.",
       procedure: "Vaginoplasty + Perineoplasty",
@@ -82,8 +82,8 @@ export default function GalleryPage() {
       id: 4,
       category: "laser",
       title: "Laser Vaginal Rejuvenation",
-      before: "/assets/home/banner2.svg", // TODO: Replace with actual medical image
-      after: "/assets/home/banner1.svg", // TODO: Replace with actual medical image
+      before: "/assets/gallery/a5.png",
+      after: "/assets/gallery/a5.png",
       description:
         "Patient with vaginal atrophy and stress incontinence. Three sessions of fractional CO2 laser treatment completed.",
       procedure: "Laser Rejuvenation",
@@ -95,8 +95,8 @@ export default function GalleryPage() {
       id: 5,
       category: "o-shot",
       title: "O-Shot (PRP) Treatment",
-      before: "/assets/home/banner3.svg", // TODO: Replace with actual medical image
-      after: "/assets/home/banner1.svg", // TODO: Replace with actual medical image
+      before: "/assets/gallery/a6.png",
+      after: "/assets/gallery/a6.png",
       description:
         "Patient seeking enhanced sexual function and reduced urinary incontinence. Single O-Shot treatment with excellent results.",
       procedure: "O-Shot (PRP)",
