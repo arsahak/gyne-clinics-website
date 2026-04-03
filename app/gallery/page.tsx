@@ -1,7 +1,7 @@
 "use client";
 import { ScrollMotion } from "@/component/motion";
 import { CommonHero } from "@/component/shared";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ChevronLeft,
   ChevronRight,
@@ -32,7 +32,7 @@ export default function GalleryPage() {
     { id: "labiaplasty", label: "Labiaplasty" },
     { id: "vaginoplasty", label: "Vaginoplasty" },
     { id: "laser", label: "Laser Rejuvenation" },
-    { id: "o-shot", label: "O-Shot" },
+    // { id: "o-shot", label: "O-Shot" },
   ];
 
   // Before/After gallery data
@@ -91,19 +91,19 @@ export default function GalleryPage() {
       recovery: "No downtime",
       age: "52",
     },
-    {
-      id: 5,
-      category: "o-shot",
-      title: "O-Shot (PRP) Treatment",
-      before: "/assets/gallery/a6.png",
-      after: "/assets/gallery/a6.png",
-      description:
-        "Patient seeking enhanced sexual function and reduced urinary incontinence. Single O-Shot treatment with excellent results.",
-      procedure: "O-Shot (PRP)",
-      technique: "Platelet-Rich Plasma",
-      recovery: "Immediate",
-      age: "45",
-    },
+    // {
+    //   id: 5,
+    //   category: "o-shot",
+    //   title: "O-Shot (PRP) Treatment",
+    //   before: "/assets/gallery/a6.png",
+    //   after: "/assets/gallery/a6.png",
+    //   description:
+    //     "Patient seeking enhanced sexual function and reduced urinary incontinence. Single O-Shot treatment with excellent results.",
+    //   procedure: "O-Shot (PRP)",
+    //   technique: "Platelet-Rich Plasma",
+    //   recovery: "Immediate",
+    //   age: "45",
+    // },
   ];
 
   const filteredGallery =
@@ -118,7 +118,7 @@ export default function GalleryPage() {
   const handleNext = () => {
     if (selectedImage) {
       const currentIndex = filteredGallery.findIndex(
-        (item) => item.id === selectedImage
+        (item) => item.id === selectedImage,
       );
       const nextIndex = (currentIndex + 1) % filteredGallery.length;
       setSelectedImage(filteredGallery[nextIndex].id);
@@ -129,7 +129,7 @@ export default function GalleryPage() {
   const handlePrevious = () => {
     if (selectedImage) {
       const currentIndex = filteredGallery.findIndex(
-        (item) => item.id === selectedImage
+        (item) => item.id === selectedImage,
       );
       const previousIndex =
         (currentIndex - 1 + filteredGallery.length) % filteredGallery.length;
@@ -178,13 +178,14 @@ export default function GalleryPage() {
                       Sensitive Medical Content
                     </h3>
                     <p className="text-gray-700 leading-relaxed mb-4">
-                      This gallery contains clinical before and after photographs
-                      of intimate aesthetic procedures. Images are blurred by
-                      default to respect viewer preferences.
+                      This gallery contains clinical before and after
+                      photographs of intimate aesthetic procedures. Images are
+                      blurred by default to respect viewer preferences.
                     </p>
                     <p className="text-gray-600 text-sm mb-6">
-                      By clicking "View Gallery", you acknowledge you are 18+ and
-                      wish to view medical images for informational purposes.
+                      By clicking "View Gallery", you acknowledge you are 18+
+                      and wish to view medical images for informational
+                      purposes.
                     </p>
                     <button
                       onClick={() => setIsBlurred(false)}
