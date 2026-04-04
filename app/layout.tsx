@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://gyne-clinics-website.vercel.app"),
+  metadataBase: new URL("https://www.gyneclinics.com"),
 };
 
 export default function RootLayout({
