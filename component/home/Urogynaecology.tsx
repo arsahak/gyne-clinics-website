@@ -34,7 +34,7 @@ const Urogynaecology = () => {
     {
       icon: Activity,
       title: "Urodynamics Testing",
-      desc: "In-house advanced bladder function diagnostics",
+      desc: "Access to Urodynamic Suite",
       stat: "Same-day results",
     },
   ];
