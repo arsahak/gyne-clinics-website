@@ -87,19 +87,19 @@ const Footer = () => {
             </p>
             <div className="flex gap-3 pt-2">
               <SocialIcon
-                href="https://youtube.com/@gyneclinics"
+                href="https://youtube.com/@gyneclinics?si=7H7Z50gLhaAZB-yX"
                 icon={<Youtube size={18} />}
               />
               <SocialIcon
-                href="https://instagram.com/gyneclinics"
+                href="https://www.instagram.com/mygyneclinics?igsh=MWR0aXpxZ2xneXV6Nw=="
                 icon={<Instagram size={18} />}
               />
               <SocialIcon
-                href="https://linkedin.com/company/gyneclinics"
+                href="https://www.linkedin.com/company/gyneclinicsltd/"
                 icon={<Linkedin size={18} />}
               />
               <SocialIcon
-                href="https://facebook.com/gyneclinics"
+                href="https://www.facebook.com/share/18RLDVNUcZ/?mibextid=wwXIfr"
                 icon={<Facebook size={18} />}
               />
             </div>

@@ -45,8 +45,8 @@ const HrtMythBuster = () => {
               </h2>
               <p className="text-white/90 text-base md:text-lg mb-8 leading-relaxed">
                 Headlines can be misleading. Use our AI-powered tool to understand
-                the latest evidence-based safety data regarding HRT, Breast
-                Cancer, and Heart Health specific to your age group.
+                the latest evidence-based safety data regarding HRT and
+                Heart Health specific to your age group.
               </p>
               <button
                 onClick={() => setIsChatbotOpen(true)}

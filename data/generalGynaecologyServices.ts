@@ -812,20 +812,14 @@ export const generalGynaecologyServices: GeneralGynaecologyService[] = [
           description:
             "Laparotomy for large masses, suspected malignancy, or when minimally invasive approach not suitable",
         },
-        {
-          name: "Cancer Treatment",
-          description:
-            "Rapid referral to gynecological oncology team for confirmed or suspected malignancies",
-        },
       ],
     },
     whyChooseUs: [
-      "Expert subspecialists in benign and malignant gynecology",
+      "Expert subspecialists in benign gynaecology",
       "Access to advanced imaging including 3D ultrasound and MRI",
       "Minimally invasive surgical expertise",
       "Rapid assessment and treatment pathways",
       "Multidisciplinary team meetings for complex cases",
-      "Direct links to oncology services for suspected cancers",
     ],
     faqs: [
       {
@@ -847,107 +841,6 @@ export const generalGynaecologyServices: GeneralGynaecologyService[] = [
         question: "How long is recovery after surgery?",
         answer:
           "Laparoscopic surgery typically allows return to normal activities within 1-2 weeks. Open surgery requires 4-6 weeks recovery. We'll discuss expected recovery time based on your specific procedure.",
-      },
-    ],
-  },
-  {
-    slug: "gynaecological-cancer",
-    title: "Gynaecological Cancer Screening & Management",
-    shortDesc:
-      "Early detection saves lives. Expert screening, diagnosis, and rapid referral for suspected gynaecological cancers.",
-    icon: Shield,
-    color: "from-red-500 to-pink-500",
-    heroImage: "/assets/services/cancer-screening.jpg",
-    overview:
-      "Gynaecological cancers include cervical, ovarian, uterine (endometrial), vulvar, and vaginal cancers. Early detection dramatically improves outcomes. We provide comprehensive screening programs, investigate suspicious symptoms, and ensure rapid referral to specialist oncology teams when cancer is suspected. Our goal is prevention through screening and early detection when treatment is most effective. We support you throughout the diagnostic process and coordinate your care with leading cancer centers.",
-    symptoms: [
-      "Abnormal vaginal bleeding (between periods, after menopause, after sex)",
-      "Persistent pelvic or abdominal pain",
-      "Bloating that doesn't go away",
-      "Changes in bowel or bladder habits",
-      "Unexplained weight loss",
-      "Persistent back pain",
-      "Unusual vaginal discharge",
-      "Vulvar itching, burning, or visible changes",
-    ],
-    diagnosticApproach: {
-      title: "Screening & Investigation",
-      items: [
-        "Cervical screening (smear test) and HPV testing",
-        "Transvaginal ultrasound for ovarian and uterine assessment",
-        "CA125 blood test for ovarian cancer markers",
-        "Endometrial biopsy for abnormal bleeding",
-        "Colposcopy for abnormal smear results",
-        "Hysteroscopy to examine uterine cavity",
-        "MRI or CT scanning for staging if cancer suspected",
-        "Two-week wait urgent referral pathway to oncology",
-      ],
-    },
-    treatmentOptions: {
-      title: "Our Cancer Services",
-      description:
-        "We focus on prevention, early detection, and rapid specialist referral:",
-      options: [
-        {
-          name: "Cervical Cancer Screening",
-          description:
-            "Regular smear tests and HPV testing to detect pre-cancerous changes. Treatment of abnormalities with LLETZ/cone biopsy to prevent cancer developing",
-        },
-        {
-          name: "Ovarian Cancer Screening",
-          description:
-            "CA125 testing and ultrasound assessment for women with symptoms or family history. Genetic counseling for BRCA carriers",
-        },
-        {
-          name: "Endometrial Cancer Investigation",
-          description:
-            "Rapid investigation of postmenopausal bleeding or abnormal pre-menopausal bleeding with ultrasound and biopsy",
-        },
-        {
-          name: "Vulvar & Vaginal Assessment",
-          description:
-            "Examination and biopsy of suspicious vulvar or vaginal lesions with fast-track referral if cancer suspected",
-        },
-        {
-          name: "Risk Assessment",
-          description:
-            "Family history evaluation, genetic counseling, and screening for women at high risk of gynaecological cancers",
-        },
-        {
-          name: "Rapid Oncology Referral",
-          description:
-            "Two-week wait referrals to specialist gynecological oncology teams for suspected cancers, coordinated care throughout treatment",
-        },
-      ],
-    },
-    whyChooseUs: [
-      "Expert in early cancer detection and screening",
-      "Direct access to specialist oncology teams",
-      "Two-week wait urgent referral pathways",
-      "Advanced imaging and diagnostic capabilities",
-      "Genetic counseling for high-risk individuals",
-      "Supportive, compassionate care throughout diagnostic journey",
-    ],
-    faqs: [
-      {
-        question: "What are the warning signs of gynaecological cancer?",
-        answer:
-          "The most important warning sign is abnormal vaginal bleeding - between periods, after sex, or after menopause. Other signs include persistent pelvic pain, bloating that doesn't go away, and unexplained weight loss. Any unusual or persistent symptoms should be checked.",
-      },
-      {
-        question: "How effective is cervical screening?",
-        answer:
-          "Cervical screening has reduced cervical cancer deaths by 70% in the UK. It detects abnormal cells before they become cancerous, allowing treatment to prevent cancer developing. Regular screening is one of the most effective cancer prevention tools available.",
-      },
-      {
-        question: "Am I at high risk for ovarian cancer?",
-        answer:
-          "Risk factors include family history (especially BRCA gene mutations), endometriosis, never having children, and increasing age. If you have strong family history, we can arrange genetic counseling and tailored screening.",
-      },
-      {
-        question: "What happens if cancer is suspected?",
-        answer:
-          "We ensure rapid two-week wait referrals to specialist gynecological oncology teams. We coordinate all your tests and provide support throughout. Early referral to specialists dramatically improves outcomes.",
       },
     ],
   },

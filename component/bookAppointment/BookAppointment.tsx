@@ -56,10 +56,10 @@ export default function BookConsultation() {
               <div className="flex items-center gap-3 text-sm text-gray-600">
                 <Phone className="w-4 h-4 text-primary" />
                 <a
-                  href="tel:+447554228100"
+                  href="tel:+447538295504"
                   className="hover:text-primary transition-colors"
                 >
-                  +44 7554 228100
+                  07538 295504
                 </a>
               </div>
               <div className="flex items-center gap-3 text-sm text-gray-600">

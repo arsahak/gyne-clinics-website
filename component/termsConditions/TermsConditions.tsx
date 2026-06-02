@@ -431,10 +431,10 @@ const TermsConditions = () => {
                 <div>
                   <p className="font-semibold text-gray-900">Phone</p>
                   <a
-                    href="tel:+447554228100"
+                    href="tel:+447538295504"
                     className="text-primary hover:underline"
                   >
-                    +44 7554 228100
+                    07538 295504
                   </a>
                 </div>
               </div>

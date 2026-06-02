@@ -891,8 +891,6 @@ export const servicesData: ServiceData[] = [
       "Diagnosis of vulvar skin conditions",
       "Bladder tumor assessment",
       "Interstitial cystitis confirmation",
-      "Cancer screening and diagnosis",
-      "Monitoring of pre-cancerous changes",
     ],
     treatments: [
       {

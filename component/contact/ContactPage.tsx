@@ -21,14 +21,14 @@ const LOCATIONS = [
     city: "London",
     address: "10, Harley Street,\nLondon W1G 9PF",
     whatsapp: "07538 295504",
-    phone: "+44 7554 228100, 07538 295504",
+    phone: "07538 295504",
     email: "info@gyneclinics.com",
   },
   {
     city: "Leeds",
     address: "Leeds Private Hospital\nRed Hall Lane\nLeeds. LS17 8NB",
     whatsapp: "07538 295504",
-    phone: "+44 7554 228100, 07538 295504",
+    phone: "07538 295504",
     email: "info@gyneclinics.com",
   },
   {
@@ -36,7 +36,7 @@ const LOCATIONS = [
     address:
       "Manchester Private Hospital\nNew Court, Regent Place,\nWindsor Street, Salford\nManchester. M5 4HB",
     whatsapp: "07538 295504",
-    phone: "+44 7554 228100, 07538 295504",
+    phone: "07538 295504",
     email: "info@gyneclinics.com",
   },
 ];

@@ -119,7 +119,7 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
           */}
           <div className="flex items-center gap-4">
             <a
-              href="https://youtube.com/@gyneclinics"
+              href="https://youtube.com/@gyneclinics?si=7H7Z50gLhaAZB-yX"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="YouTube"
@@ -128,7 +128,7 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               <Youtube size={16} />
             </a>
             <a
-              href="https://instagram.com/gyneclinics"
+              href="https://www.instagram.com/mygyneclinics?igsh=MWR0aXpxZ2xneXV6Nw=="
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -137,7 +137,7 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               <Instagram size={16} />
             </a>
             <a
-              href="https://linkedin.com/company/gyneclinics"
+              href="https://www.linkedin.com/company/gyneclinicsltd/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
