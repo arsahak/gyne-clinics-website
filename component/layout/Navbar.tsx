@@ -2,6 +2,7 @@
 
 import { userSignOut } from "@/app/actions/auth";
 import { useCart } from "@/context/CartContext";
+import SearchModal from "@/component/shared/SearchModal";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Calendar,
@@ -71,6 +72,7 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null); // Desktop Nav Dropdown
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false); // User Profile Dropdown
   const [scrolled, setScrolled] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { getTotalItems } = useCart();
   const cartItemCount = getTotalItems();
 
@@ -89,7 +91,20 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Cmd/Ctrl+K keyboard shortcut to open search
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setIsSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
+    <>
     <header
       className={`fixed top-0 w-full z-50 duration-300 ${
         scrolled ? "shadow-md" : ""
@@ -288,18 +303,17 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
           {/* RIGHT SIDE ACTIONS (Separator + CTA) */}
           <div className="hidden lg:flex items-center gap-6 shrink-0">
-            {/* SEPARATOR */}
-            <div className="h-6 w-px bg-gray-200"></div>
+          
+          
 
             {/* SEARCH BUTTON */}
-            <Link href="/#search" scroll={true}>
-              <button
-                className="flex items-center gap-2 text-primary-500 hover:text-secondary transition-colors p-2 hover:bg-gray-50 rounded-full"
-                aria-label="Search"
-              >
-                <Search size={20} />
-              </button>
-            </Link>
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className="flex items-center gap-2 text-primary hover:text-secondary transition-colors p-2 hover:bg-gray-50 rounded-full"
+              aria-label="Search"
+            >
+              <Search size={20} />
+            </button>
 
             {/* CTA BUTTON */}
             <Link href="/book-appointment">
@@ -468,6 +482,13 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
         )}
       </AnimatePresence>
     </header>
+
+    {/* Search Modal — rendered outside header so it overlays entire page */}
+    <SearchModal
+      isOpen={isSearchOpen}
+      onClose={() => setIsSearchOpen(false)}
+    />
+    </>
   );
 };
 
